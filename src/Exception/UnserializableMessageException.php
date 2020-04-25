@@ -16,16 +16,11 @@ use Throwable;
  */
 class UnserializableMessageException extends RuntimeException implements ExceptionInterface
 {
-    private MessageInterface $reason;
+    use MessageExceptionTrait;
 
     public function __construct(MessageInterface $reason, Throwable $previous = null)
     {
         parent::__construct('The received body cannot be serialized.', 0, $previous);
         $this->reason = $reason;
-    }
-
-    public function getReason(): MessageInterface
-    {
-        return $this->reason;
     }
 }
