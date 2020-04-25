@@ -14,4 +14,20 @@ use RM\Component\Client\Transport\TransportInterface;
 interface RepositoryInterface
 {
     public function __construct(TransportInterface $transport, HydratorInterface $hydrator);
+
+    /**
+     * Returns entity by identifier.
+     *
+     * @param string $id
+     *
+     * @return object
+     */
+    public function get(string $id): object;
+
+    /**
+     * Returns FQCN of entity.
+     *
+     * @return string
+     */
+    public function getEntity(): string;
 }
