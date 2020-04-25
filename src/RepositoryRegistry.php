@@ -2,18 +2,10 @@
 
 namespace RM\Component\Client;
 
-use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Annotations\Reader;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use InvalidArgumentException;
-use ReflectionClass;
-use ReflectionException;
-use RM\Component\Client\Annotation\Entity;
-use RM\Component\Client\Hydrator\EntityHydrator;
-use RM\Component\Client\Hydrator\HydratorInterface;
+use RM\Component\Client\Repository\RepositoryFactoryInterface;
 use RM\Component\Client\Repository\RepositoryInterface;
-use RM\Component\Client\Transport\TransportInterface;
 
 /**
  * Class RepositoryRegistry
@@ -23,23 +15,15 @@ use RM\Component\Client\Transport\TransportInterface;
  */
 class RepositoryRegistry implements RepositoryRegistryInterface
 {
-    protected TransportInterface $transport;
-    protected HydratorInterface $hydrator;
-
-    private Reader $reader;
+    private RepositoryFactoryInterface $factory;
     /**
      * @var Collection<string, RepositoryInterface>
      */
     private Collection $repositories;
 
-    public function __construct(
-        TransportInterface $transport,
-        ?HydratorInterface $hydrator = null,
-        ?Reader $reader = null
-    ) {
-        $this->transport = $transport;
-        $this->hydrator = $hydrator ?? new EntityHydrator($this);
-        $this->reader = $reader ?? new AnnotationReader();
+    public function __construct(RepositoryFactoryInterface $factory)
+    {
+        $this->factory = $factory;
         $this->repositories = new ArrayCollection();
     }
 
@@ -52,28 +36,8 @@ class RepositoryRegistry implements RepositoryRegistryInterface
             return $this->repositories->get($entity);
         }
 
-        if (!class_exists($entity)) {
-            throw new InvalidArgumentException('Passed entity class does not exist.');
-        }
-
-        try {
-            $reflect = new ReflectionClass($entity);
-            $annotation = $this->reader->getClassAnnotation($reflect, Entity::class);
-            if (!$annotation instanceof Entity) {
-                throw new InvalidArgumentException('Passed class is not entity.');
-            }
-
-            $repositoryClass = $annotation->repositoryClass;
-            if ($repositoryClass === null) {
-                $r = new ReflectionClass(RepositoryInterface::class);
-                $repositoryClass = sprintf("%s\\%sRepository", $r->getNamespaceName(), $reflect->getShortName());
-            }
-
-            $repository = new $repositoryClass($this->transport, $this->hydrator);
-            $this->repositories->set($entity, $repository);
-            return $repository;
-        } catch (ReflectionException $e) {
-            throw new InvalidArgumentException($e->getMessage());
-        }
+        $repository = $this->factory->build($entity);
+        $this->repositories->set($entity, $repository);
+        return $repository;
     }
 }
