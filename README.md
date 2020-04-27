@@ -10,7 +10,8 @@ Client uses the specific version when sends messages to Core.
 
 ## Requirements
 
-PHP 7.4+
+0. PHP 7.4+
+0. Any `psr/http-client` compatible package to send HTTP requests
 
 ## Installation
 
