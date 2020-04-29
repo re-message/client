@@ -17,11 +17,8 @@ class RepositoryFactory extends AbstractFactory
     private TransportInterface $transport;
     private HydratorInterface $hydrator;
 
-    public function __construct(
-        TransportInterface $transport,
-        HydratorInterface $hydrator,
-        ?Reader $reader = null
-    ) {
+    public function __construct(TransportInterface $transport, HydratorInterface $hydrator, ?Reader $reader = null)
+    {
         parent::__construct($reader);
         $this->transport = $transport;
         $this->hydrator = $hydrator;

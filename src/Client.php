@@ -7,10 +7,7 @@ use RM\Component\Client\Auth\AuthenticatorInterface;
 use RM\Component\Client\Auth\TokenStorageInterface;
 use RM\Component\Client\Exception\ErrorException;
 use RM\Component\Client\Exception\UnexpectedMessageException;
-use RM\Component\Client\Hydrator\EntityHydrator;
-use RM\Component\Client\Hydrator\HydratorInterface;
-use RM\Component\Client\Repository\RepositoryFactory;
-use RM\Component\Client\Repository\RepositoryFactoryInterface;
+use RM\Component\Client\Repository\RepositoryInterface;
 use RM\Component\Client\Transport\TransportInterface;
 use RM\Standard\Message\Error;
 use RM\Standard\Message\MessageInterface;
@@ -22,22 +19,17 @@ use RM\Standard\Message\Response;
  * @package RM\Component\Client
  * @author  h1karo <h1karo@outlook.com>
  */
-class Client extends RepositoryRegistry implements ClientInterface
+class Client implements ClientInterface
 {
     private const AUTH_PROVIDERS = [];
 
     private TransportInterface $transport;
+    private RepositoryRegistryInterface $registry;
 
-    public function __construct(
-        TransportInterface $transport,
-        ?HydratorInterface $hydrator = null,
-        ?RepositoryFactoryInterface $factory = null
-    ) {
-        $hydrator = $hydrator ?? new EntityHydrator($this);
-        $factory = $factory ?? new RepositoryFactory($this, $hydrator);
-        parent::__construct($factory);
-
+    public function __construct(TransportInterface $transport, RepositoryRegistryInterface $registry)
+    {
         $this->transport = $transport;
+        $this->registry = $registry;
     }
 
     public function createAuthorization(string $type): AuthenticatorInterface
@@ -48,6 +40,14 @@ class Client extends RepositoryRegistry implements ClientInterface
         }
 
         return $provider($this, $this->getTokenStorage());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getRepository(string $entity): RepositoryInterface
+    {
+        return $this->registry->getRepository($entity);
     }
 
     /**
@@ -69,6 +69,9 @@ class Client extends RepositoryRegistry implements ClientInterface
         return $response;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getTokenStorage(): TokenStorageInterface
     {
         return $this->transport->getTokenStorage();
