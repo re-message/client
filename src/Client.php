@@ -5,13 +5,9 @@ namespace RM\Component\Client;
 use InvalidArgumentException;
 use RM\Component\Client\Auth\AuthenticatorInterface;
 use RM\Component\Client\Auth\TokenStorageInterface;
-use RM\Component\Client\Exception\ErrorException;
-use RM\Component\Client\Exception\UnexpectedMessageException;
 use RM\Component\Client\Repository\RepositoryInterface;
 use RM\Component\Client\Transport\TransportInterface;
-use RM\Standard\Message\Error;
 use RM\Standard\Message\MessageInterface;
-use RM\Standard\Message\Response;
 
 /**
  * Class Client
@@ -39,7 +35,7 @@ class Client implements ClientInterface
             throw new InvalidArgumentException(sprintf('Authorization provider with name `%s` does not exist.', $type));
         }
 
-        return $provider($this, $this->getTokenStorage());
+        return $provider($this->transport, $this->getTokenStorage());
     }
 
     /**
@@ -52,21 +48,10 @@ class Client implements ClientInterface
 
     /**
      * @inheritDoc
-     * @throws ErrorException
      */
-    public function send(MessageInterface $message): Response
+    public function send(MessageInterface $message): MessageInterface
     {
-        $response = $this->transport->send($message);
-
-        if ($response instanceof Error) {
-            throw new ErrorException($response);
-        }
-
-        if (!$response instanceof Response) {
-            throw new UnexpectedMessageException($response, Response::class);
-        }
-
-        return $response;
+        return $this->transport->send($message);
     }
 
     /**
