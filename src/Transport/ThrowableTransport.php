@@ -2,7 +2,6 @@
 
 namespace RM\Component\Client\Transport;
 
-use RM\Component\Client\Auth\TokenStorageInterface;
 use RM\Component\Client\Exception\ErrorException;
 use RM\Component\Client\Exception\UnexpectedMessageException;
 use RM\Standard\Message\Error;
@@ -15,22 +14,15 @@ use RM\Standard\Message\Response;
  * @package RM\Component\Client\Transport
  * @author  h1karo <h1karo@outlook.com>
  */
-class ThrowableTransport implements TransportInterface
+class ThrowableTransport extends DecoratedTransport
 {
-    private TransportInterface $transport;
-
-    public function __construct(TransportInterface $transport)
-    {
-        $this->transport = $transport;
-    }
-
     /**
      * @inheritDoc
      * @throws ErrorException
      */
     public function send(MessageInterface $message): MessageInterface
     {
-        $response = $this->transport->send($message);
+        $response = parent::send($message);
 
         if ($response instanceof Error) {
             throw new ErrorException($response);
@@ -41,13 +33,5 @@ class ThrowableTransport implements TransportInterface
         }
 
         return $response;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getTokenStorage(): TokenStorageInterface
-    {
-        return $this->transport->getTokenStorage();
     }
 }
