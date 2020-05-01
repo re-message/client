@@ -1,13 +1,13 @@
 <?php
 
-namespace RM\Component\Client\Auth;
+namespace RM\Component\Client\Security;
 
 use RM\Standard\Message\MessageInterface;
 
 /**
  * Interface TokenStorageInterface
  *
- * @package RM\Component\Client\Auth
+ * @package RM\Component\Client\Security
  * @author  h1karo <h1karo@outlook.com>
  */
 interface TokenStorageInterface

@@ -2,13 +2,13 @@
 
 namespace RM\Component\Client;
 
-use RM\Component\Client\Auth\AuthenticatorFactory;
-use RM\Component\Client\Auth\AuthenticatorFactoryInterface;
 use RM\Component\Client\Exception\FactoryException;
 use RM\Component\Client\Hydrator\EntityHydrator;
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Repository\RepositoryFactory;
 use RM\Component\Client\Repository\RepositoryFactoryInterface;
+use RM\Component\Client\Security\AuthenticatorFactory;
+use RM\Component\Client\Security\AuthenticatorFactoryInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**

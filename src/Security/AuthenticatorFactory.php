@@ -1,6 +1,6 @@
 <?php
 
-namespace RM\Component\Client\Auth;
+namespace RM\Component\Client\Security;
 
 use InvalidArgumentException;
 use RM\Component\Client\Transport\TransportInterface;
@@ -8,7 +8,7 @@ use RM\Component\Client\Transport\TransportInterface;
 /**
  * Class AuthenticatorFactory
  *
- * @package RM\Component\Client\Auth
+ * @package RM\Component\Client\Security
  * @author  h1karo <h1karo@outlook.com>
  */
 class AuthenticatorFactory implements AuthenticatorFactoryInterface

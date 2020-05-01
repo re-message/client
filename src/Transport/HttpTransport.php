@@ -8,11 +8,11 @@ use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use RM\Component\Client\Auth\TokenStorageInterface;
 use RM\Component\Client\Exception\TransportException;
 use RM\Component\Client\Exception\UnexpectedResponseException;
 use RM\Component\Client\Exception\UnserializableMessageException;
 use RM\Component\Client\Exception\UnserializableResponseException;
+use RM\Component\Client\Security\TokenStorageInterface;
 use RM\Standard\Message\MessageInterface;
 use RM\Standard\Message\Serializer\MessageSerializerInterface;
 

@@ -2,8 +2,8 @@
 
 namespace RM\Component\Client\Transport;
 
-use RM\Component\Client\Auth\TokenStorage;
-use RM\Component\Client\Auth\TokenStorageInterface;
+use RM\Component\Client\Security\TokenStorage;
+use RM\Component\Client\Security\TokenStorageInterface;
 use RM\Standard\Message\Serializer\MessageSerializerInterface;
 
 /**

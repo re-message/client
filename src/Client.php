@@ -2,10 +2,10 @@
 
 namespace RM\Component\Client;
 
-use RM\Component\Client\Auth\AuthenticatorFactoryInterface;
-use RM\Component\Client\Auth\AuthenticatorInterface;
-use RM\Component\Client\Auth\TokenStorageInterface;
 use RM\Component\Client\Repository\RepositoryInterface;
+use RM\Component\Client\Security\AuthenticatorFactoryInterface;
+use RM\Component\Client\Security\AuthenticatorInterface;
+use RM\Component\Client\Security\TokenStorageInterface;
 use RM\Component\Client\Transport\TransportInterface;
 use RM\Standard\Message\MessageInterface;
 

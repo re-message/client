@@ -2,7 +2,7 @@
 
 namespace RM\Component\Client;
 
-use RM\Component\Client\Auth\AuthenticatorInterface;
+use RM\Component\Client\Security\AuthenticatorInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
