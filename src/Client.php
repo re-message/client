@@ -2,7 +2,7 @@
 
 namespace RM\Component\Client;
 
-use InvalidArgumentException;
+use RM\Component\Client\Auth\AuthenticatorFactoryInterface;
 use RM\Component\Client\Auth\AuthenticatorInterface;
 use RM\Component\Client\Auth\TokenStorageInterface;
 use RM\Component\Client\Hydrator\EntityHydrator;
@@ -21,25 +21,23 @@ use RM\Standard\Message\MessageInterface;
  */
 class Client implements ClientInterface
 {
-    private const AUTH_PROVIDERS = [];
-
     private TransportInterface $transport;
     private RepositoryRegistryInterface $registry;
+    private AuthenticatorFactoryInterface $authenticatorFactory;
 
-    public function __construct(TransportInterface $transport, RepositoryRegistryInterface $registry)
-    {
+    public function __construct(
+        TransportInterface $transport,
+        RepositoryRegistryInterface $registry,
+        AuthenticatorFactoryInterface $authenticatorFactory
+    ) {
         $this->transport = $transport;
         $this->registry = $registry;
+        $this->authenticatorFactory = $authenticatorFactory;
     }
 
     public function createAuthorization(string $type): AuthenticatorInterface
     {
-        $provider = self::AUTH_PROVIDERS[$type] ?? null;
-        if ($provider === null) {
-            throw new InvalidArgumentException(sprintf('Authorization provider with name `%s` does not exist.', $type));
-        }
-
-        return $provider($this->transport, $this->getTokenStorage());
+        return $this->authenticatorFactory->build($type);
     }
 
     /**

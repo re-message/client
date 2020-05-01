@@ -12,7 +12,7 @@ use RM\Component\Client\Transport\TransportInterface;
  */
 interface AuthenticatorInterface
 {
-    public function __construct(TransportInterface $transport, TokenStorageInterface $manager);
+    public function __construct(TransportInterface $transport, TokenStorageInterface $tokenStorage);
 
     public function authorize(): object;
 }
