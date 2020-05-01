@@ -5,10 +5,6 @@ namespace RM\Component\Client;
 use RM\Component\Client\Auth\AuthenticatorFactoryInterface;
 use RM\Component\Client\Auth\AuthenticatorInterface;
 use RM\Component\Client\Auth\TokenStorageInterface;
-use RM\Component\Client\Hydrator\EntityHydrator;
-use RM\Component\Client\Hydrator\HydratorInterface;
-use RM\Component\Client\Repository\RepositoryFactory;
-use RM\Component\Client\Repository\RepositoryFactoryInterface;
 use RM\Component\Client\Repository\RepositoryInterface;
 use RM\Component\Client\Transport\TransportInterface;
 use RM\Standard\Message\MessageInterface;
@@ -62,20 +58,5 @@ class Client implements ClientInterface
     public function getTokenStorage(): TokenStorageInterface
     {
         return $this->transport->getTokenStorage();
-    }
-
-    public static function createFromFactory(TransportInterface $transport, RepositoryFactoryInterface $factory): self
-    {
-        return new self($transport, new RepositoryRegistry($factory));
-    }
-
-    public static function createFromHydrator(TransportInterface $transport, HydratorInterface $hydrator): self
-    {
-        return self::createFromFactory($transport, new RepositoryFactory($transport, $hydrator));
-    }
-
-    public static function create(TransportInterface $transport): self
-    {
-        return self::createFromHydrator($transport, new EntityHydrator());
     }
 }
