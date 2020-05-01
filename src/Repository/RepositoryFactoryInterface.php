@@ -13,6 +13,8 @@ interface RepositoryFactoryInterface
     /**
      * Builds the repository by entity class.
      *
+     * @param string $entity
+     *
      * @return RepositoryInterface
      */
     public function build(string $entity): RepositoryInterface;
