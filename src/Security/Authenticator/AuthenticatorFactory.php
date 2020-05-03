@@ -15,7 +15,9 @@ use RM\Component\Client\Transport\TransportInterface;
  */
 class AuthenticatorFactory implements AuthenticatorFactoryInterface
 {
-    public const PROVIDERS = [];
+    public const PROVIDERS = [
+        ServiceAuthenticator::TOKEN_TYPE => ServiceAuthenticator::class
+    ];
 
     private TransportInterface $transport;
     private HydratorInterface $hydrator;
