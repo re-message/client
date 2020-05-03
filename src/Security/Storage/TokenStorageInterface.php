@@ -1,6 +1,6 @@
 <?php
 
-namespace RM\Component\Client\Security;
+namespace RM\Component\Client\Security\Storage;
 
 use RM\Standard\Message\MessageInterface;
 

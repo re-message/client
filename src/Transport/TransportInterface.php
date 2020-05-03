@@ -2,7 +2,7 @@
 
 namespace RM\Component\Client\Transport;
 
-use RM\Component\Client\Security\TokenStorageInterface;
+use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Standard\Message\MessageInterface;
 
 /**

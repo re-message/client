@@ -12,7 +12,7 @@ use RM\Component\Client\Exception\TransportException;
 use RM\Component\Client\Exception\UnexpectedResponseException;
 use RM\Component\Client\Exception\UnserializableMessageException;
 use RM\Component\Client\Exception\UnserializableResponseException;
-use RM\Component\Client\Security\TokenStorageInterface;
+use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Standard\Message\MessageInterface;
 use RM\Standard\Message\Serializer\MessageSerializerInterface;
 
