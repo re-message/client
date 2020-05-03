@@ -5,7 +5,6 @@ namespace RM\Component\Client;
 use RM\Component\Client\Repository\RepositoryInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorFactoryInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorInterface;
-use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Component\Client\Transport\TransportInterface;
 use RM\Standard\Message\MessageInterface;
 
@@ -50,13 +49,5 @@ class Client implements ClientInterface
     public function send(MessageInterface $message): MessageInterface
     {
         return $this->transport->send($message);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getTokenStorage(): TokenStorageInterface
-    {
-        return $this->transport->getTokenStorage();
     }
 }

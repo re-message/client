@@ -2,12 +2,14 @@
 
 namespace RM\Component\Client;
 
+use RM\Component\Client\Exception\FactoryException;
 use RM\Component\Client\Hydrator\EntityHydrator;
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Repository\RepositoryFactory;
 use RM\Component\Client\Repository\RepositoryFactoryInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorFactory;
 use RM\Component\Client\Security\Authenticator\AuthenticatorFactoryInterface;
+use RM\Component\Client\Security\Storage\TokenStorage;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
@@ -23,6 +25,7 @@ class ClientFactory
     private ?HydratorInterface $hydrator = null;
     private ?RepositoryRegistryInterface $repositoryRegistry = null;
     private ?AuthenticatorFactoryInterface $authenticatorFactory = null;
+    private ?TokenStorage $tokenStorage = null;
 
     public function __construct(TransportInterface $transport)
     {
@@ -62,9 +65,17 @@ class ClientFactory
         return $this;
     }
 
+    public function setTokenStorage(TokenStorage $tokenStorage): ClientFactory
+    {
+        $this->tokenStorage = $tokenStorage;
+        $this->authenticatorFactory = null;
+        return $this;
+    }
+
     public function setAuthenticatorFactory(AuthenticatorFactoryInterface $authenticatorFactory): ClientFactory
     {
         $this->authenticatorFactory = $authenticatorFactory;
+        $this->tokenStorage = null;
         return $this;
     }
 
@@ -83,9 +94,11 @@ class ClientFactory
         }
 
         if ($this->authenticatorFactory === null) {
-            $this->authenticatorFactory = new AuthenticatorFactory(
-                $this->transport, $this->transport->getTokenStorage()
-            );
+            if ($this->tokenStorage === null) {
+                throw new FactoryException('You must set up a token storage or authenticator factory.');
+            }
+
+            $this->authenticatorFactory = new AuthenticatorFactory($this->transport, $this->tokenStorage);
         }
 
         return new Client($this->transport, $this->repositoryRegistry, $this->authenticatorFactory);

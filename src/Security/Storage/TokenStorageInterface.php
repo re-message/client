@@ -2,8 +2,6 @@
 
 namespace RM\Component\Client\Security\Storage;
 
-use RM\Standard\Message\MessageInterface;
-
 /**
  * Interface TokenStorageInterface
  *
@@ -28,13 +26,4 @@ interface TokenStorageInterface
      * @return string|null
      */
     public function get(string $type): ?string;
-
-    /**
-     * Returns the token which resolved for this message.
-     *
-     * @param MessageInterface $message
-     *
-     * @return string|null
-     */
-    public function resolve(MessageInterface $message): ?string;
 }

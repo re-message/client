@@ -12,7 +12,7 @@ use RM\Component\Client\Exception\TransportException;
 use RM\Component\Client\Exception\UnexpectedResponseException;
 use RM\Component\Client\Exception\UnserializableMessageException;
 use RM\Component\Client\Exception\UnserializableResponseException;
-use RM\Component\Client\Security\Storage\TokenStorageInterface;
+use RM\Component\Client\Security\Resolver\TokenResolverInterface;
 use RM\Standard\Message\MessageInterface;
 use RM\Standard\Message\Serializer\MessageSerializerInterface;
 
@@ -36,9 +36,9 @@ class HttpTransport extends AbstractTransport
         RequestFactoryInterface $requestFactory,
         StreamFactoryInterface $streamFactory,
         MessageSerializerInterface $serializer,
-        ?TokenStorageInterface $tokenStorage = null
+        TokenResolverInterface $tokenResolver
     ) {
-        parent::__construct($serializer, $tokenStorage);
+        parent::__construct($serializer, $tokenResolver);
 
         $this->httpClient = $httpClient;
         $this->requestFactory = $requestFactory;
@@ -93,7 +93,7 @@ class HttpTransport extends AbstractTransport
             ->withHeader('User-Agent', 'relmsg/client; v1.0')
             ->withBody($stream);
 
-        $token = $this->getTokenStorage()->resolve($message);
+        $token = $this->tokenResolver->resolve($message);
         if ($token !== null) {
             $request = $request->withHeader('Authorization', 'Bearer ' . $token);
         }
