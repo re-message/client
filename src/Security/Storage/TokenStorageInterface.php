@@ -26,4 +26,13 @@ interface TokenStorageInterface
      * @return string|null
      */
     public function get(string $type): ?string;
+
+    /**
+     * Checks that token is exist.
+     *
+     * @param string $type
+     *
+     * @return bool
+     */
+    public function has(string $type): bool;
 }
