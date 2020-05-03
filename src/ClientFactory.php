@@ -31,21 +31,25 @@ class ClientFactory
         return $this;
     }
 
-    public function setRepositoryRegistry(RepositoryRegistryInterface $repositoryRegistry): self
+    public function setHydrator(HydratorInterface $hydrator): ClientFactory
     {
-        $this->repositoryRegistry = $repositoryRegistry;
+        $this->hydrator = $hydrator;
+        $this->repositoryFactory = null;
         return $this;
     }
 
     public function setRepositoryFactory(RepositoryFactoryInterface $repositoryFactory): self
     {
         $this->repositoryFactory = $repositoryFactory;
+        $this->repositoryRegistry = null;
         return $this;
     }
 
-    public function setHydrator(HydratorInterface $hydrator): ClientFactory
+    public function setRepositoryRegistry(RepositoryRegistryInterface $repositoryRegistry): self
     {
-        $this->hydrator = $hydrator;
+        $this->repositoryRegistry = $repositoryRegistry;
+        $this->hydrator = null;
+        $this->repositoryFactory = null;
         return $this;
     }
 
