@@ -81,26 +81,33 @@ class ClientFactory
 
     public function build(): ClientInterface
     {
-        if ($this->hydrator === null) {
-            $this->hydrator = new EntityHydrator();
+        $transport = $this->transport;
+        $tokenStorage = $this->tokenStorage;
+
+        $hydrator = $this->hydrator;
+        if ($hydrator === null) {
+            $hydrator = new EntityHydrator();
         }
 
-        if ($this->repositoryFactory === null) {
-            $this->repositoryFactory = new RepositoryFactory($this->transport, $this->hydrator);
+        $repositoryFactory = $this->repositoryFactory;
+        if ($repositoryFactory === null) {
+            $repositoryFactory = new RepositoryFactory($transport, $hydrator);
         }
 
-        if ($this->repositoryRegistry === null) {
-            $this->repositoryRegistry = new RepositoryRegistry($this->repositoryFactory);
+        $repositoryRegistry = $this->repositoryRegistry;
+        if ($repositoryRegistry === null) {
+            $repositoryRegistry = new RepositoryRegistry($repositoryFactory);
         }
 
-        if ($this->authenticatorFactory === null) {
-            if ($this->tokenStorage === null) {
+        $authenticatorFactory = $this->authenticatorFactory;
+        if ($authenticatorFactory === null) {
+            if ($tokenStorage === null) {
                 throw new FactoryException('You must set up a token storage or authenticator factory.');
             }
 
-            $this->authenticatorFactory = new AuthenticatorFactory($this->transport, $this->tokenStorage);
+            $authenticatorFactory = new AuthenticatorFactory($transport, $tokenStorage);
         }
 
-        return new Client($this->transport, $this->repositoryRegistry, $this->authenticatorFactory);
+        return new Client($transport, $repositoryRegistry, $authenticatorFactory);
     }
 }
