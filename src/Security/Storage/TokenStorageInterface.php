@@ -7,7 +7,7 @@ use IteratorAggregate;
 /**
  * Interface TokenStorageInterface
  *
- * @package RM\Component\Client\Security
+ * @package RM\Component\Client\Security\Storage
  * @author  h1karo <h1karo@outlook.com>
  */
 interface TokenStorageInterface extends IteratorAggregate
