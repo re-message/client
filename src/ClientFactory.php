@@ -2,7 +2,6 @@
 
 namespace RM\Component\Client;
 
-use RM\Component\Client\Exception\FactoryException;
 use RM\Component\Client\Hydrator\EntityHydrator;
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Repository\RepositoryFactory;
@@ -19,11 +18,21 @@ use RM\Component\Client\Transport\TransportInterface;
  */
 class ClientFactory
 {
-    private ?TransportInterface $transport = null;
+    private TransportInterface $transport;
     private ?RepositoryFactoryInterface $repositoryFactory = null;
     private ?HydratorInterface $hydrator = null;
     private ?RepositoryRegistryInterface $repositoryRegistry = null;
     private ?AuthenticatorFactoryInterface $authenticatorFactory = null;
+
+    public function __construct(TransportInterface $transport)
+    {
+        $this->transport = $transport;
+    }
+
+    public static function create(TransportInterface $transport): self
+    {
+        return new self($transport);
+    }
 
     public function setTransport(TransportInterface $transport): self
     {
@@ -61,10 +70,6 @@ class ClientFactory
 
     public function build(): ClientInterface
     {
-        if ($this->transport === null) {
-            throw new FactoryException('You need to specify the transport to create a client instance.');
-        }
-
         if ($this->hydrator === null) {
             $this->hydrator = new EntityHydrator();
         }
