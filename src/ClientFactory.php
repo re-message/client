@@ -54,36 +54,30 @@ class ClientFactory
     public function setHydrator(HydratorInterface $hydrator): ClientFactory
     {
         $this->hydrator = $hydrator;
-        $this->repositoryFactory = null;
         return $this;
     }
 
     public function setRepositoryFactory(RepositoryFactoryInterface $repositoryFactory): self
     {
         $this->repositoryFactory = $repositoryFactory;
-        $this->repositoryRegistry = null;
         return $this;
     }
 
     public function setRepositoryRegistry(RepositoryRegistryInterface $repositoryRegistry): self
     {
         $this->repositoryRegistry = $repositoryRegistry;
-        $this->hydrator = null;
-        $this->repositoryFactory = null;
         return $this;
     }
 
     public function setTokenStorage(TokenStorage $tokenStorage): ClientFactory
     {
         $this->tokenStorage = $tokenStorage;
-        $this->authenticatorFactory = null;
         return $this;
     }
 
     public function setAuthenticatorFactory(AuthenticatorFactoryInterface $authenticatorFactory): ClientFactory
     {
         $this->authenticatorFactory = $authenticatorFactory;
-        $this->tokenStorage = null;
         return $this;
     }
 
