@@ -3,6 +3,7 @@
 namespace RM\Component\Client\Security\Authenticator;
 
 use InvalidArgumentException;
+use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
@@ -17,11 +18,13 @@ class AuthenticatorFactory implements AuthenticatorFactoryInterface
     public const PROVIDERS = [];
 
     private TransportInterface $transport;
+    private HydratorInterface $hydrator;
     private TokenStorageInterface $tokenStorage;
 
-    public function __construct(TransportInterface $transport, TokenStorageInterface $tokenStorage)
+    public function __construct(TransportInterface $transport, HydratorInterface $hydrator, TokenStorageInterface $tokenStorage)
     {
         $this->transport = $transport;
+        $this->hydrator = $hydrator;
         $this->tokenStorage = $tokenStorage;
     }
 
@@ -35,6 +38,6 @@ class AuthenticatorFactory implements AuthenticatorFactoryInterface
             throw new InvalidArgumentException(sprintf('Authorization provider with name `%s` does not exist.', $type));
         }
 
-        return $provider($this->transport, $this->tokenStorage);
+        return $provider($this->transport, $this->hydrator, $this->tokenStorage);
     }
 }

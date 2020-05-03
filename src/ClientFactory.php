@@ -117,7 +117,7 @@ class ClientFactory
                 throw new FactoryException('You must set up a token storage or authenticator factory.');
             }
 
-            $authenticatorFactory = new AuthenticatorFactory($transport, $tokenStorage);
+            $authenticatorFactory = new AuthenticatorFactory($transport, $hydrator, $tokenStorage);
         }
 
         return new Client($transport, $repositoryRegistry, $authenticatorFactory);
