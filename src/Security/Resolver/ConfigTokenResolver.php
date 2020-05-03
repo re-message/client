@@ -19,6 +19,7 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 class ConfigTokenResolver implements TokenResolverInterface
 {
     private const CONFIG_PATH = 'actions.yaml';
+    private const PREFERRED_AUTHORIZATIONS = ['user', 'service'];
 
     private TokenStorageInterface $tokenStorage;
     private LoaderInterface $loader;
@@ -51,12 +52,10 @@ class ConfigTokenResolver implements TokenResolverInterface
             return null;
         }
 
-        if ($config->supportsAuthorization('user') && $this->tokenStorage->has('user')) {
-            return $this->tokenStorage->get('user');
-        }
-
-        if ($config->supportsAuthorization('service') && $this->tokenStorage->has('service')) {
-            return $this->tokenStorage->get('service');
+        foreach (self::PREFERRED_AUTHORIZATIONS as $type) {
+            if ($config->supportsAuthorization($type) && $this->tokenStorage->has($type)) {
+                return $this->tokenStorage->get($type);
+            }
         }
 
         return null;
