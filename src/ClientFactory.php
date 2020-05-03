@@ -10,6 +10,7 @@ use RM\Component\Client\Repository\RepositoryFactoryInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorFactory;
 use RM\Component\Client\Security\Authenticator\AuthenticatorFactoryInterface;
 use RM\Component\Client\Security\Storage\TokenStorage;
+use RM\Component\Client\Transport\ThrowableTransport;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
@@ -21,6 +22,7 @@ use RM\Component\Client\Transport\TransportInterface;
 class ClientFactory
 {
     private TransportInterface $transport;
+    private bool $throwable = true;
     private ?RepositoryFactoryInterface $repositoryFactory = null;
     private ?HydratorInterface $hydrator = null;
     private ?RepositoryRegistryInterface $repositoryRegistry = null;
@@ -40,6 +42,12 @@ class ClientFactory
     public function setTransport(TransportInterface $transport): self
     {
         $this->transport = $transport;
+        return $this;
+    }
+
+    public function setThrowable(bool $throwable): ClientFactory
+    {
+        $this->throwable = $throwable;
         return $this;
     }
 
@@ -82,6 +90,10 @@ class ClientFactory
     public function build(): ClientInterface
     {
         $transport = $this->transport;
+        if ($this->throwable && !$transport instanceof ThrowableTransport) {
+            $transport = new ThrowableTransport($transport);
+        }
+
         $tokenStorage = $this->tokenStorage;
 
         $hydrator = $this->hydrator;
