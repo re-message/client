@@ -4,7 +4,6 @@ namespace RM\Component\Client\Security\Resolver;
 
 use Doctrine\Common\Collections\Collection;
 use Exception;
-use RM\Component\Client\Config\ActionConfig;
 use RM\Component\Client\Security\Authenticator\ServiceAuthenticator;
 use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Standard\Message\MessageInterface;

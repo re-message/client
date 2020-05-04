@@ -1,13 +1,13 @@
 <?php
 
-namespace RM\Component\Client\Config;
+namespace RM\Component\Client\Security\Resolver;
 
 use LogicException;
 
 /**
  * Class ActionConfig
  *
- * @package RM\Component\Client\Config
+ * @package RM\Component\Client\Security\Resolver
  * @author  h1karo <h1karo@outlook.com>
  */
 class ActionConfig

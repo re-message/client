@@ -5,7 +5,6 @@ namespace RM\Component\Client\Security\Resolver;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use InvalidArgumentException;
-use RM\Component\Client\Config\ActionConfig;
 use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\Config\Loader\FileLoader;
 use Symfony\Component\Yaml\Exception\ParseException;
