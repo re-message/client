@@ -5,8 +5,6 @@ namespace RM\Component\Client;
 use RM\Component\Client\Exception\FactoryException;
 use RM\Component\Client\Hydrator\EntityHydrator;
 use RM\Component\Client\Hydrator\HydratorInterface;
-use RM\Component\Client\Repository\RepositoryFactory;
-use RM\Component\Client\Repository\RepositoryFactoryInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorFactory;
 use RM\Component\Client\Security\Authenticator\AuthenticatorFactoryInterface;
 use RM\Component\Client\Security\Storage\TokenStorage;

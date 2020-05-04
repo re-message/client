@@ -4,7 +4,6 @@ namespace RM\Component\Client;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use RM\Component\Client\Repository\RepositoryFactoryInterface;
 use RM\Component\Client\Repository\RepositoryInterface;
 
 /**
