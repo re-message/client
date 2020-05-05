@@ -4,6 +4,7 @@ namespace RM\Component\Client\Hydrator;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use RM\Component\Client\Hydrator\Handler\HydratorHandlerInterface;
 
 /**
  * Class AbstractHydrator
@@ -14,7 +15,7 @@ use Doctrine\Common\Collections\Collection;
 abstract class AbstractHydrator implements HydratorInterface
 {
     /**
-     * @var Collection|HydratorLoaderInterface[]
+     * @var Collection|HydratorHandlerInterface[]
      */
     private Collection $loaders;
 
@@ -27,7 +28,7 @@ abstract class AbstractHydrator implements HydratorInterface
         }
     }
 
-    public function pushLoader(HydratorLoaderInterface $loader): void
+    public function pushLoader(HydratorHandlerInterface $loader): void
     {
         $this->loaders->add($loader);
     }
@@ -41,7 +42,7 @@ abstract class AbstractHydrator implements HydratorInterface
 
         foreach ($this->loaders as $loader) {
             if ($loader->supports($this, $entity)) {
-                $entity = $loader->load($entity);
+                $entity = $loader->handle($entity);
             }
         }
 

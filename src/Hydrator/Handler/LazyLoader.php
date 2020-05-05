@@ -1,6 +1,6 @@
 <?php
 
-namespace RM\Component\Client\Hydrator;
+namespace RM\Component\Client\Hydrator\Handler;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\Reader;
@@ -8,15 +8,17 @@ use InvalidArgumentException;
 use ReflectionMethod;
 use ReflectionObject;
 use RM\Component\Client\Annotation\LazyLoad;
+use RM\Component\Client\Hydrator\EntityHydrator;
+use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\RepositoryRegistryInterface;
 
 /**
  * Class LazyLoader
  *
- * @package RM\Component\Client\Hydrator
+ * @package RM\Component\Client\Hydrator\Handler
  * @author  h1karo <h1karo@outlook.com>
  */
-class LazyLoader implements HydratorLoaderInterface
+class LazyLoader implements HydratorHandlerInterface
 {
     private RepositoryRegistryInterface $registry;
     private Reader $reader;
@@ -30,7 +32,7 @@ class LazyLoader implements HydratorLoaderInterface
     /**
      * @inheritDoc
      */
-    public function load($entity): object
+    public function handle($entity): object
     {
         if (!is_object($entity)) {
             throw new InvalidArgumentException('Expects an object.');

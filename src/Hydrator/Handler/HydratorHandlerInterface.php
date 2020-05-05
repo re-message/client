@@ -1,21 +1,23 @@
 <?php
 
-namespace RM\Component\Client\Hydrator;
+namespace RM\Component\Client\Hydrator\Handler;
+
+use RM\Component\Client\Hydrator\HydratorInterface;
 
 /**
- * Interface HydratorLoaderInterface
+ * Interface HydratorHandlerInterface\Handler
  *
  * @package RM\Component\Client\Hydrator
  * @author  h1karo <h1karo@outlook.com>
  */
-interface HydratorLoaderInterface
+interface HydratorHandlerInterface
 {
     /**
      * @param mixed $entity
      *
      * @return mixed
      */
-    public function load($entity);
+    public function handle($entity);
 
     /**
      * Checks that loader supports this hydrator and entity.
