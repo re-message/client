@@ -4,6 +4,7 @@ namespace RM\Component\Client;
 
 use RM\Component\Client\Exception\FactoryException;
 use RM\Component\Client\Hydrator\EntityHydrator;
+use RM\Component\Client\Hydrator\Handler\LazyLoader;
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorFactory;
 use RM\Component\Client\Security\Authenticator\AuthenticatorFactoryInterface;
@@ -89,22 +90,26 @@ class ClientFactory
         $tokenStorage = $this->tokenStorage;
 
         $hydrator = $this->hydrator;
-        if ($hydrator === null) {
+        if ($this->hydrator === null) {
             $hydrator = new EntityHydrator();
         }
 
         $repositoryFactory = $this->repositoryFactory;
-        if ($repositoryFactory === null) {
+        if ($this->repositoryFactory === null) {
             $repositoryFactory = new RepositoryFactory($transport, $hydrator);
         }
 
         $repositoryRegistry = $this->repositoryRegistry;
-        if ($repositoryRegistry === null) {
+        if ($this->repositoryRegistry === null) {
             $repositoryRegistry = new RepositoryRegistry($repositoryFactory);
+
+            if ($this->hydrator === null) {
+                $hydrator->pushLoader(new LazyLoader($repositoryRegistry));
+            }
         }
 
         $authenticatorFactory = $this->authenticatorFactory;
-        if ($authenticatorFactory === null) {
+        if ($this->authenticatorFactory === null) {
             if ($tokenStorage === null) {
                 throw new FactoryException('You must set up a token storage or authenticator factory.');
             }
