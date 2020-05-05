@@ -10,7 +10,7 @@ use ReflectionObject;
 use RM\Component\Client\Annotation\LazyLoad;
 use RM\Component\Client\Hydrator\EntityHydrator;
 use RM\Component\Client\Hydrator\HydratorInterface;
-use RM\Component\Client\RepositoryRegistryInterface;
+use RM\Component\Client\Repository\RepositoryRegistryInterface;
 
 /**
  * Class LazyLoader

@@ -1,10 +1,9 @@
 <?php
 
-namespace RM\Component\Client;
+namespace RM\Component\Client\Repository;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use RM\Component\Client\Repository\RepositoryInterface;
 
 /**
  * Class RepositoryRegistry

@@ -1,10 +1,9 @@
 <?php
 
-namespace RM\Component\Client;
+namespace RM\Component\Client\Repository;
 
 use Doctrine\Common\Annotations\Reader;
 use RM\Component\Client\Hydrator\HydratorInterface;
-use RM\Component\Client\Repository\RepositoryInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**

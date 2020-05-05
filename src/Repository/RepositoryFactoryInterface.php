@@ -1,8 +1,6 @@
 <?php
 
-namespace RM\Component\Client;
-
-use RM\Component\Client\Repository\RepositoryInterface;
+namespace RM\Component\Client\Repository;
 
 /**
  * Interface RepositoryFactoryInterface

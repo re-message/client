@@ -1,6 +1,6 @@
 <?php
 
-namespace RM\Component\Client;
+namespace RM\Component\Client\Repository;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\Reader;
@@ -8,7 +8,6 @@ use InvalidArgumentException;
 use ReflectionClass;
 use ReflectionException;
 use RM\Component\Client\Annotation\Entity;
-use RM\Component\Client\Repository\RepositoryInterface;
 
 /**
  * Class AbstractFactory

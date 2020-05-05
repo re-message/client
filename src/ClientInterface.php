@@ -2,6 +2,7 @@
 
 namespace RM\Component\Client;
 
+use RM\Component\Client\Repository\RepositoryRegistryInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
