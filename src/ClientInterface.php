@@ -13,5 +13,12 @@ use RM\Component\Client\Transport\TransportInterface;
  */
 interface ClientInterface extends RepositoryRegistryInterface, TransportInterface
 {
-    public function createAuthorization(string $type): AuthenticatorInterface;
+    /**
+     * Creates authenticator by the token type.
+     *
+     * @param string $type The token type (e.g. `user` for user token).
+     *
+     * @return AuthenticatorInterface
+     */
+    public function createAuthenticator(string $type): AuthenticatorInterface;
 }

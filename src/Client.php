@@ -30,7 +30,10 @@ class Client implements ClientInterface
         $this->authenticatorFactory = $authenticatorFactory;
     }
 
-    public function createAuthorization(string $type): AuthenticatorInterface
+    /**
+     * @inheritDoc
+     */
+    public function createAuthenticator(string $type): AuthenticatorInterface
     {
         return $this->authenticatorFactory->build($type);
     }
