@@ -1,6 +1,6 @@
 <?php
 
-namespace RM\Component\Client\Hydrator\Handler;
+namespace RM\Component\Client\Hydrator;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\Reader;
@@ -8,32 +8,30 @@ use InvalidArgumentException;
 use ReflectionMethod;
 use ReflectionObject;
 use RM\Component\Client\Annotation\LazyLoad;
-use RM\Component\Client\Hydrator\EntityHydrator;
-use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Repository\RepositoryRegistryInterface;
 
 /**
- * Class LazyLoader
+ * Class LazyLoaderHydrator
  *
- * @package RM\Component\Client\Hydrator\Handler
+ * @package RM\Component\Client\Hydrator
  * @author  h1karo <h1karo@outlook.com>
  */
-class LazyLoader implements HydratorHandlerInterface
+class LazyLoaderHydrator extends DecoratedHydrator
 {
     private RepositoryRegistryInterface $registry;
     private Reader $reader;
 
-    public function __construct(RepositoryRegistryInterface $registry, ?Reader $reader = null)
+    public function __construct(EntityHydrator $hydrator, RepositoryRegistryInterface $registry, ?Reader $reader = null)
     {
+        parent::__construct($hydrator);
         $this->registry = $registry;
         $this->reader = $reader ?? new AnnotationReader();
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function handle($entity): object
+    public function hydrate(array $data, string $class): object
     {
+        $entity = parent::hydrate($data, $class);
+
         if (!is_object($entity)) {
             throw new InvalidArgumentException('Expects an object.');
         }
@@ -50,13 +48,5 @@ class LazyLoader implements HydratorHandlerInterface
         }
 
         return $entity;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function supports(HydratorInterface $hydrator, $entity): bool
-    {
-        return $hydrator instanceof EntityHydrator && is_object($entity);
     }
 }

@@ -10,12 +10,12 @@ use RM\Component\Client\Entity\CreatableFromArray;
  * @package RM\Component\Client\Hydrator
  * @author  h1karo <h1karo@outlook.com>
  */
-class EntityHydrator extends AbstractHydrator
+class EntityHydrator implements HydratorInterface
 {
     /**
      * @inheritDoc
      */
-    public function doHydrate(array $data, string $class): object
+    public function hydrate(array $data, string $class): object
     {
         if (is_subclass_of($class, CreatableFromArray::class, true)) {
             return call_user_func([$class, 'createFromArray'], $data);
