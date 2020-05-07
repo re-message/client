@@ -4,6 +4,7 @@ namespace RM\Component\Client\Security\Storage;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use RM\Component\Client\Exception\TokenNotFoundException;
 
 /**
  * Class TokenStorage
@@ -31,8 +32,12 @@ class TokenStorage implements TokenStorageInterface
     /**
      * @inheritDoc
      */
-    public function get(string $type): ?string
+    public function get(string $type): string
     {
+        if (!$this->has($type)) {
+            throw new TokenNotFoundException($type);
+        }
+
         return $this->storage->get($type);
     }
 

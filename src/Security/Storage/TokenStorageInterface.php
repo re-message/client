@@ -25,9 +25,9 @@ interface TokenStorageInterface extends IteratorAggregate
      *
      * @param string $type
      *
-     * @return string|null
+     * @return string
      */
-    public function get(string $type): ?string;
+    public function get(string $type): string;
 
     /**
      * Checks that token is exist.
