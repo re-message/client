@@ -48,12 +48,4 @@ class TokenStorage implements TokenStorageInterface
     {
         return $this->storage->containsKey($type);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function getIterator()
-    {
-        return $this->storage->getIterator();
-    }
 }

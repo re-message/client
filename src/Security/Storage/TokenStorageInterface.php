@@ -2,15 +2,13 @@
 
 namespace RM\Component\Client\Security\Storage;
 
-use IteratorAggregate;
-
 /**
  * Interface TokenStorageInterface
  *
  * @package RM\Component\Client\Security\Storage
  * @author  h1karo <h1karo@outlook.com>
  */
-interface TokenStorageInterface extends IteratorAggregate
+interface TokenStorageInterface
 {
     /**
      * Sets the token into storage by type.
