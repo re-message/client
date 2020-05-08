@@ -2,6 +2,7 @@
 
 namespace RM\Component\Client\Security\Resolver;
 
+use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Standard\Message\MessageInterface;
 
 /**
@@ -20,4 +21,11 @@ interface TokenResolverInterface
      * @return string|null
      */
     public function resolve(MessageInterface $message): ?string;
+
+    /**
+     * Returns the token storage used by resolve to get the token.
+     *
+     * @return TokenStorageInterface
+     */
+    public function getTokenStorage(): TokenStorageInterface;
 }

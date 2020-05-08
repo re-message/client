@@ -72,4 +72,12 @@ class ConfigTokenResolver implements TokenResolverInterface
 
         return $this->config = $this->loader->load(self::CONFIG_PATH);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTokenStorage(): TokenStorageInterface
+    {
+        return $this->tokenStorage;
+    }
 }

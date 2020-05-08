@@ -2,7 +2,6 @@
 
 namespace RM\Component\Client;
 
-use RM\Component\Client\Exception\FactoryException;
 use RM\Component\Client\Hydrator\EntityHydrator;
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Hydrator\LazyLoaderHydrator;
@@ -12,7 +11,6 @@ use RM\Component\Client\Repository\RepositoryRegistry;
 use RM\Component\Client\Repository\RepositoryRegistryInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorFactory;
 use RM\Component\Client\Security\Authenticator\AuthenticatorFactoryInterface;
-use RM\Component\Client\Security\Storage\TokenStorage;
 use RM\Component\Client\Transport\ThrowableTransport;
 use RM\Component\Client\Transport\TransportInterface;
 
@@ -30,7 +28,6 @@ class ClientFactory
     private ?HydratorInterface $hydrator = null;
     private ?RepositoryRegistryInterface $repositoryRegistry = null;
     private ?AuthenticatorFactoryInterface $authenticatorFactory = null;
-    private ?TokenStorage $tokenStorage = null;
 
     public function __construct(TransportInterface $transport)
     {
@@ -72,12 +69,6 @@ class ClientFactory
         return $this;
     }
 
-    public function setTokenStorage(TokenStorage $tokenStorage): ClientFactory
-    {
-        $this->tokenStorage = $tokenStorage;
-        return $this;
-    }
-
     public function setAuthenticatorFactory(AuthenticatorFactoryInterface $authenticatorFactory): ClientFactory
     {
         $this->authenticatorFactory = $authenticatorFactory;
@@ -90,8 +81,6 @@ class ClientFactory
         if ($this->throwable && !$transport instanceof ThrowableTransport) {
             $transport = new ThrowableTransport($transport);
         }
-
-        $tokenStorage = $this->tokenStorage;
 
         $hydrator = $this->hydrator;
         if ($this->hydrator === null) {
@@ -114,11 +103,7 @@ class ClientFactory
 
         $authenticatorFactory = $this->authenticatorFactory;
         if ($this->authenticatorFactory === null) {
-            if ($tokenStorage === null) {
-                throw new FactoryException('You must set up a token storage or authenticator factory.');
-            }
-
-            $authenticatorFactory = new AuthenticatorFactory($transport, $hydrator, $tokenStorage);
+            $authenticatorFactory = new AuthenticatorFactory($transport, $hydrator);
         }
 
         return new Client($transport, $repositoryRegistry, $authenticatorFactory);

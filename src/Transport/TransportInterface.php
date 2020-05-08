@@ -2,6 +2,7 @@
 
 namespace RM\Component\Client\Transport;
 
+use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Standard\Message\MessageInterface;
 
 /**
@@ -23,4 +24,11 @@ interface TransportInterface
      * @return MessageInterface
      */
     public function send(MessageInterface $message): MessageInterface;
+
+    /**
+     * Returns the token storage used by this transport to get token.
+     *
+     * @return TokenStorageInterface
+     */
+    public function getTokenStorage(): TokenStorageInterface;
 }

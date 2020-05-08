@@ -4,7 +4,6 @@ namespace RM\Component\Client\Security\Authenticator;
 
 use InvalidArgumentException;
 use RM\Component\Client\Hydrator\HydratorInterface;
-use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
@@ -21,13 +20,11 @@ class AuthenticatorFactory implements AuthenticatorFactoryInterface
 
     private TransportInterface $transport;
     private HydratorInterface $hydrator;
-    private TokenStorageInterface $tokenStorage;
 
-    public function __construct(TransportInterface $transport, HydratorInterface $hydrator, TokenStorageInterface $tokenStorage)
+    public function __construct(TransportInterface $transport, HydratorInterface $hydrator)
     {
         $this->transport = $transport;
         $this->hydrator = $hydrator;
-        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -39,7 +36,7 @@ class AuthenticatorFactory implements AuthenticatorFactoryInterface
             throw new InvalidArgumentException(sprintf('Authenticator with name `%s` does not exist.', $type));
         }
 
-        return $class($this->transport, $this->hydrator, $this->tokenStorage);
+        return $class($this->transport, $this->hydrator);
     }
 
     private function findAuthenticatorClass(string $type): ?string

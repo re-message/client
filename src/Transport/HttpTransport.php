@@ -93,7 +93,7 @@ class HttpTransport extends AbstractTransport
             ->withHeader('User-Agent', 'relmsg/client; v1.0')
             ->withBody($stream);
 
-        $token = $this->tokenResolver->resolve($message);
+        $token = $this->resolver->resolve($message);
         if ($token !== null) {
             $request = $request->withHeader('Authorization', 'Bearer ' . $token);
         }

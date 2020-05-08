@@ -3,7 +3,6 @@
 namespace RM\Component\Client\Security\Authenticator;
 
 use RM\Component\Client\Hydrator\HydratorInterface;
-use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
@@ -14,13 +13,19 @@ use RM\Component\Client\Transport\TransportInterface;
  */
 interface AuthenticatorInterface
 {
-    public function __construct(
-        TransportInterface $transport,
-        HydratorInterface $hydrator,
-        TokenStorageInterface $tokenStorage
-    );
+    public function __construct(TransportInterface $transport, HydratorInterface $hydrator);
 
+    /**
+     * Puts the received access token into the token storage and returns the object.
+     *
+     * @return object
+     */
     public function authorize(): object;
 
+    /**
+     * Returns type of the token that will be received in {@see authorize}.
+     *
+     * @return string
+     */
     public static function getTokenType(): string;
 }

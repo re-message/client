@@ -19,6 +19,12 @@ trait RepositoryTrait
     private TransportInterface $transport;
     private HydratorInterface $hydrator;
 
+    final public function __construct(TransportInterface $transport, HydratorInterface $hydrator)
+    {
+        $this->transport = $transport;
+        $this->hydrator = $hydrator;
+    }
+
     final protected function send(MessageInterface $message): Response
     {
         $message = $this->transport->send($message);
