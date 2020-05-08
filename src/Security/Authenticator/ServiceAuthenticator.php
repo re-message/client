@@ -39,7 +39,7 @@ class ServiceAuthenticator extends AbstractAuthenticator
         return new Action(
             'auth.authorize',
             [
-                'applicationId' => $this->id,
+                'application' => $this->id,
                 'secret' => $this->secret
             ]
         );
