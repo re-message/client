@@ -82,6 +82,6 @@ class Application implements CreatableFromArray, Identifiable
      */
     public static function createFromArray(array $array): self
     {
-        return new self($array['id'], $array['name'], $array['ownerId']);
+        return new self($array['id'], $array['name'], $array['owner']);
     }
 }
