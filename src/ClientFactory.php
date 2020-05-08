@@ -11,6 +11,8 @@ use RM\Component\Client\Repository\RepositoryRegistry;
 use RM\Component\Client\Repository\RepositoryRegistryInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorFactory;
 use RM\Component\Client\Security\Authenticator\AuthenticatorFactoryInterface;
+use RM\Component\Client\Security\Storage\ActorStorage;
+use RM\Component\Client\Security\Storage\ActorStorageInterface;
 use RM\Component\Client\Transport\ThrowableTransport;
 use RM\Component\Client\Transport\TransportInterface;
 
@@ -28,6 +30,7 @@ class ClientFactory
     private ?HydratorInterface $hydrator = null;
     private ?RepositoryRegistryInterface $repositoryRegistry = null;
     private ?AuthenticatorFactoryInterface $authenticatorFactory = null;
+    private ?ActorStorageInterface $actorStorage = null;
 
     public function __construct(TransportInterface $transport)
     {
@@ -69,9 +72,15 @@ class ClientFactory
         return $this;
     }
 
-    public function setAuthenticatorFactory(AuthenticatorFactoryInterface $authenticatorFactory): ClientFactory
+    public function setAuthenticatorFactory(AuthenticatorFactoryInterface $authenticatorFactory): self
     {
         $this->authenticatorFactory = $authenticatorFactory;
+        return $this;
+    }
+
+    public function setActorStorage(ActorStorageInterface $actorStorage): self
+    {
+        $this->actorStorage = $actorStorage;
         return $this;
     }
 
@@ -106,6 +115,11 @@ class ClientFactory
             $authenticatorFactory = new AuthenticatorFactory($transport, $hydrator);
         }
 
-        return new Client($transport, $repositoryRegistry, $authenticatorFactory);
+        $actorStorage = $this->actorStorage;
+        if ($this->actorStorage === null) {
+            $actorStorage = new ActorStorage();
+        }
+
+        return new Client($transport, $repositoryRegistry, $authenticatorFactory, $actorStorage);
     }
 }

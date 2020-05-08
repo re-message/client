@@ -3,6 +3,7 @@
 namespace RM\Component\Client\Security\Authenticator;
 
 use RM\Component\Client\Hydrator\HydratorInterface;
+use RM\Component\Client\Security\Storage\ActorStorageInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
@@ -28,4 +29,14 @@ interface AuthenticatorInterface
      * @return string
      */
     public static function getTokenType(): string;
+
+    /**
+     * Sets subject storage which will used to save received entity.
+     *
+     * @param ActorStorageInterface $subjectStorage
+     *
+     * @return self
+     * @internal
+     */
+    public function setSubjectStorage(ActorStorageInterface $subjectStorage): self;
 }

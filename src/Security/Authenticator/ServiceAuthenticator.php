@@ -2,7 +2,9 @@
 
 namespace RM\Component\Client\Security\Authenticator;
 
+use InvalidArgumentException;
 use RM\Component\Client\Entity\Application;
+use RM\Component\Client\Security\Storage\ActorStorageInterface;
 use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
 
@@ -41,6 +43,16 @@ class ServiceAuthenticator extends AbstractAuthenticator
                 'secret' => $this->secret
             ]
         );
+    }
+
+    protected function saveEntity(object $entity, ActorStorageInterface $actorStorage): void
+    {
+        if (!$entity instanceof Application) {
+            $message = sprintf('Expects %s, got %s.', Application::class, get_class($entity));
+            throw new InvalidArgumentException($message);
+        }
+
+        $actorStorage->setApplication($entity);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace RM\Component\Client\Security\Authenticator;
 
 use RM\Component\Client\Repository\RepositoryTrait;
+use RM\Component\Client\Security\Storage\ActorStorageInterface;
 use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Standard\Message\MessageInterface;
 use RuntimeException;
@@ -17,6 +18,8 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
 {
     use RepositoryTrait;
 
+    private ActorStorageInterface $subjectStorage;
+
     /**
      * @inheritDoc
      */
@@ -29,18 +32,43 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
         $token = $content['token'];
         $objectData = $content[$this->getObjectKey()];
 
-        $object = $this->hydrate($objectData);
-        if (!is_a($object, $this->getEntity())) {
+        $entity = $this->hydrate($objectData);
+        if (!is_a($entity, $this->getEntity())) {
             throw new RuntimeException(sprintf('Hydrated entity is not %s.', $this->getEntity()));
         }
 
-        $this->getTokenStorage()->set(static::getTokenType(), $token);
-        return $object;
+        $this->saveToken($token, $this->transport->getTokenStorage());
+        $this->saveEntity($entity, $this->subjectStorage);
+        return $entity;
     }
 
-    private function getTokenStorage(): TokenStorageInterface
+    /**
+     * Saves received entity into storage.
+     *
+     * @param object                $entity
+     * @param ActorStorageInterface $actorStorage
+     */
+    abstract protected function saveEntity(object $entity, ActorStorageInterface $actorStorage): void;
+
+    /**
+     * Saves received access token into storage.
+     *
+     * @param string                $token
+     * @param TokenStorageInterface $tokenStorage
+     */
+    protected function saveToken(string $token, TokenStorageInterface $tokenStorage): void
     {
-        return $this->transport->getTokenStorage();
+        $tokenStorage->set(static::getTokenType(), $token);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setSubjectStorage(ActorStorageInterface $subjectStorage): self
+    {
+        $this->subjectStorage = $subjectStorage;
+
+        return $this;
     }
 
     /**
