@@ -52,7 +52,7 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
             throw new RuntimeException(sprintf('Hydrated entity is not %s.', $this->getEntity()));
         }
 
-        $this->tokenStorage->set(self::TOKEN_TYPE, $token);
+        $this->tokenStorage->set(static::TOKEN_TYPE, $token);
         return $object;
     }
 
