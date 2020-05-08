@@ -15,8 +15,8 @@ use RM\Component\Client\Transport\TransportInterface;
  */
 class AuthenticatorFactory implements AuthenticatorFactoryInterface
 {
-    public const PROVIDERS = [
-        ServiceAuthenticator::TOKEN_TYPE => ServiceAuthenticator::class
+    public const AUTHENTICATORS = [
+        ServiceAuthenticator::class
     ];
 
     private TransportInterface $transport;
@@ -35,11 +35,22 @@ class AuthenticatorFactory implements AuthenticatorFactoryInterface
      */
     public function build(string $type): AuthenticatorInterface
     {
-        $provider = self::PROVIDERS[$type] ?? null;
-        if ($provider === null) {
-            throw new InvalidArgumentException(sprintf('Authorization provider with name `%s` does not exist.', $type));
+        if (null === $class = $this->findAuthenticatorClass($type)) {
+            throw new InvalidArgumentException(sprintf('Authenticator with name `%s` does not exist.', $type));
         }
 
-        return $provider($this->transport, $this->hydrator, $this->tokenStorage);
+        return $class($this->transport, $this->hydrator, $this->tokenStorage);
+    }
+
+    private function findAuthenticatorClass(string $type): ?string
+    {
+        /** @var AuthenticatorInterface $class */
+        foreach (self::AUTHENTICATORS as $class) {
+            if ($class::getTokenType() === $type) {
+                return $class;
+            }
+        }
+
+        return null;
     }
 }

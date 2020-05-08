@@ -21,4 +21,6 @@ interface AuthenticatorInterface
     );
 
     public function authorize(): object;
+
+    public static function getTokenType(): string;
 }

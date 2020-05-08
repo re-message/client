@@ -2,7 +2,6 @@
 
 namespace RM\Component\Client\Security\Authenticator;
 
-use LogicException;
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Repository\RepositoryTrait;
 use RM\Component\Client\Security\Storage\TokenStorageInterface;
@@ -20,8 +19,6 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
 {
     use RepositoryTrait;
 
-    public const TOKEN_TYPE = null;
-
     private TokenStorageInterface $tokenStorage;
 
     public function __construct(
@@ -32,10 +29,6 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
         $this->transport = $transport;
         $this->hydrator = $hydrator;
         $this->tokenStorage = $tokenStorage;
-
-        if (static::TOKEN_TYPE === null) {
-            throw new LogicException(sprintf('You should configure %s::TOKEN_TYPE constant.', static::class));
-        }
     }
 
     public function authorize(): object
@@ -52,7 +45,7 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
             throw new RuntimeException(sprintf('Hydrated entity is not %s.', $this->getEntity()));
         }
 
-        $this->tokenStorage->set(static::TOKEN_TYPE, $token);
+        $this->tokenStorage->set(static::getTokenType(), $token);
         return $object;
     }
 

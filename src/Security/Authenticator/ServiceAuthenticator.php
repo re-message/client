@@ -14,8 +14,6 @@ use RM\Standard\Message\MessageInterface;
  */
 class ServiceAuthenticator extends AbstractAuthenticator
 {
-    public const TOKEN_TYPE = 'service';
-
     private string $id;
     private string $secret;
 
@@ -59,5 +57,13 @@ class ServiceAuthenticator extends AbstractAuthenticator
     public function getEntity(): string
     {
         return Application::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function getTokenType(): string
+    {
+        return 'service';
     }
 }

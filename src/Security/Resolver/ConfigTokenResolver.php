@@ -4,7 +4,6 @@ namespace RM\Component\Client\Security\Resolver;
 
 use Doctrine\Common\Collections\Collection;
 use Exception;
-use RM\Component\Client\Security\Authenticator\ServiceAuthenticator;
 use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Standard\Message\MessageInterface;
 use Symfony\Component\Config\FileLocator;
@@ -19,7 +18,7 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 class ConfigTokenResolver implements TokenResolverInterface
 {
     private const CONFIG_PATH = 'actions.yaml';
-    private const PREFERRED_AUTHORIZATIONS = ['user', ServiceAuthenticator::TOKEN_TYPE];
+    private const PREFERRED_AUTHORIZATIONS = ['user', 'service'];
 
     private TokenStorageInterface $tokenStorage;
     private LoaderInterface $loader;
