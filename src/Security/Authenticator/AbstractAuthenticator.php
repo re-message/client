@@ -33,7 +33,7 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
         $this->hydrator = $hydrator;
         $this->tokenStorage = $tokenStorage;
 
-        if (self::TOKEN_TYPE === null) {
+        if (static::TOKEN_TYPE === null) {
             throw new LogicException(sprintf('You should configure %s::TOKEN_TYPE constant.', static::class));
         }
     }
