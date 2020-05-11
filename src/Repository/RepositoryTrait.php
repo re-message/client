@@ -19,7 +19,7 @@ trait RepositoryTrait
     private TransportInterface $transport;
     private HydratorInterface $hydrator;
 
-    final public function __construct(TransportInterface $transport, HydratorInterface $hydrator)
+    public function __construct(TransportInterface $transport, HydratorInterface $hydrator)
     {
         $this->transport = $transport;
         $this->hydrator = $hydrator;
