@@ -44,7 +44,7 @@ class Client implements ClientInterface
     public function createAuthenticator(string $type): AuthenticatorInterface
     {
         return $this->authenticatorFactory->build($type)
-            ->setSubjectStorage($this->subjectStorage);
+            ->setActorStorage($this->subjectStorage);
     }
 
     /**

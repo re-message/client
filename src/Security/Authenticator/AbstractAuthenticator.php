@@ -18,7 +18,7 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
 {
     use RepositoryTrait;
 
-    private ActorStorageInterface $subjectStorage;
+    private ActorStorageInterface $actorStorage;
 
     /**
      * @inheritDoc
@@ -38,7 +38,7 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
         }
 
         $this->saveToken($token, $this->transport->getTokenStorage());
-        $this->saveEntity($entity, $this->subjectStorage);
+        $this->saveEntity($entity, $this->actorStorage);
         return $entity;
     }
 
@@ -64,9 +64,9 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
     /**
      * @inheritDoc
      */
-    public function setSubjectStorage(ActorStorageInterface $subjectStorage): self
+    public function setActorStorage(ActorStorageInterface $actorStorage): self
     {
-        $this->subjectStorage = $subjectStorage;
+        $this->actorStorage = $actorStorage;
 
         return $this;
     }
