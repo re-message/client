@@ -33,10 +33,10 @@ interface AuthenticatorInterface
     /**
      * Sets subject storage which will used to save received entity.
      *
-     * @param ActorStorageInterface $subjectStorage
+     * @param ActorStorageInterface $actorStorage
      *
      * @return self
      * @internal
      */
-    public function setSubjectStorage(ActorStorageInterface $subjectStorage): self;
+    public function setActorStorage(ActorStorageInterface $actorStorage): self;
 }
