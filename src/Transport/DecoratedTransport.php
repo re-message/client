@@ -2,6 +2,7 @@
 
 namespace RM\Component\Client\Transport;
 
+use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Standard\Message\MessageInterface;
 
 /**
@@ -25,6 +26,14 @@ abstract class DecoratedTransport implements TransportInterface
     public function send(MessageInterface $message): MessageInterface
     {
         return $this->transport->send($message);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTokenStorage(): TokenStorageInterface
+    {
+        return $this->transport->getTokenStorage();
     }
 
     public function getRealTransport(): TransportInterface
