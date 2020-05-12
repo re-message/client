@@ -31,7 +31,7 @@ interface AuthenticatorInterface
     public static function getTokenType(): string;
 
     /**
-     * Sets subject storage which will used to save received entity.
+     * Sets actor storage which will used to save received entity.
      *
      * @param ActorStorageInterface $actorStorage
      *

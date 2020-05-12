@@ -24,18 +24,18 @@ class Client implements ClientInterface
     private TransportInterface $transport;
     private RepositoryRegistryInterface $registry;
     private AuthenticatorFactoryInterface $authenticatorFactory;
-    private ActorStorageInterface $subjectStorage;
+    private ActorStorageInterface $actorStorage;
 
     public function __construct(
         TransportInterface $transport,
         RepositoryRegistryInterface $registry,
         AuthenticatorFactoryInterface $authenticatorFactory,
-        ActorStorageInterface $subjectStorage
+        ActorStorageInterface $actorStorage
     ) {
         $this->transport = $transport;
         $this->registry = $registry;
         $this->authenticatorFactory = $authenticatorFactory;
-        $this->subjectStorage = $subjectStorage;
+        $this->actorStorage = $actorStorage;
     }
 
     /**
@@ -44,7 +44,7 @@ class Client implements ClientInterface
     public function createAuthenticator(string $type): AuthenticatorInterface
     {
         return $this->authenticatorFactory->build($type)
-            ->setActorStorage($this->subjectStorage);
+            ->setActorStorage($this->actorStorage);
     }
 
     /**
@@ -68,7 +68,7 @@ class Client implements ClientInterface
      */
     public function getApplication(): ?Application
     {
-        return $this->subjectStorage->getApplication();
+        return $this->actorStorage->getApplication();
     }
 
     /**
@@ -76,7 +76,7 @@ class Client implements ClientInterface
      */
     public function getUser(): ?User
     {
-        return $this->subjectStorage->getUser();
+        return $this->actorStorage->getUser();
     }
 
     /**
