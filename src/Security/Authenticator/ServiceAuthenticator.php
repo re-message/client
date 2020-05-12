@@ -12,7 +12,7 @@ use RM\Standard\Message\MessageInterface;
  * Class ServiceAuthenticator
  *
  * @package RM\Component\Client\Security\Authenticator
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class ServiceAuthenticator extends AbstractAuthenticator
 {

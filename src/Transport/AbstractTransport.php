@@ -10,7 +10,7 @@ use RM\Standard\Message\Serializer\MessageSerializerInterface;
  * Class AbstractTransport
  *
  * @package RM\Component\Client\Transport
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 abstract class AbstractTransport implements TransportInterface
 {

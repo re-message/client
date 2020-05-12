@@ -14,7 +14,7 @@ use RM\Component\Client\Repository\RepositoryRegistryInterface;
  * Class LazyLoaderHydrator
  *
  * @package RM\Component\Client\Hydrator
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class LazyLoaderHydrator extends DecoratedHydrator
 {

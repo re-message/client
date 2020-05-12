@@ -9,7 +9,7 @@ use RM\Component\Client\Entity\User;
  * Class ActorStorage
  *
  * @package RM\Component\Client\Security\Storage
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class ActorStorage implements ActorStorageInterface
 {

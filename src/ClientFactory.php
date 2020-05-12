@@ -20,7 +20,7 @@ use RM\Component\Client\Transport\TransportInterface;
  * Class ClientFactory
  *
  * @package RM\Component\Client
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class ClientFactory
 {

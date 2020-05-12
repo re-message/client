@@ -17,7 +17,7 @@ use RM\Standard\Message\MessageInterface;
  * Class Client
  *
  * @package RM\Component\Client
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class Client implements ClientInterface
 {

@@ -15,7 +15,7 @@ use Symfony\Component\Yaml\Yaml;
  * Class YamlConfigLoader
  *
  * @package RM\Component\Client\Security\Resolver
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class YamlConfigLoader extends FileLoader
 {

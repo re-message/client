@@ -10,7 +10,7 @@ use Throwable;
  * Class TransportException decorates exception thrown from {@see TransportInterface::send}.
  *
  * @package RM\Component\Client\Exception
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class TransportException extends RuntimeException implements ExceptionInterface
 {

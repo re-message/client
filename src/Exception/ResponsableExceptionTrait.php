@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
  * Trait ResponsableExceptionTrait
  *
  * @package RM\Component\Client\Exception
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  * @internal
  */
 trait ResponsableExceptionTrait

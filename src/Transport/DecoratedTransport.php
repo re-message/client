@@ -9,7 +9,7 @@ use RM\Standard\Message\MessageInterface;
  * Class DecoratedTransport
  *
  * @package RM\Component\Client\Transport
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 abstract class DecoratedTransport implements TransportInterface
 {

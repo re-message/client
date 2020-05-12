@@ -10,7 +10,7 @@ use Throwable;
  * Class UnexpectedMessageException
  *
  * @package RM\Component\Client\Exception
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class UnexpectedMessageException extends RuntimeException implements ExceptionInterface
 {

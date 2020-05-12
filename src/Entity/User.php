@@ -13,7 +13,7 @@ use RM\Component\Client\Repository\UserRepository;
  * @Entity(repositoryClass=UserRepository::class)
  *
  * @package RM\Component\Client\Entity
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class User implements CreatableFromArray, Identifiable
 {

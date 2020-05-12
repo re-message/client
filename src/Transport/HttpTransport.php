@@ -20,7 +20,7 @@ use RM\Standard\Message\Serializer\MessageSerializerInterface;
  * Class HttpTransport
  *
  * @package RM\Component\Client\Transport
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class HttpTransport extends AbstractTransport
 {

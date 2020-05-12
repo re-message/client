@@ -8,7 +8,7 @@ use LogicException;
  * Class ActionConfig
  *
  * @package RM\Component\Client\Security\Resolver
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class ActionConfig
 {

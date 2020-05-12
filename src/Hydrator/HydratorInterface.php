@@ -6,7 +6,7 @@ namespace RM\Component\Client\Hydrator;
  * Interface HydratorInterface
  *
  * @package RM\Component\Client\Hydrator
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 interface HydratorInterface
 {

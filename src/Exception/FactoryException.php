@@ -8,7 +8,7 @@ use RuntimeException;
  * Class FactoryException
  *
  * @package RM\Component\Client\Exception
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class FactoryException extends RuntimeException implements ExceptionInterface
 {

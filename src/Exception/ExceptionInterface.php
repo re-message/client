@@ -8,7 +8,7 @@ use Throwable;
  * Interface ExceptionInterface
  *
  * @package RM\Component\Client\Exception
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 interface ExceptionInterface extends Throwable
 {

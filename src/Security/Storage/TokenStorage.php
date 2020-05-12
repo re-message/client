@@ -10,7 +10,7 @@ use RM\Component\Client\Exception\TokenNotFoundException;
  * Class TokenStorage
  *
  * @package RM\Component\Client\Security\Storage
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class TokenStorage implements TokenStorageInterface
 {

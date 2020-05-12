@@ -11,7 +11,7 @@ use Doctrine\Common\Annotations\Annotation\Target;
  * @Target("CLASS")
  *
  * @package RM\Component\Client\Annotation
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  * @internal
  */
 class Entity

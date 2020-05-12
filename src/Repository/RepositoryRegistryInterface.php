@@ -6,7 +6,7 @@ namespace RM\Component\Client\Repository;
  * Interface RepositoryRegistryInterface
  *
  * @package RM\Component\Client
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 interface RepositoryRegistryInterface
 {

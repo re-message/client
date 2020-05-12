@@ -12,7 +12,7 @@ use Throwable;
  * into {@see MessageInterface}
  *
  * @package RM\Component\Client\Exception
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class UnserializableResponseException extends RuntimeException implements ExceptionInterface
 {

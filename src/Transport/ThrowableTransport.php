@@ -12,7 +12,7 @@ use RM\Standard\Message\Response;
  * Class ThrowableTransport decorates transport to throw exception on errors.
  *
  * @package RM\Component\Client\Transport
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class ThrowableTransport extends DecoratedTransport
 {

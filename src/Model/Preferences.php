@@ -6,7 +6,7 @@ namespace RM\Component\Client\Model;
  * Class RequestPreferences
  *
  * @package RM\Component\Client\Model
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class Preferences
 {

@@ -9,7 +9,7 @@ use RM\Standard\Message\MessageInterface;
  * Interface TransportInterface
  *
  * @package RM\Component\Client\Transport
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 interface TransportInterface
 {

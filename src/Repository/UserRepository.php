@@ -10,7 +10,7 @@ use RuntimeException;
  * Class UserRepository
  *
  * @package RM\Component\Client\Repository
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class UserRepository extends AbstractRepository
 {

@@ -16,7 +16,7 @@ use RM\Standard\Message\MessageInterface;
  * Class UserAuthenticator
  *
  * @package RM\Component\Client\Security\Authenticator
- * @author  h1karo <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class UserAuthenticator extends AbstractAuthenticator
 {
