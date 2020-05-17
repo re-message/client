@@ -2,12 +2,10 @@
 
 namespace RM\Component\Client\Security\Authenticator;
 
-use InvalidArgumentException;
 use RM\Component\Client\Entity\User;
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Model\CodeMethod;
 use RM\Component\Client\Model\Preferences;
-use RM\Component\Client\Security\Storage\ActorStorageInterface;
 use RM\Component\Client\Transport\TransportInterface;
 use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
@@ -107,19 +105,6 @@ class UserAuthenticator extends AbstractAuthenticator
                 'code' => $this->code
             ]
         );
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function saveEntity(object $entity, ActorStorageInterface $actorStorage): void
-    {
-        if (!$entity instanceof User) {
-            $message = sprintf('Expects %s, got %s.', User::class, get_class($entity));
-            throw new InvalidArgumentException($message);
-        }
-
-        $actorStorage->setUser($entity);
     }
 
     /**

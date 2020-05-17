@@ -3,7 +3,6 @@
 namespace RM\Component\Client\Security\Authenticator;
 
 use RM\Component\Client\Repository\RepositoryTrait;
-use RM\Component\Client\Security\Storage\ActorStorageInterface;
 use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Standard\Message\MessageInterface;
 use RuntimeException;
@@ -17,8 +16,6 @@ use RuntimeException;
 abstract class AbstractAuthenticator implements AuthenticatorInterface
 {
     use RepositoryTrait;
-
-    private ActorStorageInterface $actorStorage;
 
     /**
      * @inheritDoc
@@ -38,17 +35,8 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
         }
 
         $this->saveToken($token, $this->transport->getTokenStorage());
-        $this->saveEntity($entity, $this->actorStorage);
         return $entity;
     }
-
-    /**
-     * Saves received entity into storage.
-     *
-     * @param object                $entity
-     * @param ActorStorageInterface $actorStorage
-     */
-    abstract protected function saveEntity(object $entity, ActorStorageInterface $actorStorage): void;
 
     /**
      * Saves received access token into storage.
@@ -59,16 +47,6 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
     protected function saveToken(string $token, TokenStorageInterface $tokenStorage): void
     {
         $tokenStorage->set(static::getTokenType(), $token);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setActorStorage(ActorStorageInterface $actorStorage): self
-    {
-        $this->actorStorage = $actorStorage;
-
-        return $this;
     }
 
     /**

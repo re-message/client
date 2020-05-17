@@ -8,7 +8,6 @@ use RM\Component\Client\Repository\RepositoryInterface;
 use RM\Component\Client\Repository\RepositoryRegistryInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorFactoryInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorInterface;
-use RM\Component\Client\Security\Storage\ActorStorageInterface;
 use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Component\Client\Transport\TransportInterface;
 use RM\Standard\Message\MessageInterface;
@@ -24,18 +23,15 @@ class Client implements ClientInterface
     private TransportInterface $transport;
     private RepositoryRegistryInterface $registry;
     private AuthenticatorFactoryInterface $authenticatorFactory;
-    private ActorStorageInterface $actorStorage;
 
     public function __construct(
         TransportInterface $transport,
         RepositoryRegistryInterface $registry,
-        AuthenticatorFactoryInterface $authenticatorFactory,
-        ActorStorageInterface $actorStorage
+        AuthenticatorFactoryInterface $authenticatorFactory
     ) {
         $this->transport = $transport;
         $this->registry = $registry;
         $this->authenticatorFactory = $authenticatorFactory;
-        $this->actorStorage = $actorStorage;
     }
 
     /**
@@ -43,8 +39,7 @@ class Client implements ClientInterface
      */
     public function createAuthenticator(string $type): AuthenticatorInterface
     {
-        return $this->authenticatorFactory->build($type)
-            ->setActorStorage($this->actorStorage);
+        return $this->authenticatorFactory->build($type);
     }
 
     /**
@@ -68,7 +63,7 @@ class Client implements ClientInterface
      */
     public function getApplication(): ?Application
     {
-        return $this->actorStorage->getApplication();
+        return null;
     }
 
     /**
@@ -76,7 +71,7 @@ class Client implements ClientInterface
      */
     public function getUser(): ?User
     {
-        return $this->actorStorage->getUser();
+        return null;
     }
 
     /**
