@@ -3,9 +3,6 @@
 namespace RM\Component\Client\Security\Credentials;
 
 use InvalidArgumentException;
-use RM\Standard\Jwt\Exception\InvalidTokenException;
-use RM\Standard\Jwt\Serializer\SignatureCompactSerializer;
-use RM\Standard\Jwt\Token\TokenInterface;
 
 /**
  * Class TokenAuthorization
@@ -15,14 +12,11 @@ use RM\Standard\Jwt\Token\TokenInterface;
  */
 class TokenAuthorization implements AuthorizationInterface
 {
-    private TokenInterface $token;
+    private string $token;
 
-    private SignatureCompactSerializer $serializer;
-
-    public function __construct(TokenInterface $token)
+    public function __construct(string $token)
     {
         $this->token = $token;
-        $this->serializer = new SignatureCompactSerializer();
     }
 
     /**
@@ -33,18 +27,17 @@ class TokenAuthorization implements AuthorizationInterface
         return true;
     }
 
-    public function getToken(): TokenInterface
+    public function getToken(): string
     {
         return $this->token;
     }
 
     /**
      * @inheritDoc
-     * @throws InvalidTokenException
      */
     public function getCredentials(): string
     {
-        return $this->serializer->serialize($this->token);
+        return $this->getToken();
     }
 
     /**
@@ -58,7 +51,6 @@ class TokenAuthorization implements AuthorizationInterface
 
     /**
      * @inheritDoc
-     * @throws InvalidTokenException
      */
     final public function unserialize($serialized): void
     {
@@ -68,7 +60,6 @@ class TokenAuthorization implements AuthorizationInterface
 
         $data = unserialize($serialized, ['allowed_classes' => false]);
         $credentials = $data['credentials'];
-        $token = $this->serializer->deserialize($credentials);
-        $this->token = $token;
+        $this->token = $credentials;
     }
 }
