@@ -15,7 +15,7 @@ use RM\Component\Client\Transport\TransportInterface;
 class AuthenticatorFactory implements AuthenticatorFactoryInterface
 {
     public const AUTHENTICATORS = [
-        ServiceAuthenticator::class
+        ApplicationAuthenticator::class
     ];
 
     private TransportInterface $transport;
