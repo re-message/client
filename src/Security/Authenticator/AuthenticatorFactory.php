@@ -36,7 +36,13 @@ class AuthenticatorFactory implements AuthenticatorFactoryInterface
             throw new InvalidArgumentException(sprintf('Authenticator with name `%s` does not exist.', $type));
         }
 
-        return $class($this->transport, $this->hydrator);
+        $authenticator = $class($this->transport, $this->hydrator);
+
+        if ($authenticator instanceof RedirectAuthenticatorInterface) {
+            $authenticator->setFactory($this);
+        }
+
+        return $authenticator;
     }
 
     private function findAuthenticatorClass(string $type): ?string
