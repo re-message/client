@@ -4,7 +4,7 @@ namespace RM\Component\Client;
 
 use RM\Component\Client\Entity\Application;
 use RM\Component\Client\Entity\User;
-use RM\Component\Client\Repository\RepositoryRegistryInterface;
+use RM\Component\Client\Repository\Registry\RepositoryRegistryInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorInterface;
 use RM\Component\Client\Transport\TransportInterface;
 

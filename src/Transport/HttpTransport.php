@@ -12,7 +12,7 @@ use RM\Component\Client\Exception\TransportException;
 use RM\Component\Client\Exception\UnexpectedResponseException;
 use RM\Component\Client\Exception\UnserializableMessageException;
 use RM\Component\Client\Exception\UnserializableResponseException;
-use RM\Component\Client\Security\Resolver\TokenResolverInterface;
+use RM\Component\Client\Security\Credentials\AuthorizationInterface;
 use RM\Standard\Message\MessageInterface;
 use RM\Standard\Message\Serializer\MessageSerializerInterface;
 
@@ -35,10 +35,9 @@ class HttpTransport extends AbstractTransport
         ClientInterface $httpClient,
         RequestFactoryInterface $requestFactory,
         StreamFactoryInterface $streamFactory,
-        MessageSerializerInterface $serializer,
-        TokenResolverInterface $tokenResolver
+        MessageSerializerInterface $serializer
     ) {
-        parent::__construct($serializer, $tokenResolver);
+        parent::__construct($serializer);
 
         $this->httpClient = $httpClient;
         $this->requestFactory = $requestFactory;
@@ -93,10 +92,7 @@ class HttpTransport extends AbstractTransport
             ->withHeader('User-Agent', 'relmsg/client; v1.0')
             ->withBody($stream);
 
-        $token = $this->resolver->resolve($message);
-        if ($token !== null) {
-            $request = $request->withHeader('Authorization', 'Bearer ' . $token);
-        }
+        $request = $this->authorize($request, $message);
 
         return $request;
     }
@@ -105,5 +101,25 @@ class HttpTransport extends AbstractTransport
     {
         $base = self::SCHEME . self::DOMAIN;
         return implode('/', [$base, 'v' . self::VERSION, self::ENTRYPOINT]);
+    }
+
+    protected function authorize(RequestInterface $request, MessageInterface $message): RequestInterface
+    {
+        $auth = $this->resolveAuthorization($message);
+        if ($auth === null || !$auth->isCompleted()) {
+            return $request;
+        }
+
+        $credentials = $auth->getCredentials();
+        return $request->withHeader('Authorization', 'Bearer ' . $credentials);
+    }
+
+    protected function resolveAuthorization(MessageInterface $message): ?AuthorizationInterface
+    {
+        if ($this->resolver === null) {
+            return null;
+        }
+
+        return $this->resolver->resolve($message);
     }
 }

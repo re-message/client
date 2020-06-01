@@ -2,8 +2,7 @@
 
 namespace RM\Component\Client\Transport;
 
-use RM\Component\Client\Security\Resolver\TokenResolverInterface;
-use RM\Component\Client\Security\Storage\TokenStorageInterface;
+use RM\Component\Client\Security\Resolver\AuthorizationResolverInterface;
 use RM\Standard\Message\Serializer\MessageSerializerInterface;
 
 /**
@@ -15,19 +14,20 @@ use RM\Standard\Message\Serializer\MessageSerializerInterface;
 abstract class AbstractTransport implements TransportInterface
 {
     protected MessageSerializerInterface $serializer;
-    protected TokenResolverInterface $resolver;
+    protected ?AuthorizationResolverInterface $resolver = null;
 
-    public function __construct(MessageSerializerInterface $serializer, TokenResolverInterface $tokenResolver)
+    public function __construct(MessageSerializerInterface $serializer)
     {
         $this->serializer = $serializer;
-        $this->resolver = $tokenResolver;
     }
 
     /**
      * @inheritDoc
      */
-    public function getTokenStorage(): TokenStorageInterface
+    public function setResolver(AuthorizationResolverInterface $resolver): self
     {
-        return $this->resolver->getTokenStorage();
+        $this->resolver = $resolver;
+
+        return $this;
     }
 }

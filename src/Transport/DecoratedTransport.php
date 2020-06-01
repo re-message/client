@@ -2,7 +2,7 @@
 
 namespace RM\Component\Client\Transport;
 
-use RM\Component\Client\Security\Storage\TokenStorageInterface;
+use RM\Component\Client\Security\Resolver\AuthorizationResolverInterface;
 use RM\Standard\Message\MessageInterface;
 
 /**
@@ -31,17 +31,21 @@ abstract class DecoratedTransport implements TransportInterface
     /**
      * @inheritDoc
      */
-    public function getTokenStorage(): TokenStorageInterface
+    public function setResolver(AuthorizationResolverInterface $resolver): self
     {
-        return $this->transport->getTokenStorage();
+        $this->transport->setResolver($resolver);
+
+        return $this;
     }
 
-    public function getRealTransport(): TransportInterface
+    public function getTransport(): TransportInterface
     {
         $transport = $this->transport;
+
         while ($transport instanceof self) {
-            $transport = $transport->getRealTransport();
+            $transport = $transport->getTransport();
         }
+
         return $transport;
     }
 }

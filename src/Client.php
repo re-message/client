@@ -4,11 +4,11 @@ namespace RM\Component\Client;
 
 use RM\Component\Client\Entity\Application;
 use RM\Component\Client\Entity\User;
-use RM\Component\Client\Repository\RepositoryInterface;
 use RM\Component\Client\Repository\Registry\RepositoryRegistryInterface;
-use RM\Component\Client\Security\Authenticator\Factory\AuthenticatorFactoryInterface;
+use RM\Component\Client\Repository\RepositoryInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorInterface;
-use RM\Component\Client\Security\Storage\TokenStorageInterface;
+use RM\Component\Client\Security\Authenticator\Factory\AuthenticatorFactoryInterface;
+use RM\Component\Client\Security\Resolver\AuthorizationResolverInterface;
 use RM\Component\Client\Transport\TransportInterface;
 use RM\Standard\Message\MessageInterface;
 
@@ -60,6 +60,15 @@ class Client implements ClientInterface
 
     /**
      * @inheritDoc
+     * @internal
+     */
+    public function setResolver(AuthorizationResolverInterface $resolver): self
+    {
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
      */
     public function getApplication(): ?Application
     {
@@ -72,13 +81,5 @@ class Client implements ClientInterface
     public function getUser(): ?User
     {
         return null;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getTokenStorage(): TokenStorageInterface
-    {
-        return $this->transport->getTokenStorage();
     }
 }

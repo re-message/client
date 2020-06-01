@@ -2,7 +2,7 @@
 
 namespace RM\Component\Client\Transport;
 
-use RM\Component\Client\Security\Storage\TokenStorageInterface;
+use RM\Component\Client\Security\Resolver\AuthorizationResolverInterface;
 use RM\Standard\Message\MessageInterface;
 
 /**
@@ -26,9 +26,11 @@ interface TransportInterface
     public function send(MessageInterface $message): MessageInterface;
 
     /**
-     * Returns the token storage used by this transport to get token.
+     * Configures resolver for transport to use authorization in requests.
      *
-     * @return TokenStorageInterface
+     * @param AuthorizationResolverInterface $resolver
+     *
+     * @return self
      */
-    public function getTokenStorage(): TokenStorageInterface;
+    public function setResolver(AuthorizationResolverInterface $resolver): self;
 }
