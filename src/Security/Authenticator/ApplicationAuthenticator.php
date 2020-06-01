@@ -39,7 +39,7 @@ class ApplicationAuthenticator implements AuthenticatorInterface
     /**
      * @inheritDoc
      */
-    public function authorize(): object
+    public function authenticate(): object
     {
         $message = $this->createMessage();
         $response = $this->send($message);

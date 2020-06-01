@@ -20,10 +20,10 @@ interface AuthenticatorInterface
      *
      * @return object
      */
-    public function authorize(): object;
+    public function authenticate(): object;
 
     /**
-     * Returns type of the token that will be received in {@see authorize}.
+     * Returns type of the token that will be received in {@see authenticate}.
      *
      * @return string
      */

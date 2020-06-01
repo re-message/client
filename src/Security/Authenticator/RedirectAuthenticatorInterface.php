@@ -24,5 +24,5 @@ interface RedirectAuthenticatorInterface extends AuthenticatorInterface
      *
      * @inheritDoc
      */
-    public function authorize(): AuthenticatorInterface;
+    public function authenticate(): AuthenticatorInterface;
 }
