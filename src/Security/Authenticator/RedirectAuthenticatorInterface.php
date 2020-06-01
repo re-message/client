@@ -18,4 +18,11 @@ interface RedirectAuthenticatorInterface extends AuthenticatorInterface
      * @return $this
      */
     public function setFactory(AuthenticatorFactoryInterface $authenticatorFactory): self;
+
+    /**
+     * Returns a next authenticator.
+     *
+     * @inheritDoc
+     */
+    public function authorize(): AuthenticatorInterface;
 }
