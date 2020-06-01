@@ -2,6 +2,8 @@
 
 namespace RM\Component\Client\Security\Authenticator;
 
+use RM\Component\Client\Security\Authenticator\Factory\AuthenticatorFactoryInterface;
+
 /**
  * Interface RedirectAuthenticatorInterface
  *

@@ -8,7 +8,7 @@ use InvalidArgumentException;
 use ReflectionMethod;
 use ReflectionObject;
 use RM\Component\Client\Annotation\LazyLoad;
-use RM\Component\Client\Repository\RepositoryRegistryInterface;
+use RM\Component\Client\Repository\Registry\RepositoryRegistryInterface;
 
 /**
  * Class LazyLoaderHydrator

@@ -5,12 +5,12 @@ namespace RM\Component\Client;
 use RM\Component\Client\Hydrator\EntityHydrator;
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Hydrator\LazyLoaderHydrator;
-use RM\Component\Client\Repository\RepositoryFactory;
-use RM\Component\Client\Repository\RepositoryFactoryInterface;
-use RM\Component\Client\Repository\RepositoryRegistry;
-use RM\Component\Client\Repository\RepositoryRegistryInterface;
-use RM\Component\Client\Security\Authenticator\AuthenticatorFactory;
-use RM\Component\Client\Security\Authenticator\AuthenticatorFactoryInterface;
+use RM\Component\Client\Repository\Factory\RepositoryFactory;
+use RM\Component\Client\Repository\Factory\RepositoryFactoryInterface;
+use RM\Component\Client\Repository\Registry\RepositoryRegistry;
+use RM\Component\Client\Repository\Registry\RepositoryRegistryInterface;
+use RM\Component\Client\Security\Authenticator\Factory\AuthenticatorFactory;
+use RM\Component\Client\Security\Authenticator\Factory\AuthenticatorFactoryInterface;
 use RM\Component\Client\Transport\ThrowableTransport;
 use RM\Component\Client\Transport\TransportInterface;
 

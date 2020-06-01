@@ -1,14 +1,16 @@
 <?php
 
-namespace RM\Component\Client\Repository;
+namespace RM\Component\Client\Repository\Registry;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use RM\Component\Client\Repository\Factory\RepositoryFactoryInterface;
+use RM\Component\Client\Repository\RepositoryInterface;
 
 /**
  * Class RepositoryRegistry
  *
- * @package RM\Component\Client
+ * @package RM\Component\Client\Repository\Registry
  * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 class RepositoryRegistry implements RepositoryRegistryInterface

@@ -1,11 +1,13 @@
 <?php
 
-namespace RM\Component\Client\Security\Authenticator;
+namespace RM\Component\Client\Security\Authenticator\Factory;
+
+use RM\Component\Client\Security\Authenticator\AuthenticatorInterface;
 
 /**
  * Interface AuthenticatorFactoryInterface
  *
- * @package RM\Component\Client\Security\Authenticator
+ * @package RM\Component\Client\Security\Authenticator\Factory
  * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 interface AuthenticatorFactoryInterface

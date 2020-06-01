@@ -1,11 +1,13 @@
 <?php
 
-namespace RM\Component\Client\Repository;
+namespace RM\Component\Client\Repository\Factory;
+
+use RM\Component\Client\Repository\RepositoryInterface;
 
 /**
  * Interface RepositoryFactoryInterface
  *
- * @package RM\Component\Client
+ * @package RM\Component\Client\Repository\Factory
  * @author  Oleg Kozlov <h1karo@outlook.com>
  */
 interface RepositoryFactoryInterface
