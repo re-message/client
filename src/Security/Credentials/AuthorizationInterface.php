@@ -13,16 +13,9 @@ use Serializable;
 interface AuthorizationInterface extends Serializable
 {
     /**
-     * Is this authorization is complete.
+     * Is authorization completed.
      *
      * @return bool
      */
-    public function isAuthorized(): bool;
-
-    /**
-     * Change authorization status.
-     *
-     * @param bool $authorized
-     */
-    public function setAuthorized(bool $authorized): void;
+    public function isCompleted(): bool;
 }
