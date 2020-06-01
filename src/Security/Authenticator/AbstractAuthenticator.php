@@ -3,7 +3,6 @@
 namespace RM\Component\Client\Security\Authenticator;
 
 use RM\Component\Client\Repository\RepositoryTrait;
-use RM\Component\Client\Security\Storage\TokenStorageInterface;
 use RM\Standard\Message\MessageInterface;
 use RuntimeException;
 
@@ -17,6 +16,8 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
 {
     use RepositoryTrait;
 
+    private const TOKEN_PARAMETER = 'token';
+
     /**
      * @inheritDoc
      */
@@ -26,7 +27,7 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
         $response = $this->send($message);
 
         $content = $response->getContent();
-        $token = $content['token'];
+        $token = $content[self::TOKEN_PARAMETER];
         $objectData = $content[$this->getObjectKey()];
 
         $entity = $this->hydrate($objectData);
@@ -34,19 +35,10 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
             throw new RuntimeException(sprintf('Hydrated entity is not %s.', $this->getEntity()));
         }
 
-        $this->saveToken($token, $this->transport->getTokenStorage());
-        return $entity;
-    }
-
-    /**
-     * Saves received access token into storage.
-     *
-     * @param string                $token
-     * @param TokenStorageInterface $tokenStorage
-     */
-    protected function saveToken(string $token, TokenStorageInterface $tokenStorage): void
-    {
+        $tokenStorage = $this->transport->getTokenStorage();
         $tokenStorage->set(static::getTokenType(), $token);
+
+        return $entity;
     }
 
     /**
