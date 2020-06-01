@@ -13,7 +13,7 @@ use RM\Component\Client\Transport\TransportInterface;
 use RM\Standard\Message\MessageInterface;
 
 /**
- * Class Client
+ * Class Client implements a facade pattern to simplify the use of the library.
  *
  * @package RM\Component\Client
  * @author  Oleg Kozlov <h1karo@outlook.com>
