@@ -14,10 +14,6 @@ use RM\Component\Client\Transport\TransportInterface;
  */
 class AuthenticatorFactory implements AuthenticatorFactoryInterface
 {
-    public const AUTHENTICATORS = [
-        ApplicationAuthenticator::class
-    ];
-
     private TransportInterface $transport;
     private HydratorInterface $hydrator;
 
@@ -30,10 +26,10 @@ class AuthenticatorFactory implements AuthenticatorFactoryInterface
     /**
      * @inheritDoc
      */
-    public function build(string $type): AuthenticatorInterface
+    public function build(string $class): AuthenticatorInterface
     {
-        if (null === $class = $this->findAuthenticatorClass($type)) {
-            throw new InvalidArgumentException(sprintf('Authenticator with name `%s` does not exist.', $type));
+        if (!class_exists($class)) {
+            throw new InvalidArgumentException(sprintf('Authenticator class `%s` does not exist.', $class));
         }
 
         $authenticator = $class($this->transport, $this->hydrator);
@@ -43,17 +39,5 @@ class AuthenticatorFactory implements AuthenticatorFactoryInterface
         }
 
         return $authenticator;
-    }
-
-    private function findAuthenticatorClass(string $type): ?string
-    {
-        /** @var AuthenticatorInterface $class */
-        foreach (self::AUTHENTICATORS as $class) {
-            if ($class::getTokenType() === $type) {
-                return $class;
-            }
-        }
-
-        return null;
     }
 }
