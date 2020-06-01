@@ -95,10 +95,10 @@ class ClientFactory
         $repositoryRegistry = $this->repositoryRegistry;
         if ($this->repositoryRegistry === null) {
             $repositoryRegistry = new RepositoryRegistry($repositoryFactory);
+        }
 
-            if ($this->hydrator === null) {
-                $hydrator = new LazyLoaderHydrator($hydrator, $repositoryRegistry);
-            }
+        if ($this->hydrator === null) {
+            $hydrator = new LazyLoaderHydrator($hydrator, $repositoryRegistry);
         }
 
         $authenticatorFactory = $this->authenticatorFactory;
