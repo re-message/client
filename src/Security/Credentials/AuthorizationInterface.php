@@ -18,4 +18,11 @@ interface AuthorizationInterface extends Serializable
      * @return bool
      */
     public function isCompleted(): bool;
+
+    /**
+     * Returns the authorization credentials (e.g. token).
+     *
+     * @return string
+     */
+    public function getCredentials(): string;
 }

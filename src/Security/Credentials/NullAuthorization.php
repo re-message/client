@@ -2,6 +2,8 @@
 
 namespace RM\Component\Client\Security\Credentials;
 
+use BadMethodCallException;
+
 /**
  * Class NullAuthorization
  *
@@ -30,4 +32,12 @@ final class NullAuthorization implements AuthorizationInterface
      * @inheritDoc
      */
     public function unserialize($serialized): void { }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCredentials(): string
+    {
+        throw new BadMethodCallException(sprintf('Don\'t use %s method of %s.', __FUNCTION__, __CLASS__));
+    }
 }
