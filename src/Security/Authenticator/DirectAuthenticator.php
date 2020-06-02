@@ -22,7 +22,7 @@ abstract class DirectAuthenticator implements StorableAuthenticatorInterface
 
     use RepositoryTrait;
 
-    private AuthorizationStorageInterface $storage;
+    protected AuthorizationStorageInterface $storage;
 
     public function __construct(TransportInterface $transport, HydratorInterface $hydrator)
     {

@@ -4,6 +4,7 @@ namespace RM\Component\Client\Security\Authenticator;
 
 use RM\Component\Client\Entity\User;
 use RM\Component\Client\Security\Credentials\AuthorizationInterface;
+use RM\Component\Client\Security\Credentials\Request;
 use RM\Component\Client\Security\Credentials\TokenAuthorization;
 use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
@@ -63,6 +64,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     public function setCode(string $code): self
     {
         $this->code = $code;
+
         return $this;
     }
 
@@ -112,7 +114,10 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
      */
     public function store(): self
     {
-        // @todo after authorization storage implementation
+        if ($this->request !== null && $this->phone !== null) {
+            $authorization = new Request($this->request, $this->phone);
+            $this->storage->set(static::getTokenType(), $authorization);
+        }
 
         return $this;
     }
@@ -122,7 +127,13 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
      */
     public function restore(): self
     {
-        // @todo after authorization storage implementation
+        $this->clear();
+
+        $authorization = $this->storage->get(static::getTokenType());
+        if ($authorization instanceof Request) {
+            $this->request = $authorization->getId();
+            $this->phone = $authorization->getPhone();
+        }
 
         return $this;
     }

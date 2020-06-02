@@ -16,8 +16,8 @@ use RuntimeException;
  */
 trait RepositoryTrait
 {
-    private TransportInterface $transport;
-    private HydratorInterface $hydrator;
+    protected TransportInterface $transport;
+    protected HydratorInterface $hydrator;
 
     final protected function send(MessageInterface $message): Response
     {
