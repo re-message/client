@@ -6,11 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use InvalidArgumentException;
 use RM\Component\Client\Exception\FactoryException;
-use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorInterface;
 use RM\Component\Client\Security\Authenticator\CodeAuthenticator;
 use RM\Component\Client\Security\Authenticator\ServiceAuthenticator;
-use RM\Component\Client\Transport\TransportInterface;
 
 /**
  * Class AliasedAuthenticatorFactory
@@ -18,7 +16,7 @@ use RM\Component\Client\Transport\TransportInterface;
  * @package RM\Component\Client\Security\Authenticator\Factory
  * @author  Oleg Kozlov <h1karo@outlook.com>
  */
-class AliasedAuthenticatorFactory extends AuthenticatorFactory
+class AliasedAuthenticatorFactory implements AuthenticatorFactoryInterface
 {
     public const DEFAULT_MAP = [
         'user' => CodeAuthenticator::class,
@@ -26,14 +24,12 @@ class AliasedAuthenticatorFactory extends AuthenticatorFactory
         'application' => ServiceAuthenticator::class
     ];
 
+    private AuthenticatorFactoryInterface $factory;
     private Collection $mapping;
 
-    public function __construct(
-        TransportInterface $transport,
-        HydratorInterface $hydrator,
-        iterable $mapping = self::DEFAULT_MAP
-    ) {
-        parent::__construct($transport, $hydrator);
+    public function __construct(AuthenticatorFactoryInterface $factory, iterable $mapping = self::DEFAULT_MAP)
+    {
+        $this->factory = $factory;
         $this->mapping = new ArrayCollection();
 
         foreach ($mapping as $type => $class) {
@@ -60,7 +56,7 @@ class AliasedAuthenticatorFactory extends AuthenticatorFactory
             throw new FactoryException(sprintf('Authenticator for type %s not found.', $type));
         }
 
-        return parent::build($class);
+        return $this->factory->build($class);
     }
 
     private function findClassByType(string $type): ?string
