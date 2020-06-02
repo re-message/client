@@ -16,7 +16,7 @@ use RuntimeException;
  * @package RM\Component\Client\Security\Authenticator
  * @author  Oleg Kozlov <h1karo@outlook.com>
  */
-abstract class DirectAuthenticator implements AuthenticatorInterface
+abstract class DirectAuthenticator implements StorableAuthenticatorInterface
 {
     private const CREDENTIALS_PARAMETER = 'token';
 
@@ -24,11 +24,17 @@ abstract class DirectAuthenticator implements AuthenticatorInterface
 
     private AuthorizationStorageInterface $storage;
 
-    public function __construct(TransportInterface $transport, HydratorInterface $hydrator, AuthorizationStorageInterface $storage)
+    public function __construct(TransportInterface $transport, HydratorInterface $hydrator)
     {
         $this->transport = $transport;
         $this->hydrator = $hydrator;
+    }
+
+    public function setStorage(AuthorizationStorageInterface $storage): self
+    {
         $this->storage = $storage;
+
+        return $this;
     }
 
     /**

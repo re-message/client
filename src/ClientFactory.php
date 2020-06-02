@@ -10,7 +10,7 @@ use RM\Component\Client\Repository\Factory\RepositoryFactoryInterface;
 use RM\Component\Client\Repository\Registry\RepositoryRegistry;
 use RM\Component\Client\Repository\Registry\RepositoryRegistryInterface;
 use RM\Component\Client\Security\Authenticator\Factory\AliasedAuthenticatorFactory;
-use RM\Component\Client\Security\Authenticator\Factory\AuthenticatorFactory;
+use RM\Component\Client\Security\Authenticator\Factory\BaseAuthenticatorFactory;
 use RM\Component\Client\Security\Authenticator\Factory\AuthenticatorFactoryInterface;
 use RM\Component\Client\Transport\ThrowableTransport;
 use RM\Component\Client\Transport\TransportInterface;
@@ -104,7 +104,7 @@ class ClientFactory
 
         $authenticatorFactory = $this->authenticatorFactory;
         if ($this->authenticatorFactory === null) {
-            $baseFactory = new AuthenticatorFactory($transport, $hydrator);
+            $baseFactory = new BaseAuthenticatorFactory($transport, $hydrator);
             $authenticatorFactory = new AliasedAuthenticatorFactory($baseFactory);
         }
 
