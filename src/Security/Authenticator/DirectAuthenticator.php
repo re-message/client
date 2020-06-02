@@ -2,21 +2,34 @@
 
 namespace RM\Component\Client\Security\Authenticator;
 
+use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Repository\RepositoryTrait;
+use RM\Component\Client\Security\Credentials\AuthorizationInterface;
+use RM\Component\Client\Security\Storage\AuthorizationStorageInterface;
+use RM\Component\Client\Transport\TransportInterface;
 use RM\Standard\Message\MessageInterface;
 use RuntimeException;
 
 /**
- * Class AbstractAuthenticator
+ * Class DirectAuthenticator
  *
  * @package RM\Component\Client\Security\Authenticator
  * @author  Oleg Kozlov <h1karo@outlook.com>
  */
-abstract class AbstractAuthenticator implements AuthenticatorInterface
+abstract class DirectAuthenticator implements AuthenticatorInterface
 {
+    private const CREDENTIALS_PARAMETER = 'token';
+
     use RepositoryTrait;
 
-    private const TOKEN_PARAMETER = 'token';
+    private AuthorizationStorageInterface $storage;
+
+    public function __construct(TransportInterface $transport, HydratorInterface $hydrator, AuthorizationStorageInterface $storage)
+    {
+        $this->transport = $transport;
+        $this->hydrator = $hydrator;
+        $this->storage = $storage;
+    }
 
     /**
      * @inheritDoc
@@ -27,7 +40,7 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
         $response = $this->send($message);
 
         $content = $response->getContent();
-        $token = $content[self::TOKEN_PARAMETER];
+        $credentials = $content[self::CREDENTIALS_PARAMETER];
         $objectData = $content[$this->getObjectKey()];
 
         $entity = $this->hydrate($objectData);
@@ -35,11 +48,20 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
             throw new RuntimeException(sprintf('Hydrated entity is not %s.', $this->getEntity()));
         }
 
-        $tokenStorage = $this->transport->getTokenStorage();
-        $tokenStorage->set(static::getTokenType(), $token);
+        $authorization = $this->createAuthorization($credentials);
+        $this->storage->set(static::getTokenType(), $authorization);
 
         return $entity;
     }
+
+    /**
+     * Creates authorization object to store in storage.
+     *
+     * @param string $credentials
+     *
+     * @return AuthorizationInterface
+     */
+    abstract protected function createAuthorization(string $credentials): AuthorizationInterface;
 
     /**
      * Returns generated message to for authorization.

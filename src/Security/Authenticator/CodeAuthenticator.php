@@ -8,6 +8,7 @@ use RM\Component\Client\Model\CodeMethod;
 use RM\Component\Client\Model\Preferences;
 use RM\Component\Client\Repository\RepositoryTrait;
 use RM\Component\Client\Security\Authenticator\Factory\AuthenticatorFactoryInterface;
+use RM\Component\Client\Security\Storage\AuthorizationStorageInterface;
 use RM\Component\Client\Transport\TransportInterface;
 use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
@@ -22,15 +23,20 @@ class CodeAuthenticator implements RedirectAuthenticatorInterface
 {
     use RepositoryTrait;
 
+    private AuthorizationStorageInterface $storage;
     private AuthenticatorFactoryInterface $authenticatorFactory;
 
     private string $phone;
     private Preferences $preferences;
 
-    public function __construct(TransportInterface $transport, HydratorInterface $hydrator)
-    {
+    public function __construct(
+        TransportInterface $transport,
+        HydratorInterface $hydrator,
+        AuthorizationStorageInterface $storage
+    ) {
         $this->transport = $transport;
         $this->hydrator = $hydrator;
+        $this->storage = $storage;
         $this->preferences = new Preferences();
     }
 

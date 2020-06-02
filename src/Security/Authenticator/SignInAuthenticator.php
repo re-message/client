@@ -3,6 +3,8 @@
 namespace RM\Component\Client\Security\Authenticator;
 
 use RM\Component\Client\Entity\User;
+use RM\Component\Client\Security\Credentials\AuthorizationInterface;
+use RM\Component\Client\Security\Credentials\TokenAuthorization;
 use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
 
@@ -14,7 +16,7 @@ use RM\Standard\Message\MessageInterface;
  *
  * @method User authenticate()
  */
-class SignInAuthenticator extends AbstractAuthenticator implements StatefulAuthenticatorInterface
+class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthenticatorInterface
 {
     private ?string $phone;
     private ?string $request;
@@ -74,6 +76,11 @@ class SignInAuthenticator extends AbstractAuthenticator implements StatefulAuthe
                 'code' => $this->code
             ]
         );
+    }
+
+    protected function createAuthorization(string $credentials): AuthorizationInterface
+    {
+        return new TokenAuthorization($credentials);
     }
 
     /**

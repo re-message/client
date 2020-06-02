@@ -3,6 +3,8 @@
 namespace RM\Component\Client\Security\Authenticator;
 
 use RM\Component\Client\Entity\Application;
+use RM\Component\Client\Security\Credentials\AuthorizationInterface;
+use RM\Component\Client\Security\Credentials\TokenAuthorization;
 use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
 
@@ -12,7 +14,7 @@ use RM\Standard\Message\MessageInterface;
  * @package RM\Component\Client\Security\Authenticator
  * @author  Oleg Kozlov <h1karo@outlook.com>
  */
-class ServiceAuthenticator extends AbstractAuthenticator
+class ServiceAuthenticator extends DirectAuthenticator
 {
     private string $id;
     private string $secret;
@@ -43,6 +45,14 @@ class ServiceAuthenticator extends AbstractAuthenticator
                 'secret' => $this->secret
             ]
         );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function createAuthorization(string $credentials): AuthorizationInterface
+    {
+        return new TokenAuthorization($credentials);
     }
 
     /**

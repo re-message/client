@@ -6,6 +6,7 @@ use InvalidArgumentException;
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorInterface;
 use RM\Component\Client\Security\Authenticator\RedirectAuthenticatorInterface;
+use RM\Component\Client\Security\Storage\AuthorizationStorageInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
@@ -18,11 +19,16 @@ class AuthenticatorFactory implements AuthenticatorFactoryInterface
 {
     private TransportInterface $transport;
     private HydratorInterface $hydrator;
+    private AuthorizationStorageInterface $storage;
 
-    public function __construct(TransportInterface $transport, HydratorInterface $hydrator)
-    {
+    public function __construct(
+        TransportInterface $transport,
+        HydratorInterface $hydrator,
+        AuthorizationStorageInterface $storage
+    ) {
         $this->transport = $transport;
         $this->hydrator = $hydrator;
+        $this->storage = $storage;
     }
 
     /**
@@ -34,7 +40,7 @@ class AuthenticatorFactory implements AuthenticatorFactoryInterface
             throw new InvalidArgumentException(sprintf('Authenticator class `%s` does not exist.', $class));
         }
 
-        $authenticator = $class($this->transport, $this->hydrator);
+        $authenticator = $class($this->transport, $this->hydrator, $this->storage);
 
         if ($authenticator instanceof RedirectAuthenticatorInterface) {
             $authenticator->setFactory($this);
