@@ -18,8 +18,6 @@ use RuntimeException;
  */
 abstract class DirectAuthenticator implements StorableAuthenticatorInterface
 {
-    private const CREDENTIALS_PARAMETER = 'token';
-
     use RepositoryTrait;
 
     protected AuthorizationStorageInterface $storage;
@@ -46,7 +44,7 @@ abstract class DirectAuthenticator implements StorableAuthenticatorInterface
         $response = $this->send($message);
 
         $content = $response->getContent();
-        $credentials = $content[self::CREDENTIALS_PARAMETER];
+        $credentials = $content[$this->getCredentialsKey()];
         $objectData = $content[$this->getObjectKey()];
 
         $entity = $this->hydrate($objectData);
@@ -82,4 +80,14 @@ abstract class DirectAuthenticator implements StorableAuthenticatorInterface
      * @return string
      */
     abstract protected function getObjectKey(): string;
+
+    /**
+     * Name of the parameter containing the credentials.
+     *
+     * @return string
+     */
+    protected function getCredentialsKey(): string
+    {
+        return 'token';
+    }
 }

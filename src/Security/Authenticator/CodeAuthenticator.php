@@ -47,6 +47,7 @@ class CodeAuthenticator implements RedirectAuthenticatorInterface
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
         return $this;
     }
 
@@ -58,12 +59,13 @@ class CodeAuthenticator implements RedirectAuthenticatorInterface
     public function setPreferences(Preferences $preferences): self
     {
         $this->preferences = $preferences;
+
         return $this;
     }
 
     public function authenticate(): AuthenticatorInterface
     {
-        $message = $this->createCodeMessage();
+        $message = $this->createMessage();
         $response = $this->send($message);
         $content = $response->getContent();
 
@@ -79,7 +81,7 @@ class CodeAuthenticator implements RedirectAuthenticatorInterface
             ->store();
     }
 
-    protected function createCodeMessage(): MessageInterface
+    protected function createMessage(): MessageInterface
     {
         return new Action(
             'auth.sendCode',
