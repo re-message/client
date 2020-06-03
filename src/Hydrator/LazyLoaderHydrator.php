@@ -18,19 +18,28 @@ use RM\Component\Client\Repository\Registry\RepositoryRegistryInterface;
  */
 class LazyLoaderHydrator extends DecoratedHydrator
 {
-    private RepositoryRegistryInterface $registry;
     private Reader $reader;
+    private ?RepositoryRegistryInterface $registry = null;
 
-    public function __construct(EntityHydrator $hydrator, RepositoryRegistryInterface $registry, ?Reader $reader = null)
+    public function __construct(EntityHydrator $hydrator, ?Reader $reader = null)
     {
         parent::__construct($hydrator);
-        $this->registry = $registry;
         $this->reader = $reader ?? new AnnotationReader();
+    }
+
+    public function setRepositoryRegistry(RepositoryRegistryInterface $registry): self
+    {
+        $this->registry = $registry;
+        return $this;
     }
 
     public function hydrate(array $data, string $class): object
     {
         $entity = parent::hydrate($data, $class);
+
+        if ($this->registry === null) {
+            return $entity;
+        }
 
         if (!is_object($entity)) {
             throw new InvalidArgumentException('Expects an object.');
