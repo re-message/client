@@ -8,7 +8,7 @@ namespace RM\Component\Client\Security\Authenticator;
  * @package RM\Component\Client\Security\Authenticator
  * @author  Oleg Kozlov <h1karo@outlook.com>
  */
-interface StatefulAuthenticatorInterface extends AuthenticatorInterface
+interface StatefulAuthenticatorInterface extends StorableAuthenticatorInterface
 {
     /**
      * Saves the state of authenticator in storage.
