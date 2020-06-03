@@ -5,7 +5,7 @@ namespace RM\Component\Client\Security\Authenticator;
 use RM\Component\Client\Entity\User;
 use RM\Component\Client\Security\Credentials\AuthorizationInterface;
 use RM\Component\Client\Security\Credentials\Request;
-use RM\Component\Client\Security\Credentials\TokenAuthorization;
+use RM\Component\Client\Security\Credentials\Token;
 use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
 
@@ -82,7 +82,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
 
     protected function createAuthorization(string $credentials): AuthorizationInterface
     {
-        return new TokenAuthorization($credentials);
+        return new Token($credentials);
     }
 
     /**

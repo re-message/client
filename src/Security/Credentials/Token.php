@@ -5,12 +5,12 @@ namespace RM\Component\Client\Security\Credentials;
 use InvalidArgumentException;
 
 /**
- * Class TokenAuthorization
+ * Class Token
  *
  * @package RM\Component\Client\Security\Credentials
  * @author  Oleg Kozlov <h1karo@outlook.com>
  */
-class TokenAuthorization implements AuthorizationInterface
+class Token implements AuthorizationInterface
 {
     private string $token;
 

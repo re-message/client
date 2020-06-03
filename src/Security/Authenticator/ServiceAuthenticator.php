@@ -4,7 +4,7 @@ namespace RM\Component\Client\Security\Authenticator;
 
 use RM\Component\Client\Entity\Application;
 use RM\Component\Client\Security\Credentials\AuthorizationInterface;
-use RM\Component\Client\Security\Credentials\TokenAuthorization;
+use RM\Component\Client\Security\Credentials\Token;
 use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
 
@@ -52,7 +52,7 @@ class ServiceAuthenticator extends DirectAuthenticator
      */
     protected function createAuthorization(string $credentials): AuthorizationInterface
     {
-        return new TokenAuthorization($credentials);
+        return new Token($credentials);
     }
 
     /**
