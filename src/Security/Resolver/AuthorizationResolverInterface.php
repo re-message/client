@@ -6,7 +6,7 @@ use RM\Component\Client\Security\Credentials\AuthorizationInterface;
 use RM\Standard\Message\MessageInterface;
 
 /**
- * Interface AuthorizationResolverInterface
+ * Interface AuthorizationResolverInterface provides ability to find the authorization for message to Core.
  *
  * @package RM\Component\Client\Security\Resolver
  * @author  Oleg Kozlov <h1karo@outlook.com>

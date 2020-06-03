@@ -13,10 +13,11 @@ use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
 
 /**
- * Class CodeAuthenticator
+ * Class CodeAuthenticator provides ability to start user authorization process.
  *
  * @package RM\Component\Client\Security\Authenticator
  * @author  Oleg Kozlov <h1karo@outlook.com>
+ * @link    https://dev.relmsg.ru/security/user
  */
 class CodeAuthenticator implements RedirectAuthenticatorInterface
 {

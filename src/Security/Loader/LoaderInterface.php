@@ -7,7 +7,7 @@ use RM\Component\Client\Security\Config\Action;
 use Symfony\Component\Config\Loader\LoaderInterface as SymfonyLoaderInterface;
 
 /**
- * Interface LoaderInterface
+ * Interface LoaderInterface provides ability to load configurations from resource.
  *
  * @package RM\Component\Client\Security\Config\Loader
  * @author  Oleg Kozlov <h1karo@outlook.com>

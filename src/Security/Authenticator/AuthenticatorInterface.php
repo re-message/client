@@ -6,7 +6,7 @@ use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
- * Interface AuthenticatorInterface
+ * Interface AuthenticatorInterface provides ability to authenticate entity objects via Core.
  *
  * @package RM\Component\Client\Security\Authenticator
  * @author  Oleg Kozlov <h1karo@outlook.com>

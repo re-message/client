@@ -5,7 +5,7 @@ namespace RM\Component\Client\Security\Storage;
 use RM\Component\Client\Security\Credentials\AuthorizationInterface;
 
 /**
- * Interface AuthorizationStorageInterface
+ * Interface AuthorizationStorageInterface provide ability to store the authorization data.
  *
  * @package RM\Component\Client\Security\Storage
  * @author  Oleg Kozlov <h1karo@outlook.com>

@@ -5,7 +5,7 @@ namespace RM\Component\Client\Security\Credentials;
 use Serializable;
 
 /**
- * Interface AuthorizationInterface
+ * Interface AuthorizationInterface provides authorization state.
  *
  * @package RM\Component\Client\Security\Credentials
  * @author  Oleg Kozlov <h1karo@outlook.com>

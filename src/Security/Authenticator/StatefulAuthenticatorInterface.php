@@ -3,7 +3,7 @@
 namespace RM\Component\Client\Security\Authenticator;
 
 /**
- * Interface StatefulAuthenticatorInterface
+ * Interface StatefulAuthenticatorInterface provide ability to store and restore authenticator state.
  *
  * @package RM\Component\Client\Security\Authenticator
  * @author  Oleg Kozlov <h1karo@outlook.com>

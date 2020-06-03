@@ -5,7 +5,8 @@ namespace RM\Component\Client\Security\Authenticator;
 use RM\Component\Client\Security\Authenticator\Factory\AuthenticatorFactoryInterface;
 
 /**
- * Interface RedirectAuthenticatorInterface
+ * Interface RedirectAuthenticatorInterface provides ability to redirect to another authenticator on 2-step
+ * authentication.
  *
  * @package RM\Component\Client\Security\Authenticator
  * @author  Oleg Kozlov <h1karo@outlook.com>

@@ -3,7 +3,7 @@
 namespace RM\Component\Client\Hydrator;
 
 /**
- * Interface HydratorInterface
+ * Interface HydratorInterface creates entity object from response.
  *
  * @package RM\Component\Client\Hydrator
  * @author  Oleg Kozlov <h1karo@outlook.com>

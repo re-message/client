@@ -5,7 +5,7 @@ namespace RM\Component\Client\Security\Authenticator;
 use RM\Component\Client\Security\Storage\AuthorizationStorageInterface;
 
 /**
- * Interface StorableAuthenticatorInterface
+ * Interface StorableAuthenticatorInterface provides ability to store authentication data into storage.
  *
  * @package RM\Component\Client\Security\Authenticator
  * @author  Oleg Kozlov <h1karo@outlook.com>

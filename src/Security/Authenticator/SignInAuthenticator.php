@@ -10,10 +10,11 @@ use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
 
 /**
- * Class SignInAuthenticator
+ * Class SignInAuthenticator provide ability to complete authentication started in {@see CodeAuthenticator}.
  *
  * @package RM\Component\Client\Security\Authenticator
  * @author  Oleg Kozlov <h1karo@outlook.com>
+ * @link    https://dev.relmsg.ru/security/user
  *
  * @method User authenticate()
  */

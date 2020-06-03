@@ -9,10 +9,11 @@ use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
 
 /**
- * Class ServiceAuthenticator
+ * Class ServiceAuthenticator provides ability to authenticate the application.
  *
  * @package RM\Component\Client\Security\Authenticator
  * @author  Oleg Kozlov <h1karo@outlook.com>
+ * @link    https://dev.relmsg.ru/security/service
  */
 class ServiceAuthenticator extends DirectAuthenticator
 {
