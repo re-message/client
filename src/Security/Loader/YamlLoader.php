@@ -1,32 +1,33 @@
 <?php
 
-namespace RM\Component\Client\Security\Resolver;
+namespace RM\Component\Client\Security\Loader;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use InvalidArgumentException;
+use RM\Component\Client\Security\Config\Action;
 use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\Config\Loader\FileLoader;
 use Symfony\Component\Yaml\Exception\ParseException;
-use Symfony\Component\Yaml\Parser as YamlParser;
+use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Class YamlConfigLoader
+ * Class YamlLoader
  *
- * @package RM\Component\Client\Security\Resolver
+ * @package RM\Component\Client\Security\Loader
  * @author  Oleg Kozlov <h1karo@outlook.com>
  */
-class YamlConfigLoader extends FileLoader
+class YamlLoader extends FileLoader implements LoaderInterface
 {
     private const VALID_EXTENSIONS = ['yml', 'yaml'];
 
-    private YamlParser $yamlParser;
+    private Parser $parser;
 
     public function __construct(FileLocatorInterface $locator)
     {
         parent::__construct($locator);
-        $this->yamlParser = new YamlParser();
+        $this->parser = new Parser();
     }
 
     /**
@@ -45,7 +46,7 @@ class YamlConfigLoader extends FileLoader
         }
 
         try {
-            $parsedConfig = $this->yamlParser->parseFile($path, Yaml::PARSE_CONSTANT);
+            $parsedConfig = $this->parser->parseFile($path, Yaml::PARSE_CONSTANT);
         } catch (ParseException $e) {
             $message = sprintf('The file "%s" does not contain valid YAML.', $path);
             throw new InvalidArgumentException($message, 0, $e);
@@ -63,7 +64,7 @@ class YamlConfigLoader extends FileLoader
 
         $config = new ArrayCollection();
         foreach ($parsedConfig as $action => $c) {
-            $config->set($action, ActionConfig::createFromArray($c));
+            $config->set($action, Action::createFromArray($c));
         }
 
         return $config;

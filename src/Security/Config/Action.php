@@ -1,16 +1,16 @@
 <?php
 
-namespace RM\Component\Client\Security\Resolver;
+namespace RM\Component\Client\Security\Config;
 
-use LogicException;
+use BadMethodCallException;
 
 /**
- * Class ActionConfig
+ * Class Action
  *
- * @package RM\Component\Client\Security\Resolver
+ * @package RM\Component\Client\Security\Config
  * @author  Oleg Kozlov <h1karo@outlook.com>
  */
-class ActionConfig
+class Action
 {
     private ?array $authorizations;
 
@@ -27,8 +27,9 @@ class ActionConfig
     public function getAuthorizations(): array
     {
         if ($this->authorizations === null) {
-            $message = sprintf('Please check the %s::isAuthorizationRequired() method before use this.', __CLASS__);
-            throw new LogicException($message);
+            $method = 'isAuthorizationRequired';
+            $message = sprintf('Please check the %s::%s() method before use this.', __CLASS__, $method);
+            throw new BadMethodCallException($message);
         }
 
         return $this->authorizations;
