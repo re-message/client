@@ -21,6 +21,7 @@ class AliasedAuthenticatorFactory implements AuthenticatorFactoryInterface
     public const DEFAULT_MAP = [
         'user' => CodeAuthenticator::class,
         'code' => CodeAuthenticator::class,
+        'service' => ServiceAuthenticator::class,
         'application' => ServiceAuthenticator::class
     ];
 
