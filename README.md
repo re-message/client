@@ -23,7 +23,7 @@ You will need Composer to install:
 
 To create an instance of client, you need to choose transport. Now available only HTTP protocol transport. This transport can work with PSR 7, PSR 17, PSR 18 implementation. For example, `symfony/http-client`. We will use this package as http client in next examples.
 
-Any transport requires message serializer from `relmsg/message` package. You can use `RM\Standard\Message\Serializer\ChainMessageSerializer` class to pass serializers for each message type. Also, transport requires a token resolver.
+Any transport requires message serializer from `relmsg/message` package. You can use `RM\Standard\Message\Serializer\ChainMessageSerializer` class to pass serializers for each message type.
 
 After creation of transport instance, you can use `RM\Component\Client\ClientFactory` to create an instance of client. This class has several setters that provide client customization. In any case, you need to configure the following properties: 
 
@@ -31,19 +31,19 @@ After creation of transport instance, you can use `RM\Component\Client\ClientFac
 
 Also, you can configure these properties:
 
-* The hydrator
-* The repository registry
-* The repository factory
-* The authenticator factory
-* The actor storage (storage of application and user instance after authentication)
+* The hydrator, creates entity objects from response
+* The repository registry, contains repositories created via factory
+* The repository factory, creates repositories
+* The authenticator factory, creates authenticators
+* The authorization storage, stores the authorization data like token.
+* The authorization resolver, finds credentials to pass together with request to core
+* The config loader, loads the action config from resource with settings for authorization resolver
 
 
 Example of creation client with HTTP transport:
 
 ```php
 use RM\Component\Client\ClientFactory;
-use RM\Component\Client\Security\Resolver\ConfigTokenResolver;
-use RM\Component\Client\Security\Storage\TokenStorage;
 use RM\Component\Client\Transport\HttpTransport;
 use RM\Standard\Message\Serializer\ActionSerializer;
 use RM\Standard\Message\Serializer\ChainMessageSerializer;
@@ -58,9 +58,6 @@ $serializer->pushSerializer(new ActionSerializer());
 $serializer->pushSerializer(new ErrorSerializer());
 $serializer->pushSerializer(new ResponseSerializer());
 
-$storage = new TokenStorage();
-$resolver = new ConfigTokenResolver($storage);
-$transport = new HttpTransport($http, $http, $http, $serializer, $resolver);
-
+$transport = new HttpTransport($http, $http, $http, $serializer);
 $client = ClientFactory::create($transport)->build();
 ```
