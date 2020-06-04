@@ -206,6 +206,6 @@ class ClientFactory
 
         $authenticatorFactory = $this->getAuthenticatorFactory($transport, $hydrator, $authorizationStorage);
 
-        return new Client($transport, $repositoryRegistry, $authenticatorFactory);
+        return new Client($transport, $repositoryRegistry, $authenticatorFactory, $authorizationStorage);
     }
 }

@@ -4,11 +4,17 @@ namespace RM\Component\Client;
 
 use RM\Component\Client\Entity\Application;
 use RM\Component\Client\Entity\User;
+use RM\Component\Client\Repository\ApplicationRepository;
 use RM\Component\Client\Repository\Registry\RepositoryRegistryInterface;
 use RM\Component\Client\Repository\RepositoryInterface;
+use RM\Component\Client\Repository\UserRepository;
 use RM\Component\Client\Security\Authenticator\AuthenticatorInterface;
 use RM\Component\Client\Security\Authenticator\Factory\AuthenticatorFactoryInterface;
+use RM\Component\Client\Security\Authenticator\ServiceAuthenticator;
+use RM\Component\Client\Security\Authenticator\SignInAuthenticator;
+use RM\Component\Client\Security\Credentials\Token;
 use RM\Component\Client\Security\Resolver\AuthorizationResolverInterface;
+use RM\Component\Client\Security\Storage\AuthorizationStorageInterface;
 use RM\Component\Client\Transport\TransportInterface;
 use RM\Standard\Message\MessageInterface;
 
@@ -23,15 +29,18 @@ class Client implements ClientInterface
     private TransportInterface $transport;
     private RepositoryRegistryInterface $registry;
     private AuthenticatorFactoryInterface $authenticatorFactory;
+    private AuthorizationStorageInterface $authorizationStorage;
 
     public function __construct(
         TransportInterface $transport,
         RepositoryRegistryInterface $registry,
-        AuthenticatorFactoryInterface $authenticatorFactory
+        AuthenticatorFactoryInterface $authenticatorFactory,
+        AuthorizationStorageInterface $authorizationStorage
     ) {
         $this->transport = $transport;
         $this->registry = $registry;
         $this->authenticatorFactory = $authenticatorFactory;
+        $this->authorizationStorage = $authorizationStorage;
     }
 
     /**
@@ -72,7 +81,19 @@ class Client implements ClientInterface
      */
     public function getApplication(): ?Application
     {
-        return null;
+        if ($this->authorizationStorage->has(ServiceAuthenticator::getTokenType())) {
+            return null;
+        }
+
+        $auth = $this->authorizationStorage->get(ServiceAuthenticator::getTokenType());
+        if (!$auth instanceof Token) {
+            return null;
+        }
+
+        $id = $auth->getObjectId();
+        /** @var ApplicationRepository $repository */
+        $repository = $this->getRepository(Application::class);
+        return $repository->get($id);
     }
 
     /**
@@ -80,6 +101,18 @@ class Client implements ClientInterface
      */
     public function getUser(): ?User
     {
-        return null;
+        if ($this->authorizationStorage->has(SignInAuthenticator::getTokenType())) {
+            return null;
+        }
+
+        $auth = $this->authorizationStorage->get(SignInAuthenticator::getTokenType());
+        if (!$auth instanceof Token) {
+            return null;
+        }
+
+        $id = $auth->getObjectId();
+        /** @var UserRepository $repository */
+        $repository = $this->getRepository(User::class);
+        return $repository->get($id);
     }
 }
