@@ -52,7 +52,7 @@ abstract class DirectAuthenticator implements StorableAuthenticatorInterface
             throw new RuntimeException(sprintf('Hydrated entity is not %s.', $this->getEntity()));
         }
 
-        $authorization = $this->createAuthorization($credentials);
+        $authorization = $this->createAuthorization($credentials, $entity);
         $this->storage->set(static::getTokenType(), $authorization);
 
         return $entity;
@@ -62,10 +62,11 @@ abstract class DirectAuthenticator implements StorableAuthenticatorInterface
      * Creates authorization object to store in storage.
      *
      * @param string $credentials
+     * @param object $entity
      *
      * @return AuthorizationInterface
      */
-    abstract protected function createAuthorization(string $credentials): AuthorizationInterface;
+    abstract protected function createAuthorization(string $credentials, object $entity): AuthorizationInterface;
 
     /**
      * Returns generated message to for authorization.

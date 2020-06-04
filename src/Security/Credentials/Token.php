@@ -2,8 +2,6 @@
 
 namespace RM\Component\Client\Security\Credentials;
 
-use InvalidArgumentException;
-
 /**
  * Class Token
  *
@@ -13,10 +11,12 @@ use InvalidArgumentException;
 class Token implements AuthorizationInterface
 {
     private string $token;
+    private string $objectId;
 
-    public function __construct(string $token)
+    public function __construct(string $token, string $objectId)
     {
         $this->token = $token;
+        $this->objectId = $objectId;
     }
 
     /**
@@ -30,6 +30,11 @@ class Token implements AuthorizationInterface
     public function getToken(): string
     {
         return $this->token;
+    }
+
+    public function getObjectId(): string
+    {
+        return $this->objectId;
     }
 
     /**

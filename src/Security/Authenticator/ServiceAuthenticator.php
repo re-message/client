@@ -2,7 +2,9 @@
 
 namespace RM\Component\Client\Security\Authenticator;
 
+use BadMethodCallException;
 use RM\Component\Client\Entity\Application;
+use RM\Component\Client\Entity\Identifiable;
 use RM\Component\Client\Security\Credentials\AuthorizationInterface;
 use RM\Component\Client\Security\Credentials\Token;
 use RM\Standard\Message\Action;
@@ -51,9 +53,13 @@ class ServiceAuthenticator extends DirectAuthenticator
     /**
      * @inheritDoc
      */
-    protected function createAuthorization(string $credentials): AuthorizationInterface
+    protected function createAuthorization(string $credentials, object $entity): AuthorizationInterface
     {
-        return new Token($credentials);
+        if ($entity instanceof Identifiable) {
+            return new Token($credentials, $entity->getId());
+        }
+
+        throw new BadMethodCallException();
     }
 
     /**

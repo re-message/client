@@ -2,6 +2,8 @@
 
 namespace RM\Component\Client\Security\Authenticator;
 
+use BadMethodCallException;
+use RM\Component\Client\Entity\Identifiable;
 use RM\Component\Client\Entity\User;
 use RM\Component\Client\Security\Credentials\AuthorizationInterface;
 use RM\Component\Client\Security\Credentials\Request;
@@ -81,9 +83,16 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
         );
     }
 
-    protected function createAuthorization(string $credentials): AuthorizationInterface
+    /**
+     * @inheritDoc
+     */
+    protected function createAuthorization(string $credentials, object $entity): AuthorizationInterface
     {
-        return new Token($credentials);
+        if ($entity instanceof Identifiable) {
+            return new Token($credentials, $entity->getId());
+        }
+
+        throw new BadMethodCallException();
     }
 
     /**
