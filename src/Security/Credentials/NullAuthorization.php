@@ -23,17 +23,17 @@ final class NullAuthorization implements AuthorizationInterface
     /**
      * @inheritDoc
      */
-    public function serialize()
+    public function __serialize(): array
     {
-        throw new BadMethodCallException(sprintf('%s can not be serialized.', self::class));
+        return [];
     }
 
     /**
      * @inheritDoc
      */
-    public function unserialize($serialized): void
+    public function __unserialize(array $serialized): void
     {
-        throw new BadMethodCallException(sprintf('%s can not be unserialized.', self::class));
+        // nothing
     }
 
     /**

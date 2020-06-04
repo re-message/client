@@ -48,23 +48,16 @@ class Token implements AuthorizationInterface
     /**
      * @inheritDoc
      */
-    final public function serialize(): string
+    final public function __serialize(): array
     {
-        $payload = ['credentials' => $this->getCredentials()];
-        return serialize($payload);
+        return ['token' => $this->token, 'object_id' => $this->objectId];
     }
 
     /**
      * @inheritDoc
      */
-    final public function unserialize($serialized): void
+    final public function __unserialize(array $data): void
     {
-        if (!is_string($serialized)) {
-            throw new InvalidArgumentException('Expects string, got ' . gettype($serialized));
-        }
-
-        $data = unserialize($serialized, ['allowed_classes' => false]);
-        $credentials = $data['credentials'];
-        $this->token = $credentials;
+        ['token' => $this->token, 'object_id' => $this->objectId] = $data;
     }
 }

@@ -2,8 +2,6 @@
 
 namespace RM\Component\Client\Security\Credentials;
 
-use InvalidArgumentException;
-
 /**
  * Class Request
  *
@@ -50,22 +48,16 @@ class Request implements AuthorizationInterface
     /**
      * @inheritDoc
      */
-    public function serialize(): string
+    public function __serialize(): array
     {
-        $payload = ['id' => $this->id, 'phone' => $this->phone];
-        return serialize($payload);
+        return ['id' => $this->id, 'phone' => $this->phone];
     }
 
     /**
      * @inheritDoc
      */
-    public function unserialize($serialized): void
+    public function __unserialize(array $data): void
     {
-        if (!is_string($serialized)) {
-            throw new InvalidArgumentException('Expects string, got ' . gettype($serialized));
-        }
-
-        $data = unserialize($serialized, ['allowed_classes' => false]);
         ['id' => $this->id, 'phone' => $this->phone] = $data;
     }
 }
