@@ -18,7 +18,6 @@ use RM\Component\Client\Security\Resolver\AuthorizationResolverInterface;
 use RM\Component\Client\Security\Resolver\FileResolver;
 use RM\Component\Client\Security\Storage\AuthorizationStorageInterface;
 use RM\Component\Client\Security\Storage\RuntimeAuthorizationStorage;
-use RM\Component\Client\Transport\ThrowableTransport;
 use RM\Component\Client\Transport\TransportInterface;
 use Symfony\Component\Config\FileLocator;
 
@@ -33,7 +32,6 @@ class ClientFactory
     public const CONFIG_PATH = 'Resources/config/actions.yaml';
 
     private TransportInterface $transport;
-    private bool $throwable = true;
 
     private ?HydratorInterface $hydrator = null;
 
@@ -58,23 +56,12 @@ class ClientFactory
 
     protected function getTransport(): TransportInterface
     {
-        $transport = $this->transport;
-        if ($this->throwable && !$transport instanceof ThrowableTransport) {
-            $transport = new ThrowableTransport($transport);
-        }
-
-        return $transport;
+        return $this->transport;
     }
 
     public function setTransport(TransportInterface $transport): self
     {
         $this->transport = $transport;
-        return $this;
-    }
-
-    public function setThrowable(bool $throwable): ClientFactory
-    {
-        $this->throwable = $throwable;
         return $this;
     }
 
