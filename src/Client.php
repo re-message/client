@@ -90,10 +90,9 @@ class Client implements ClientInterface
             return null;
         }
 
-        $id = $auth->getObjectId();
         /** @var ApplicationRepository $repository */
         $repository = $this->getRepository(Application::class);
-        return $repository->get($id);
+        return $repository->get($auth->getObjectId());
     }
 
     /**
@@ -110,9 +109,8 @@ class Client implements ClientInterface
             return null;
         }
 
-        $id = $auth->getObjectId();
         /** @var UserRepository $repository */
         $repository = $this->getRepository(User::class);
-        return $repository->get($id);
+        return $repository->get($auth->getObjectId());
     }
 }
