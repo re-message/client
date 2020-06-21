@@ -60,7 +60,7 @@ class AliasedAuthenticatorFactory implements AuthenticatorFactoryInterface
         return $this->factory->build($class);
     }
 
-    private function findClassByType(string $type): ?string
+    protected function findClassByType(string $type): ?string
     {
         return $this->mapping->get($type);
     }
