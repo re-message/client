@@ -25,11 +25,13 @@ To create an instance of client, you need to choose transport. Now available onl
 
 Any transport requires message serializer from `relmsg/message` package. You can use `RM\Standard\Message\Serializer\ChainMessageSerializer` class to pass serializers for each message type.
 
-After creation of transport instance, you can use `RM\Component\Client\ClientFactory` to create an instance of client. This class has several setters that provide client customization. In any case, you need to configure the following properties: 
+After creation of transport instance, you can use `RM\Component\Client\ClientFactory` or `RM\Component\Client\ClientConfigurator` to create an instance of client. We recommend using the configurator because he has simple settings. Factory has several setters that provide client customization.
+
+In any case, you need to configure the following properties: 
 
 * The transport (it is required in constructor and `create()` method)
 
-Also, you can configure these properties:
+Also, you can configure these properties via factory:
 
 * The hydrator, creates entity objects from response
 * The repository registry, contains repositories created via factory
@@ -43,7 +45,7 @@ Also, you can configure these properties:
 Example of creation client with HTTP transport:
 
 ```php
-use RM\Component\Client\ClientFactory;
+use RM\Component\Client\ClientConfigurator;
 use RM\Component\Client\Transport\HttpTransport;
 use RM\Standard\Message\Serializer\ActionSerializer;
 use RM\Standard\Message\Serializer\ChainMessageSerializer;
@@ -59,5 +61,5 @@ $serializer->pushSerializer(new ErrorSerializer());
 $serializer->pushSerializer(new ResponseSerializer());
 
 $transport = new HttpTransport($http, $http, $http, $serializer);
-$client = ClientFactory::create($transport)->build();
+$client = ClientConfigurator::create($transport)->build();
 ```
