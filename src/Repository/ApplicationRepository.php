@@ -19,7 +19,7 @@ class ApplicationRepository extends AbstractRepository
      */
     final public function get(string $id): Application
     {
-        $action = new Action('applications.get', ['id' => $id]);
+        $action = new Action('apps.get', ['id' => $id]);
         $response = $this->send($action);
 
         $data = $response->getContent()['application'];
