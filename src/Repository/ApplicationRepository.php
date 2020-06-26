@@ -22,7 +22,7 @@ class ApplicationRepository extends AbstractRepository
         $action = new Action('apps.get', ['id' => $id]);
         $response = $this->send($action);
 
-        $data = $response->getContent()['application'];
+        $data = $response->getContent()[0];
         $application = $this->hydrate($data);
         if (!$application instanceof Application) {
             throw new RuntimeException(sprintf('Hydrated entity is not %s.', Application::class));
