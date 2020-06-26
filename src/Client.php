@@ -81,7 +81,7 @@ class Client implements ClientInterface
      */
     public function getApplication(): ?Application
     {
-        if ($this->authorizationStorage->has(ServiceAuthenticator::getTokenType())) {
+        if (!$this->authorizationStorage->has(ServiceAuthenticator::getTokenType())) {
             return null;
         }
 
@@ -100,7 +100,7 @@ class Client implements ClientInterface
      */
     public function getUser(): ?User
     {
-        if ($this->authorizationStorage->has(SignInAuthenticator::getTokenType())) {
+        if (!$this->authorizationStorage->has(SignInAuthenticator::getTokenType())) {
             return null;
         }
 
