@@ -24,9 +24,7 @@ class UserRepository extends AbstractRepository
     }
 
     /**
-     * Returns users by id.
-     *
-     * @param int[] $ids
+     * @inheritDoc
      *
      * @return User[]
      */

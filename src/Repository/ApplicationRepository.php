@@ -19,16 +19,30 @@ class ApplicationRepository extends AbstractRepository
      */
     final public function get(string $id): Application
     {
-        $action = new Action('apps.get', ['id' => $id]);
+        $applications = $this->getAll([$id]);
+        return $applications[0];
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @return Application[]
+     */
+    final public function getAll(array $ids): array
+    {
+        $action = new Action('apps.get', ['id' => $ids]);
         $response = $this->send($action);
 
-        $data = $response->getContent()[0];
-        $application = $this->hydrate($data);
-        if (!$application instanceof Application) {
-            throw new RuntimeException(sprintf('Hydrated entity is not %s.', Application::class));
+        foreach ($response->getContent() as $data) {
+            $application = $this->hydrate($data);
+            if (!$application instanceof Application) {
+                throw new RuntimeException(sprintf('Hydrated entity is not %s.', Application::class));
+            }
+
+            $applications[] = $application;
         }
 
-        return $application;
+        return $applications ?? [];
     }
 
     /**

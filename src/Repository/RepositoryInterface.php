@@ -25,6 +25,15 @@ interface RepositoryInterface
     public function get(string $id): object;
 
     /**
+     * Returns entities by identifiers.
+     *
+     * @param string[] $ids
+     *
+     * @return object[]
+     */
+    public function getAll(array $ids): array;
+
+    /**
      * Returns FQCN of entity.
      *
      * @return string
