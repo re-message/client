@@ -6,3 +6,5 @@ auth.signUp:
     authorizations: [service]
 apps.get:
     authorizations: [service, user]
+users.get:
+    authorizations: [user]
