@@ -6,7 +6,7 @@
  * @link      https://github.com/relmsg/client
  * @link      https://dev.relmsg.ru/packages/client
  * @copyright Copyright (c) 2018-2020 Relations Messenger
- * @author    Oleg Kozlov <h1karo@outlook.com>
+ * @author    Oleg Kozlov <h1karo@relmsg.ru>
  * @license   https://legal.relmsg.ru/licenses/client
  *
  * For the full copyright and license information, please view the LICENSE
@@ -27,7 +27,7 @@ use RM\Standard\Message\MessageInterface;
 /**
  * Class SignInAuthenticator provides ability to complete the authentication started by {@see CodeAuthenticator}.
  *
- * @author  Oleg Kozlov <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@relmsg.ru>
  * @link    https://dev.relmsg.ru/security/user
  *
  * @method User authenticate()

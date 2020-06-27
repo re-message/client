@@ -6,7 +6,7 @@
  * @link      https://github.com/relmsg/client
  * @link      https://dev.relmsg.ru/packages/client
  * @copyright Copyright (c) 2018-2020 Relations Messenger
- * @author    Oleg Kozlov <h1karo@outlook.com>
+ * @author    Oleg Kozlov <h1karo@relmsg.ru>
  * @license   https://legal.relmsg.ru/licenses/client
  *
  * For the full copyright and license information, please view the LICENSE
@@ -22,7 +22,7 @@ use Symfony\Component\Config\Loader\LoaderInterface as SymfonyLoaderInterface;
 /**
  * Interface LoaderInterface provides ability to load configurations from resource.
  *
- * @author  Oleg Kozlov <h1karo@outlook.com>
+ * @author  Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface LoaderInterface extends SymfonyLoaderInterface
 {
