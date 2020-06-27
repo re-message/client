@@ -29,7 +29,7 @@ use Symfony\Component\Config\FileLocator;
  */
 class ClientFactory
 {
-    public const CONFIG_PATH = 'Resources/config/actions.yaml';
+    public const CONFIG_PATH = 'config/actions.yaml';
 
     private TransportInterface $transport;
 
@@ -146,7 +146,8 @@ class ClientFactory
     protected function getConfigLoader(): LoaderInterface
     {
         if ($this->configLoader === null) {
-            $locator = new FileLocator(__DIR__);
+            $packageDir = dirname(__DIR__);
+            $locator = new FileLocator($packageDir);
             return new YamlLoader($locator);
         }
 
