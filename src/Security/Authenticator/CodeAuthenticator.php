@@ -13,7 +13,7 @@ use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
 
 /**
- * Class CodeAuthenticator provides ability to start user authorization process.
+ * Class CodeAuthenticator provides ability to start the user authorization process.
  *
  * @package RM\Component\Client\Security\Authenticator
  * @author  Oleg Kozlov <h1karo@outlook.com>

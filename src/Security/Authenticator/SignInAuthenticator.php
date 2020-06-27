@@ -12,7 +12,7 @@ use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
 
 /**
- * Class SignInAuthenticator provide ability to complete authentication started in {@see CodeAuthenticator}.
+ * Class SignInAuthenticator provides ability to complete the authentication started by {@see CodeAuthenticator}.
  *
  * @package RM\Component\Client\Security\Authenticator
  * @author  Oleg Kozlov <h1karo@outlook.com>
