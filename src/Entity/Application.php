@@ -49,6 +49,14 @@ class Application implements CreatableFromArray, Identifiable
         return $this;
     }
 
+    public function getInitials(): string
+    {
+        $words = explode(' ', $this->getName());
+        $letters = array_map(fn (string $word) => mb_substr($word, 0, 1), $words);
+        $two = array_slice($letters, 0, 2);
+        return implode($two);
+    }
+
     public function getOwnerId(): string
     {
         return $this->ownerId;

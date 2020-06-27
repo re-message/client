@@ -67,6 +67,14 @@ class User implements CreatableFromArray, Identifiable
         return implode(' ', array_filter($pieces));
     }
 
+    public function getInitials(): string
+    {
+        $words = [$this->getFirstName(), $this->getLastName()];
+        $letters = array_map(fn (string $word) => mb_substr($word, 0, 1), $words);
+        $two = array_slice($letters, 0, 2);
+        return implode($two);
+    }
+
     public function __toString(): string
     {
         return $this->getFullName();
