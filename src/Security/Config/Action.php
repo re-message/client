@@ -21,7 +21,7 @@ class Action
 
     public function isAuthorizationRequired(): bool
     {
-        return $this->authorizations === null;
+        return $this->authorizations !== null;
     }
 
     public function getAuthorizations(): array
