@@ -1,2 +1,8 @@
+auth.sendCode:
+    authorizations: [service]
+auth.signIn:
+    authorizations: [service]
+auth.signUp:
+    authorizations: [service]
 apps.get:
     authorizations: [service, user]
