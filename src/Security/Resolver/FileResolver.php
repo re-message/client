@@ -71,9 +71,20 @@ class FileResolver implements AuthorizationResolverInterface
         }
 
         foreach ($this->preferredAuthorizations as $type) {
-            if ($config->supportsAuthorization($type) && $this->storage->has($type)) {
-                return $this->storage->get($type);
+            if (!$config->supportsAuthorization($type)) {
+                continue;
             }
+
+            if (!$this->storage->has($type)) {
+                continue;
+            }
+
+            $authorization = $this->storage->get($type);
+            if (!$authorization->isCompleted()) {
+                continue;
+            }
+
+            return $authorization;
         }
 
         return null;
