@@ -82,7 +82,7 @@ class User implements CreatableFromArray, Identifiable
     public function getInitials(): string
     {
         $words = [$this->getFirstName(), $this->getLastName()];
-        $letters = array_map(fn (string $word) => mb_substr($word, 0, 1), $words);
+        $letters = array_map(fn (string $word) => mb_substr($word, 0, 1), array_filter($words));
         $two = array_slice($letters, 0, 2);
         return implode($two);
     }
