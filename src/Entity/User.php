@@ -34,14 +34,14 @@ class User implements CreatableFromArray, Identifiable
     private string $firstName;
     private ?string $lastName;
     private bool $active = true;
-    private DateTimeInterface $birthday;
+    private ?DateTimeInterface $birthday;
 
     public function __construct(
         string $id,
         ?string $phone,
         string $firstName,
         ?string $lastName,
-        DateTimeInterface $birthday
+        ?DateTimeInterface $birthday
     ) {
         $this->id = $id;
         $this->phone = $phone;
@@ -97,7 +97,7 @@ class User implements CreatableFromArray, Identifiable
         return $this->active;
     }
 
-    public function getBirthday(): DateTimeInterface
+    public function getBirthday(): ?DateTimeInterface
     {
         return $this->birthday;
     }
@@ -111,7 +111,12 @@ class User implements CreatableFromArray, Identifiable
         $phone = $array['phone'] ?? null;
         $firstName = $array['firstName'];
         $lastName = $array['lastName'] ?? null;
-        $birthday = DateTime::createFromFormat('U', $array['birthday']);
+        $birthday = null;
+
+        if (array_key_exists('birthday', $array)) {
+            $birthday = DateTime::createFromFormat('U', $array['birthday']);
+        }
+
         return new self($id, $phone, $firstName, $lastName, $birthday);
     }
 }
