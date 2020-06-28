@@ -44,12 +44,9 @@ class UserRepository extends AbstractRepository
     {
         $action = new Action('users.get', ['id' => $ids]);
         $response = $this->send($action);
-        $data = $response->getContent()['users'];
 
-        $users = [];
-        foreach ($data as $userData) {
+        foreach ($response->getContent() as $userData) {
             $user = $this->hydrate($userData);
-
             if (!$user instanceof User) {
                 throw new RuntimeException(sprintf('Hydrated entity is not %s.', User::class));
             }
@@ -57,7 +54,7 @@ class UserRepository extends AbstractRepository
             $users[] = $user;
         }
 
-        return $users;
+        return $users ?? [];
     }
 
     /**
