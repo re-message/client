@@ -25,16 +25,21 @@ use RM\Component\Client\Repository\UserRepository;
  *
  * @Entity(repositoryClass=UserRepository::class)
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class User implements CreatableFromArray, Identifiable
 {
-    private string $id;
-    private ?string $phone;
-    private string $firstName;
-    private ?string $lastName;
-    private bool $active = true;
-    private ?DateTimeInterface $birthday;
+    protected string $id;
+
+    protected ?string $phone;
+
+    protected string $firstName;
+
+    protected ?string $lastName;
+
+    protected bool $active = true;
+
+    protected ?DateTimeInterface $birthday;
 
     public function __construct(
         string $id,

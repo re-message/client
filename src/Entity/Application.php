@@ -25,13 +25,15 @@ use RM\Component\Client\Repository\ApplicationRepository;
  *
  * @Entity(repositoryClass=ApplicationRepository::class)
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class Application implements CreatableFromArray, Identifiable
 {
-    private string $id;
-    private string $name;
-    private string $ownerId;
+    protected string $id;
+
+    protected string $name;
+
+    protected string $ownerId;
 
     private Closure $ownerReference;
 
