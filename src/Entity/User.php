@@ -53,27 +53,27 @@ class User implements CreatableFromArray, Identifiable
     /**
      * @inheritDoc
      */
-    public function getId(): string
+    final public function getId(): string
     {
         return $this->id;
     }
 
-    public function getPhone(): ?string
+    final public function getPhone(): ?string
     {
         return $this->phone;
     }
 
-    public function getFirstName(): string
+    final public function getFirstName(): string
     {
         return $this->firstName;
     }
 
-    public function getLastName(): ?string
+    final public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
-    public function getFullName(): string
+    final public function getFullName(): string
     {
         $pieces = [$this->getFirstName(), $this->getLastName()];
         return implode(' ', array_filter($pieces));
@@ -87,17 +87,17 @@ class User implements CreatableFromArray, Identifiable
         return implode($two);
     }
 
-    public function __toString(): string
+    final public function __toString(): string
     {
         return $this->getFullName();
     }
 
-    public function isActive(): bool
+    final public function isActive(): bool
     {
         return $this->active;
     }
 
-    public function getBirthday(): ?DateTimeInterface
+    final public function getBirthday(): ?DateTimeInterface
     {
         return $this->birthday;
     }
@@ -105,7 +105,7 @@ class User implements CreatableFromArray, Identifiable
     /**
      * @inheritDoc
      */
-    public static function createFromArray(array $array): self
+    final public static function createFromArray(array $array): self
     {
         $id = $array['id'];
         $phone = $array['phone'] ?? null;

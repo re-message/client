@@ -45,17 +45,17 @@ class Application implements CreatableFromArray, Identifiable
     /**
      * @inheritDoc
      */
-    public function getId(): string
+    final public function getId(): string
     {
         return $this->id;
     }
 
-    public function getName(): string
+    final public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $name): Application
+    final public function setName(string $name): Application
     {
         $this->name = $name;
         return $this;
@@ -69,18 +69,18 @@ class Application implements CreatableFromArray, Identifiable
         return implode($two);
     }
 
-    public function getOwnerId(): string
+    final public function getOwnerId(): string
     {
         return $this->ownerId;
     }
 
-    public function setOwnerId(string $ownerId): Application
+    final public function setOwnerId(string $ownerId): Application
     {
         $this->ownerId = $ownerId;
         return $this;
     }
 
-    public function getOwner(): User
+    final public function getOwner(): User
     {
         return call_user_func($this->ownerReference, $this->getOwnerId());
     }
@@ -92,7 +92,7 @@ class Application implements CreatableFromArray, Identifiable
      *
      * @internal
      */
-    public function setOwner(Closure $ownerReference): void
+    final public function setOwner(Closure $ownerReference): void
     {
         $this->ownerReference = $ownerReference;
     }
@@ -100,7 +100,7 @@ class Application implements CreatableFromArray, Identifiable
     /**
      * @inheritDoc
      */
-    public static function createFromArray(array $array): self
+    final public static function createFromArray(array $array): self
     {
         return new self($array['id'], $array['name'], $array['owner']);
     }
