@@ -24,6 +24,7 @@
     },
     "require": {
         "php": ">=7.4",
+        "ext-mbstring": "*",
 
         "relmsg/message": "^0.9",
 
