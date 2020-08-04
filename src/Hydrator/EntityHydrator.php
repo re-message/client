@@ -30,7 +30,7 @@ class EntityHydrator implements HydratorInterface
     public function hydrate(array $data, string $class): object
     {
         if (is_subclass_of($class, CreatableFromArray::class, true)) {
-            return call_user_func([$class, 'createFromArray'], $data);
+            return $class::createFromArray($data);
         }
 
         return new $class(...$data);
