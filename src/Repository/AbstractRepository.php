@@ -18,6 +18,7 @@ namespace RM\Component\Client\Repository;
 
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Transport\TransportInterface;
+use RM\Standard\Message\Action;
 use RuntimeException;
 
 /**
@@ -42,4 +43,40 @@ abstract class AbstractRepository implements RepositoryInterface
             throw new RuntimeException(sprintf('%s supports only %s entities.', static::class, $expected));
         }
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function get(string $id): object
+    {
+        $entities = $this->getAll([$id]);
+        return $entities[0];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getAll(array $ids): array
+    {
+        $action = $this->generateGetAction($ids);
+        $response = $this->send($action);
+
+        foreach ($response->getContent() as $data) {
+            $application = $this->hydrate($data);
+            $this->validateEntity($application);
+            $applications[] = $application;
+        }
+
+        return $applications ?? [];
+    }
+
+    /**
+     * Generates the {@see Action} message for concrete entity by ids.
+     *
+     * @example {@see ApplicationRepository::generateGetAction()}
+     *
+     * @param string[] $ids
+     * @return Action
+     */
+    abstract protected function generateGetAction(array $ids): Action;
 }

@@ -22,35 +22,18 @@ use RM\Standard\Message\Action;
  * Class UserRepository
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
+ *
+ * @method User get(string $id)
+ * @method User[] getAll(string[] $ids)
  */
 class UserRepository extends AbstractRepository
 {
     /**
      * @inheritDoc
      */
-    final public function get(string $id): User
+    final protected function generateGetAction(array $ids): Action
     {
-        $users = $this->getAll([$id]);
-        return $users[0];
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @return User[]
-     */
-    final public function getAll(array $ids): array
-    {
-        $action = new Action('users.get', ['id' => $ids]);
-        $response = $this->send($action);
-
-        foreach ($response->getContent() as $userData) {
-            $user = $this->hydrate($userData);
-            $this->validateEntity($user);
-            $users[] = $user;
-        }
-
-        return $users ?? [];
+        return new Action('users.get', ['id' => $ids]);
     }
 
     /**
