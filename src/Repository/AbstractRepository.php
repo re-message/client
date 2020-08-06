@@ -18,11 +18,12 @@ namespace RM\Component\Client\Repository;
 
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Transport\TransportInterface;
+use RuntimeException;
 
 /**
  * Class AbstractRepository
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 abstract class AbstractRepository implements RepositoryInterface
 {
@@ -32,5 +33,13 @@ abstract class AbstractRepository implements RepositoryInterface
     {
         $this->transport = $transport;
         $this->hydrator = $hydrator;
+    }
+
+    protected function validateEntity(object $entity): void
+    {
+        $expected = $this->getEntity();
+        if (!$entity instanceof $expected) {
+            throw new RuntimeException(sprintf('%s supports only %s entities.', static::class, $expected));
+        }
     }
 }

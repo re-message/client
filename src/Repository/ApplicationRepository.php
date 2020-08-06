@@ -17,12 +17,11 @@ namespace RM\Component\Client\Repository;
 
 use RM\Component\Client\Entity\Application;
 use RM\Standard\Message\Action;
-use RuntimeException;
 
 /**
  * Class ApplicationRepository
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class ApplicationRepository extends AbstractRepository
 {
@@ -47,10 +46,7 @@ class ApplicationRepository extends AbstractRepository
 
         foreach ($response->getContent() as $data) {
             $application = $this->hydrate($data);
-            if (!$application instanceof Application) {
-                throw new RuntimeException(sprintf('Hydrated entity is not %s.', Application::class));
-            }
-
+            $this->validateEntity($application);
             $applications[] = $application;
         }
 

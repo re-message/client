@@ -17,12 +17,11 @@ namespace RM\Component\Client\Repository;
 
 use RM\Component\Client\Entity\User;
 use RM\Standard\Message\Action;
-use RuntimeException;
 
 /**
  * Class UserRepository
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class UserRepository extends AbstractRepository
 {
@@ -47,10 +46,7 @@ class UserRepository extends AbstractRepository
 
         foreach ($response->getContent() as $userData) {
             $user = $this->hydrate($userData);
-            if (!$user instanceof User) {
-                throw new RuntimeException(sprintf('Hydrated entity is not %s.', User::class));
-            }
-
+            $this->validateEntity($user);
             $users[] = $user;
         }
 
