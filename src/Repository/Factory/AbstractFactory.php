@@ -45,20 +45,43 @@ abstract class AbstractFactory implements RepositoryFactoryInterface
 
         try {
             $reflect = new ReflectionClass($entity);
-            $annotation = $this->readEntityAnnotation($reflect);
-            if ($annotation->repositoryClass !== null) {
-                return $annotation->repositoryClass;
-            }
-
-            return $this->buildRepositoryClass($reflect);
         } catch (ReflectionException $e) {
             throw new InvalidArgumentException($e->getMessage());
         }
+
+        do {
+            $class = $this->findRepositoryClass($reflect);
+            if ($class === null) {
+                continue;
+            }
+
+            return $class;
+        } while ($reflect = $reflect->getParentClass());
+
+        throw new InvalidArgumentException('Passed class is not entity.');
     }
 
-    protected function readEntityAnnotation(ReflectionClass $entity): Entity
+    protected function findRepositoryClass(ReflectionClass $reflect): ?string
+    {
+        $annotation = $this->readEntityAnnotation($reflect);
+        if ($annotation === null) {
+            return null;
+        }
+
+        if ($annotation->repositoryClass !== null) {
+            return $annotation->repositoryClass;
+        }
+
+        return $this->buildRepositoryClass($reflect);
+    }
+
+    protected function readEntityAnnotation(ReflectionClass $entity): ?Entity
     {
         $annotation = $this->reader->getClassAnnotation($entity, Entity::class);
+        if ($annotation === null) {
+            return null;
+        }
+
         if (!$annotation instanceof Entity) {
             throw new InvalidArgumentException('Passed class is not entity.');
         }
