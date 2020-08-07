@@ -22,8 +22,6 @@ namespace RM\Component\Client\Annotation;
  * @Target("METHOD")
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
- *
- * @internal
  */
 class LazyLoad
 {
