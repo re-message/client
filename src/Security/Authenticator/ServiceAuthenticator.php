@@ -26,7 +26,7 @@ use RM\Standard\Message\MessageInterface;
 /**
  * Class ServiceAuthenticator provides ability to authenticate the application.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  * @link    https://dev.relmsg.ru/security/service
  */
 class ServiceAuthenticator extends DirectAuthenticator

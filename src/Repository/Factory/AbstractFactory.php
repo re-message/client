@@ -26,7 +26,7 @@ use RM\Component\Client\Repository\RepositoryInterface;
 /**
  * Class AbstractFactory
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 abstract class AbstractFactory implements RepositoryFactoryInterface
 {

@@ -27,7 +27,7 @@ use RM\Standard\Message\MessageInterface;
 /**
  * Class FileResolver
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class FileResolver implements AuthorizationResolverInterface
 {

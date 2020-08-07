@@ -20,7 +20,7 @@ use BadMethodCallException;
 /**
  * Class Action
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class Action
 {

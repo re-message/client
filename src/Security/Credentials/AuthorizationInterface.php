@@ -18,7 +18,7 @@ namespace RM\Component\Client\Security\Credentials;
 /**
  * Interface AuthorizationInterface provides authorization state.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface AuthorizationInterface
 {

@@ -20,7 +20,7 @@ use RM\Component\Client\Entity\EntityInterface;
 /**
  * Class DecoratedHydrator
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 abstract class DecoratedHydrator implements HydratorInterface
 {

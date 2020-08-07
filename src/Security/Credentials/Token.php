@@ -18,7 +18,7 @@ namespace RM\Component\Client\Security\Credentials;
 /**
  * Class Token
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class Token implements AuthorizationInterface
 {

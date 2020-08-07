@@ -28,7 +28,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * Class YamlLoader
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class YamlLoader extends FileLoader implements LoaderInterface
 {

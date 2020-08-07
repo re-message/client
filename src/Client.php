@@ -34,7 +34,7 @@ use RM\Standard\Message\MessageInterface;
 /**
  * Class Client implements a facade pattern to simplify the use of the library.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class Client implements ClientInterface
 {

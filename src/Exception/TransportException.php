@@ -22,7 +22,7 @@ use Throwable;
 /**
  * Class TransportException decorates exception thrown from {@see TransportInterface::send}.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class TransportException extends RuntimeException implements ExceptionInterface
 {

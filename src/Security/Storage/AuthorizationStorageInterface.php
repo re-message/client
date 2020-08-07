@@ -20,7 +20,7 @@ use RM\Component\Client\Security\Credentials\AuthorizationInterface;
 /**
  * Interface AuthorizationStorageInterface provide ability to store the authorization data.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface AuthorizationStorageInterface
 {

@@ -21,7 +21,7 @@ use RM\Standard\Message\MessageInterface;
 /**
  * Interface TransportInterface
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface TransportInterface
 {
