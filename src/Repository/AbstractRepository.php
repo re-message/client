@@ -61,13 +61,14 @@ abstract class AbstractRepository implements RepositoryInterface
         $action = $this->generateGetAction($ids);
         $response = $this->send($action);
 
+        $entities = [];
         foreach ($response->getContent() as $data) {
-            $application = $this->hydrate($data);
-            $this->validateEntity($application);
-            $applications[] = $application;
+            $entity = $this->hydrate($data);
+            $this->validateEntity($entity);
+            $entities[] = $entity;
         }
 
-        return $applications ?? [];
+        return $entities ?? [];
     }
 
     /**
