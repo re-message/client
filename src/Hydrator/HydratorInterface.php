@@ -15,22 +15,24 @@
 
 namespace RM\Component\Client\Hydrator;
 
+use RM\Component\Client\Entity\EntityInterface;
+
 /**
  * Interface HydratorInterface creates entity object from response.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface HydratorInterface
 {
     /**
-     * Creates a object by class name and data.
+     * Creates a entity by class name and data.
      *
      * @param array  $data
      * @param string $class
      *
-     * @return mixed
+     * @return EntityInterface
      */
-    public function hydrate(array $data, string $class);
+    public function hydrate(array $data, string $class): EntityInterface;
 
     /**
      * Checks that current hydrator supports this data and class.

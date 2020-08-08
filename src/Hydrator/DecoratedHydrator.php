@@ -15,6 +15,8 @@
 
 namespace RM\Component\Client\Hydrator;
 
+use RM\Component\Client\Entity\EntityInterface;
+
 /**
  * Class DecoratedHydrator
  *
@@ -32,7 +34,7 @@ abstract class DecoratedHydrator implements HydratorInterface
     /**
      * @inheritDoc
      */
-    public function hydrate(array $data, string $class)
+    public function hydrate(array $data, string $class): EntityInterface
     {
         return $this->hydrator->hydrate($data, $class);
     }

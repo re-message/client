@@ -15,21 +15,21 @@
 
 namespace RM\Component\Client\Hydrator;
 
-use RM\Component\Client\Entity\CreatableFromArray;
+use RM\Component\Client\Entity\EntityInterface;
 
 /**
  * Class EntityHydrator
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class EntityHydrator implements HydratorInterface
 {
     /**
      * @inheritDoc
      */
-    public function hydrate(array $data, string $class): object
+    public function hydrate(array $data, string $class): EntityInterface
     {
-        if (is_subclass_of($class, CreatableFromArray::class, true)) {
+        if (is_subclass_of($class, EntityInterface::class, true)) {
             return $class::createFromArray($data);
         }
 
