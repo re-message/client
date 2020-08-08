@@ -26,7 +26,7 @@ use RuntimeException;
 /**
  * Class DirectAuthenticator
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 abstract class DirectAuthenticator implements StorableAuthenticatorInterface
 {

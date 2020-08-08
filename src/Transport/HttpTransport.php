@@ -32,7 +32,7 @@ use RM\Standard\Message\Serializer\MessageSerializerInterface;
 /**
  * Class HttpTransport
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class HttpTransport extends AbstractTransport
 {

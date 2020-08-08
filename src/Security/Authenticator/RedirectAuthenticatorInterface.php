@@ -21,7 +21,7 @@ use RM\Component\Client\Security\Authenticator\Factory\AuthenticatorFactoryInter
  * Interface RedirectAuthenticatorInterface provides ability to redirect to another authenticator on 2-step
  * authentication.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface RedirectAuthenticatorInterface extends AuthenticatorInterface
 {

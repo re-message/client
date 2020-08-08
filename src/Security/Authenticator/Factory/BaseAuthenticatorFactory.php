@@ -26,7 +26,7 @@ use RM\Component\Client\Transport\TransportInterface;
 /**
  * Class BaseAuthenticatorFactory
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class BaseAuthenticatorFactory implements AuthenticatorFactoryInterface
 {

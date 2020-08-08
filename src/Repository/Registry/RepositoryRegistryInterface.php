@@ -20,7 +20,7 @@ use RM\Component\Client\Repository\RepositoryInterface;
 /**
  * Interface RepositoryRegistryInterface
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface RepositoryRegistryInterface
 {

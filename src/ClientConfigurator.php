@@ -21,7 +21,7 @@ use RM\Component\Client\Transport\TransportInterface;
 /**
  * Class ClientConfigurator
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class ClientConfigurator
 {

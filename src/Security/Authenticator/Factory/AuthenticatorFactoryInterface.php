@@ -20,7 +20,7 @@ use RM\Component\Client\Security\Authenticator\AuthenticatorInterface;
 /**
  * Interface AuthenticatorFactoryInterface provide ability to create authenticators by class or type.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface AuthenticatorFactoryInterface
 {

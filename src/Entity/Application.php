@@ -27,7 +27,7 @@ use RM\Component\Client\Repository\ApplicationRepository;
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
-class Application implements CreatableFromArray, Identifiable
+class Application implements EntityInterface
 {
     protected string $id;
 

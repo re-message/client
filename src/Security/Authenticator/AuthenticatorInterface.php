@@ -21,7 +21,7 @@ use RM\Component\Client\Transport\TransportInterface;
 /**
  * Interface AuthenticatorInterface provides ability to authenticate entity objects via Core.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface AuthenticatorInterface
 {

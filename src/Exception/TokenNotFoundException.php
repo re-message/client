@@ -20,7 +20,7 @@ use RuntimeException;
 /**
  * Class TokenNotFoundException
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class TokenNotFoundException extends RuntimeException implements ExceptionInterface
 {

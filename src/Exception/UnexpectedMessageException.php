@@ -22,7 +22,7 @@ use Throwable;
 /**
  * Class UnexpectedMessageException
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class UnexpectedMessageException extends RuntimeException implements ExceptionInterface
 {

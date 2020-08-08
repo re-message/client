@@ -13,21 +13,13 @@
  * file that was distributed with this source code.
  */
 
-namespace RM\Component\Client\Exception;
-
-use RM\Component\Client\Transport\TransportInterface;
-use RuntimeException;
-use Throwable;
+namespace RM\Component\Client\Entity;
 
 /**
- * Class TransportException decorates exception thrown from {@see TransportInterface::send}.
+ * Interface EntityInterface
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
-class TransportException extends RuntimeException implements ExceptionInterface
+interface EntityInterface extends Identifiable, CreatableFromArray
 {
-    public function __construct(Throwable $previous)
-    {
-        parent::__construct($previous->getMessage(), 0, $previous);
-    }
 }

@@ -21,7 +21,7 @@ use RM\Standard\Message\MessageInterface;
 /**
  * Interface AuthorizationResolverInterface provides ability to find the authorization for message to Core.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface AuthorizationResolverInterface
 {

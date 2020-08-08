@@ -23,7 +23,7 @@ use RM\Component\Client\Repository\RepositoryInterface;
 /**
  * Class RepositoryFactory
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class RepositoryFactory extends AbstractFactory
 {

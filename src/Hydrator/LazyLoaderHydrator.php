@@ -21,21 +21,23 @@ use InvalidArgumentException;
 use ReflectionMethod;
 use ReflectionObject;
 use RM\Component\Client\Annotation\LazyLoad;
+use RM\Component\Client\Entity\EntityInterface;
 use RM\Component\Client\Repository\Registry\RepositoryRegistryInterface;
 
 /**
  * Class LazyLoaderHydrator
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class LazyLoaderHydrator extends DecoratedHydrator
 {
     private Reader $reader;
     private ?RepositoryRegistryInterface $registry = null;
 
-    public function __construct(EntityHydrator $hydrator, ?Reader $reader = null)
+    public function __construct(HydratorInterface $hydrator, ?Reader $reader = null)
     {
         parent::__construct($hydrator);
+
         $this->reader = $reader ?? new AnnotationReader();
     }
 
@@ -45,7 +47,7 @@ class LazyLoaderHydrator extends DecoratedHydrator
         return $this;
     }
 
-    public function hydrate(array $data, string $class): object
+    public function hydrate(array $data, string $class): EntityInterface
     {
         $entity = parent::hydrate($data, $class);
 

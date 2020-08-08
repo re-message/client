@@ -20,7 +20,7 @@ use RM\Component\Client\Security\Storage\AuthorizationStorageInterface;
 /**
  * Interface StorableAuthenticatorInterface provides ability to store authentication data into storage.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface StorableAuthenticatorInterface extends AuthenticatorInterface
 {

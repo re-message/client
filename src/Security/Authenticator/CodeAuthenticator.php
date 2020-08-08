@@ -28,8 +28,8 @@ use RM\Standard\Message\MessageInterface;
 /**
  * Class CodeAuthenticator provides ability to start the user authorization process.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
- * @link    https://dev.relmsg.ru/security/user
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
+ * @link   https://dev.relmsg.ru/security/user
  */
 class CodeAuthenticator implements RedirectAuthenticatorInterface
 {
