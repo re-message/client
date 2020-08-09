@@ -45,3 +45,6 @@ jobs:
 
       - name: Run test suite
         run: composer run-script test
+
+      - name: PHP CS Fixer
+        run: composer run-script lint:ci
