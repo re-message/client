@@ -45,7 +45,8 @@
         "symfony/http-client": "^5.0",
         "nyholm/psr7": "^1.2",
 
-        "phpunit/phpunit": "^9.1"
+        "phpunit/phpunit": "^9.1",
+        "friendsofphp/php-cs-fixer": "^2.16"
     },
     "config": {
         "sort-packages": false
