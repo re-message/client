@@ -24,7 +24,7 @@ use RM\Standard\Message\Response;
 /**
  * Class ThrowableTransport decorates transport to throw exception on errors.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class ThrowableTransport extends DecoratedTransport
 {

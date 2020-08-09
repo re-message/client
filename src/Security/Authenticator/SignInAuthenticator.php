@@ -27,7 +27,7 @@ use RM\Standard\Message\MessageInterface;
 /**
  * Class SignInAuthenticator provides ability to complete the authentication started by {@see CodeAuthenticator}.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  * @link    https://dev.relmsg.ru/security/user
  *
  * @method User authenticate()

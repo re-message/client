@@ -23,7 +23,7 @@ use RM\Component\Client\Repository\RepositoryInterface;
 /**
  * Class RepositoryRegistry
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class RepositoryRegistry implements RepositoryRegistryInterface
 {

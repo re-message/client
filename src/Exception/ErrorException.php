@@ -21,7 +21,7 @@ use RM\Standard\Message\Error;
 /**
  * Class ErrorException
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class ErrorException extends Exception implements ExceptionInterface
 {

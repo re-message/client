@@ -27,7 +27,7 @@ use RM\Component\Client\Repository\UserRepository;
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
-class User implements CreatableFromArray, Identifiable
+class User implements EntityInterface
 {
     protected string $id;
 

@@ -21,7 +21,7 @@ use RM\Standard\Message\MessageInterface;
 /**
  * Class DecoratedTransport
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 abstract class DecoratedTransport implements TransportInterface
 {

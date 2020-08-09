@@ -20,7 +20,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Trait ResponsableExceptionTrait
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  * @internal
  */
 trait ResponsableExceptionTrait

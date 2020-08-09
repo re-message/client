@@ -21,7 +21,7 @@ use RM\Standard\Message\Serializer\MessageSerializerInterface;
 /**
  * Class AbstractTransport
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 abstract class AbstractTransport implements TransportInterface
 {

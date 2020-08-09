@@ -15,6 +15,7 @@
 
 namespace RM\Component\Client\Repository;
 
+use RM\Component\Client\Entity\EntityInterface;
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Transport\TransportInterface;
 use RM\Standard\Message\MessageInterface;
@@ -24,7 +25,7 @@ use RuntimeException;
 /**
  * Trait RepositoryTrait
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 trait RepositoryTrait
 {
@@ -42,7 +43,7 @@ trait RepositoryTrait
         return $message;
     }
 
-    final protected function hydrate(array $data): object
+    final protected function hydrate(array $data): EntityInterface
     {
         return $this->hydrator->hydrate($data, $this->getEntity());
     }

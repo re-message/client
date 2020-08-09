@@ -22,7 +22,7 @@ use Symfony\Component\Config\Loader\LoaderInterface as SymfonyLoaderInterface;
 /**
  * Interface LoaderInterface provides ability to load configurations from resource.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface LoaderInterface extends SymfonyLoaderInterface
 {

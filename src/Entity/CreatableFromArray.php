@@ -18,7 +18,7 @@ namespace RM\Component\Client\Entity;
 /**
  * Interface CreatableFromArrayInterface
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface CreatableFromArray
 {

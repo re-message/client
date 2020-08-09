@@ -37,7 +37,7 @@ use Symfony\Component\Config\FileLocator;
 /**
  * Class ClientFactory
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class ClientFactory
 {

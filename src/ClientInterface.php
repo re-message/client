@@ -24,7 +24,7 @@ use RM\Component\Client\Transport\TransportInterface;
 /**
  * Interface ClientInterface
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface ClientInterface extends RepositoryRegistryInterface, TransportInterface
 {

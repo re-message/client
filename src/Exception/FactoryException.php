@@ -20,7 +20,7 @@ use RuntimeException;
 /**
  * Class FactoryException
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class FactoryException extends RuntimeException implements ExceptionInterface
 {

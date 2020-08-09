@@ -24,7 +24,7 @@ use Throwable;
  * Class UnserializableMessageException throws when the message passed into {@see TransportInterface::send} cannot be
  * serialized into safe-transfer format.
  *
- * @author  Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class UnserializableMessageException extends RuntimeException implements ExceptionInterface
 {
