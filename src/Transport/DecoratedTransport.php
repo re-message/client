@@ -19,7 +19,7 @@ use RM\Component\Client\Security\Resolver\AuthorizationResolverInterface;
 use RM\Standard\Message\MessageInterface;
 
 /**
- * Class DecoratedTransport
+ * Class DecoratedTransport.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -33,7 +33,7 @@ abstract class DecoratedTransport implements TransportInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function send(MessageInterface $message): MessageInterface
     {
@@ -41,7 +41,7 @@ abstract class DecoratedTransport implements TransportInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function setResolver(AuthorizationResolverInterface $resolver): self
     {

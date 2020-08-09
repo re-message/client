@@ -22,7 +22,7 @@ use RM\Component\Client\Security\Authenticator\AuthenticatorInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
- * Interface ClientInterface
+ * Interface ClientInterface.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -40,14 +40,14 @@ interface ClientInterface extends RepositoryRegistryInterface, TransportInterfac
     /**
      * Returns current application which authorized in.
      *
-     * @return Application|null
+     * @return null|Application
      */
     public function getApplication(): ?Application;
 
     /**
      * Returns current user which authorized in.
      *
-     * @return User|null
+     * @return null|User
      */
     public function getUser(): ?User;
 }

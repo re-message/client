@@ -30,7 +30,7 @@ use RM\Standard\Message\MessageInterface;
 use RM\Standard\Message\Serializer\MessageSerializerInterface;
 
 /**
- * Class HttpTransport
+ * Class HttpTransport.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -57,7 +57,7 @@ class HttpTransport extends AbstractTransport
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function send(MessageInterface $message): MessageInterface
     {
@@ -82,7 +82,7 @@ class HttpTransport extends AbstractTransport
             $response = $this->httpClient->sendRequest($request);
             $statusCode = $response->getStatusCode();
             $contentType = $response->getHeader('Content-Type');
-            if ($statusCode !== 200 || !in_array('application/json', $contentType, true)) {
+            if (200 !== $statusCode || !in_array('application/json', $contentType, true)) {
                 throw new UnexpectedResponseException($response);
             }
 
@@ -102,33 +102,34 @@ class HttpTransport extends AbstractTransport
             ->createRequest('POST', $url)
             ->withHeader('Content-Type', 'application/json')
             ->withHeader('User-Agent', 'relmsg/client; v1.0')
-            ->withBody($stream);
+            ->withBody($stream)
+        ;
 
-        $request = $this->authorize($request, $message);
-
-        return $request;
+        return $this->authorize($request, $message);
     }
 
     protected function generateUrl(): string
     {
         $base = self::SCHEME . self::DOMAIN;
+
         return implode('/', [$base, 'v' . self::VERSION, self::ENTRYPOINT]);
     }
 
     protected function authorize(RequestInterface $request, MessageInterface $message): RequestInterface
     {
         $auth = $this->resolveAuthorization($message);
-        if ($auth === null || !$auth->isCompleted()) {
+        if (null === $auth || !$auth->isCompleted()) {
             return $request;
         }
 
         $credentials = $auth->getCredentials();
+
         return $request->withHeader('Authorization', 'Bearer ' . $credentials);
     }
 
     protected function resolveAuthorization(MessageInterface $message): ?AuthorizationInterface
     {
-        if ($this->resolver === null) {
+        if (null === $this->resolver) {
             return null;
         }
 

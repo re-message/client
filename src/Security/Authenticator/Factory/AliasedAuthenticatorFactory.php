@@ -24,7 +24,7 @@ use RM\Component\Client\Security\Authenticator\CodeAuthenticator;
 use RM\Component\Client\Security\Authenticator\ServiceAuthenticator;
 
 /**
- * Class AliasedAuthenticatorFactory
+ * Class AliasedAuthenticatorFactory.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -34,7 +34,7 @@ class AliasedAuthenticatorFactory implements AuthenticatorFactoryInterface
         'user' => CodeAuthenticator::class,
         'code' => CodeAuthenticator::class,
         'service' => ServiceAuthenticator::class,
-        'application' => ServiceAuthenticator::class
+        'application' => ServiceAuthenticator::class,
     ];
 
     private AuthenticatorFactoryInterface $factory;
@@ -63,9 +63,9 @@ class AliasedAuthenticatorFactory implements AuthenticatorFactoryInterface
     {
         $class = $this->findClassByType($type);
 
-        if ($class === null && class_exists($type)) {
+        if (null === $class && class_exists($type)) {
             $class = $type;
-        } elseif ($class === null) {
+        } elseif (null === $class) {
             throw new FactoryException(sprintf('Authenticator for type %s not found.', $type));
         }
 

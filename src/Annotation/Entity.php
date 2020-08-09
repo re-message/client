@@ -18,12 +18,13 @@ namespace RM\Component\Client\Annotation;
 use Doctrine\Common\Annotations\Annotation\Target;
 
 /**
- * Class Entity
+ * Class Entity.
  *
  * @Annotation
  * @Target("CLASS")
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
+ *
  * @internal
  */
 class Entity

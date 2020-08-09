@@ -16,7 +16,7 @@
 namespace RM\Component\Client\Security\Credentials;
 
 /**
- * Class Request
+ * Class Request.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -42,7 +42,7 @@ class Request implements AuthorizationInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function isCompleted(): bool
     {
@@ -50,7 +50,7 @@ class Request implements AuthorizationInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getCredentials(): string
     {
@@ -58,7 +58,7 @@ class Request implements AuthorizationInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function __serialize(): array
     {
@@ -66,7 +66,7 @@ class Request implements AuthorizationInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function __unserialize(array $data): void
     {

@@ -19,17 +19,17 @@ use RM\Component\Client\Entity\Application;
 use RM\Standard\Message\Action;
 
 /**
- * Class ApplicationRepository
+ * Class ApplicationRepository.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  *
- * @method Application get(string $id)
+ * @method Application   get(string $id)
  * @method Application[] getAll(string[] $ids)
  */
 class ApplicationRepository extends AbstractRepository
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     final protected function generateGetAction(array $ids): Action
     {
@@ -37,7 +37,7 @@ class ApplicationRepository extends AbstractRepository
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getEntity(): string
     {

@@ -29,7 +29,8 @@ use RM\Standard\Message\MessageInterface;
  * Class CodeAuthenticator provides ability to start the user authorization process.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
- * @link   https://dev.relmsg.ru/security/user
+ *
+ * @see   https://dev.relmsg.ru/security/user
  */
 class CodeAuthenticator implements RedirectAuthenticatorInterface
 {
@@ -48,7 +49,7 @@ class CodeAuthenticator implements RedirectAuthenticatorInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function setFactory(AuthenticatorFactoryInterface $authenticatorFactory): RedirectAuthenticatorInterface
     {
@@ -88,10 +89,12 @@ class CodeAuthenticator implements RedirectAuthenticatorInterface
 
         /** @var SignInAuthenticator $authenticator */
         $authenticator = $this->authenticatorFactory->build(SignInAuthenticator::class);
+
         return $authenticator
             ->setPhone($this->phone)
             ->setRequest($request)
-            ->store();
+            ->store()
+        ;
     }
 
     protected function createMessage(): MessageInterface
@@ -100,13 +103,13 @@ class CodeAuthenticator implements RedirectAuthenticatorInterface
             'auth.sendCode',
             [
                 'phone' => $this->phone,
-                'preferences' => $this->preferences->toArray()
+                'preferences' => $this->preferences->toArray(),
             ]
         );
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public static function getTokenType(): string
     {
@@ -114,7 +117,7 @@ class CodeAuthenticator implements RedirectAuthenticatorInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getEntity(): string
     {

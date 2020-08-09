@@ -18,7 +18,7 @@ namespace RM\Component\Client\Hydrator;
 use RM\Component\Client\Entity\EntityInterface;
 
 /**
- * Class DecoratedHydrator
+ * Class DecoratedHydrator.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -32,7 +32,7 @@ abstract class DecoratedHydrator implements HydratorInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function hydrate(array $data, string $class): EntityInterface
     {
@@ -40,7 +40,7 @@ abstract class DecoratedHydrator implements HydratorInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function supports(array $data, string $class): bool
     {

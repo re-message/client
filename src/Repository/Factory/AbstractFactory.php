@@ -24,7 +24,7 @@ use RM\Component\Client\Annotation\Entity;
 use RM\Component\Client\Repository\RepositoryInterface;
 
 /**
- * Class AbstractFactory
+ * Class AbstractFactory.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -51,7 +51,7 @@ abstract class AbstractFactory implements RepositoryFactoryInterface
 
         do {
             $class = $this->findRepositoryClass($reflect);
-            if ($class === null) {
+            if (null === $class) {
                 continue;
             }
 
@@ -64,11 +64,11 @@ abstract class AbstractFactory implements RepositoryFactoryInterface
     protected function findRepositoryClass(ReflectionClass $reflect): ?string
     {
         $annotation = $this->readEntityAnnotation($reflect);
-        if ($annotation === null) {
+        if (null === $annotation) {
             return null;
         }
 
-        if ($annotation->repositoryClass !== null) {
+        if (null !== $annotation->repositoryClass) {
             return $annotation->repositoryClass;
         }
 
@@ -78,7 +78,7 @@ abstract class AbstractFactory implements RepositoryFactoryInterface
     protected function readEntityAnnotation(ReflectionClass $entity): ?Entity
     {
         $annotation = $this->reader->getClassAnnotation($entity, Entity::class);
-        if ($annotation === null) {
+        if (null === $annotation) {
             return null;
         }
 
@@ -92,8 +92,8 @@ abstract class AbstractFactory implements RepositoryFactoryInterface
     protected function buildRepositoryClass(ReflectionClass $entity): string
     {
         $methods = [
-            fn(ReflectionClass $entity) => $this->buildRepositoryClassByInterface($entity),
-            fn(ReflectionClass $entity) => $this->buildRepositoryClassByEntity($entity),
+            fn (ReflectionClass $entity) => $this->buildRepositoryClassByInterface($entity),
+            fn (ReflectionClass $entity) => $this->buildRepositoryClassByEntity($entity),
         ];
 
         foreach ($methods as $method) {
@@ -105,21 +105,23 @@ abstract class AbstractFactory implements RepositoryFactoryInterface
         }
 
         throw new InvalidArgumentException(
-            "Unable to find a repository by entity FQCN." .
-            " Please set the repositoryClass property to the annotation."
+            'Unable to find a repository by entity FQCN.' .
+            ' Please set the repositoryClass property to the annotation.'
         );
     }
 
     private function buildRepositoryClassByInterface(ReflectionClass $entity): string
     {
         $reflect = new ReflectionClass(RepositoryInterface::class);
-        return sprintf("%s\\%sRepository", $reflect->getNamespaceName(), $entity->getShortName());
+
+        return sprintf('%s\\%sRepository', $reflect->getNamespaceName(), $entity->getShortName());
     }
 
     private function buildRepositoryClassByEntity(ReflectionClass $entity): string
     {
         $namespace = $entity->getNamespaceName();
         $parentNamespace = substr($namespace, 0, strrpos($namespace, '\\'));
-        return sprintf("%s\\Repository\\%sRepository", $parentNamespace, $entity->getShortName());
+
+        return sprintf('%s\\Repository\\%sRepository', $parentNamespace, $entity->getShortName());
     }
 }

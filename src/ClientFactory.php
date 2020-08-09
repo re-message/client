@@ -35,7 +35,7 @@ use RM\Component\Client\Transport\TransportInterface;
 use Symfony\Component\Config\FileLocator;
 
 /**
- * Class ClientFactory
+ * Class ClientFactory.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -74,13 +74,15 @@ class ClientFactory
     public function setTransport(TransportInterface $transport): self
     {
         $this->transport = $transport;
+
         return $this;
     }
 
     protected function getHydrator(): HydratorInterface
     {
-        if ($this->hydrator === null) {
+        if (null === $this->hydrator) {
             $hydrator = new EntityHydrator();
+
             return new LazyLoaderHydrator($hydrator);
         }
 
@@ -90,6 +92,7 @@ class ClientFactory
     public function setHydrator(HydratorInterface $hydrator): ClientFactory
     {
         $this->hydrator = $hydrator;
+
         return $this;
     }
 
@@ -97,7 +100,7 @@ class ClientFactory
         TransportInterface $transport,
         HydratorInterface $hydrator
     ): RepositoryFactoryInterface {
-        if ($this->repositoryFactory === null) {
+        if (null === $this->repositoryFactory) {
             return new RepositoryFactory($transport, $hydrator);
         }
 
@@ -107,12 +110,13 @@ class ClientFactory
     public function setRepositoryFactory(RepositoryFactoryInterface $repositoryFactory): self
     {
         $this->repositoryFactory = $repositoryFactory;
+
         return $this;
     }
 
     protected function getRepositoryRegistry(RepositoryFactoryInterface $repositoryFactory): RepositoryRegistryInterface
     {
-        if ($this->repositoryRegistry === null) {
+        if (null === $this->repositoryRegistry) {
             return new RepositoryRegistry($repositoryFactory);
         }
 
@@ -122,6 +126,7 @@ class ClientFactory
     public function setRepositoryRegistry(RepositoryRegistryInterface $repositoryRegistry): self
     {
         $this->repositoryRegistry = $repositoryRegistry;
+
         return $this;
     }
 
@@ -130,8 +135,9 @@ class ClientFactory
         HydratorInterface $hydrator,
         AuthorizationStorageInterface $authorizationStorage
     ): AuthenticatorFactoryInterface {
-        if ($this->authenticatorFactory === null) {
+        if (null === $this->authenticatorFactory) {
             $baseFactory = new BaseAuthenticatorFactory($transport, $hydrator, $authorizationStorage);
+
             return new AliasedAuthenticatorFactory($baseFactory);
         }
 
@@ -141,6 +147,7 @@ class ClientFactory
     public function setAuthenticatorFactory(AuthenticatorFactoryInterface $authenticatorFactory): self
     {
         $this->authenticatorFactory = $authenticatorFactory;
+
         return $this;
     }
 
@@ -152,14 +159,16 @@ class ClientFactory
     public function setAuthorizationStorage(AuthorizationStorageInterface $authorizationStorage): self
     {
         $this->authorizationStorage = $authorizationStorage;
+
         return $this;
     }
 
     protected function getConfigLoader(): LoaderInterface
     {
-        if ($this->configLoader === null) {
+        if (null === $this->configLoader) {
             $packageDir = dirname(__DIR__);
             $locator = new FileLocator($packageDir);
+
             return new YamlLoader($locator);
         }
 
@@ -169,6 +178,7 @@ class ClientFactory
     public function setConfigLoader(LoaderInterface $configLoader): ClientFactory
     {
         $this->configLoader = $configLoader;
+
         return $this;
     }
 
@@ -176,7 +186,7 @@ class ClientFactory
         AuthorizationStorageInterface $authorizationStorage,
         LoaderInterface $configLoader
     ): AuthorizationResolverInterface {
-        if ($this->authorizationResolver === null) {
+        if (null === $this->authorizationResolver) {
             return new FileResolver($authorizationStorage, $configLoader, self::CONFIG_PATH);
         }
 
@@ -186,6 +196,7 @@ class ClientFactory
     public function setAuthorizationResolver(AuthorizationResolverInterface $authorizationResolver): self
     {
         $this->authorizationResolver = $authorizationResolver;
+
         return $this;
     }
 

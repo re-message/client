@@ -24,7 +24,7 @@ use RM\Component\Client\Security\Storage\AuthorizationStorageInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
- * Class BaseAuthenticatorFactory
+ * Class BaseAuthenticatorFactory.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -45,7 +45,7 @@ class BaseAuthenticatorFactory implements AuthenticatorFactoryInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function build(string $class): AuthenticatorInterface
     {

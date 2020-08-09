@@ -22,7 +22,7 @@ use Throwable;
 
 /**
  * Class UnserializableResponseException throws when the serializer cannot deserialize a body of the received response
- * into {@see MessageInterface}
+ * into {@see MessageInterface}.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */

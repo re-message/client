@@ -16,7 +16,7 @@
 namespace RM\Component\Client\Model;
 
 /**
- * Class RequestPreferences
+ * Class RequestPreferences.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -42,7 +42,7 @@ class Preferences
     public function toArray(): array
     {
         return [
-            'method' => $this->method->getValue()
+            'method' => $this->method->getValue(),
         ];
     }
 }

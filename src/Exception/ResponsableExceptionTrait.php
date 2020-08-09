@@ -18,9 +18,10 @@ namespace RM\Component\Client\Exception;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Trait ResponsableExceptionTrait
+ * Trait ResponsableExceptionTrait.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
+ *
  * @internal
  */
 trait ResponsableExceptionTrait

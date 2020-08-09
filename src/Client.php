@@ -56,7 +56,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function createAuthenticator(string $type): AuthenticatorInterface
     {
@@ -64,7 +64,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getRepository(string $entity): RepositoryInterface
     {
@@ -72,7 +72,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function send(MessageInterface $message): MessageInterface
     {
@@ -80,7 +80,8 @@ class Client implements ClientInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
+     *
      * @internal
      */
     public function setResolver(AuthorizationResolverInterface $resolver): self
@@ -89,7 +90,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getApplication(): ?Application
     {
@@ -104,11 +105,12 @@ class Client implements ClientInterface
 
         /** @var ApplicationRepository $repository */
         $repository = $this->getRepository(Application::class);
+
         return $repository->get($auth->getObjectId());
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getUser(): ?User
     {
@@ -123,6 +125,7 @@ class Client implements ClientInterface
 
         /** @var UserRepository $repository */
         $repository = $this->getRepository(User::class);
+
         return $repository->get($auth->getObjectId());
     }
 }

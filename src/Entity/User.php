@@ -21,7 +21,7 @@ use RM\Component\Client\Annotation\Entity;
 use RM\Component\Client\Repository\UserRepository;
 
 /**
- * Class User
+ * Class User.
  *
  * @Entity(repositoryClass=UserRepository::class)
  *
@@ -56,7 +56,7 @@ class User implements EntityInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     final public function getId(): string
     {
@@ -81,6 +81,7 @@ class User implements EntityInterface
     final public function getFullName(): string
     {
         $pieces = [$this->getFirstName(), $this->getLastName()];
+
         return implode(' ', array_filter($pieces));
     }
 
@@ -89,6 +90,7 @@ class User implements EntityInterface
         $words = [$this->getFirstName(), $this->getLastName()];
         $letters = array_map(fn (string $word) => mb_substr($word, 0, 1), array_filter($words));
         $two = array_slice($letters, 0, 2);
+
         return implode($two);
     }
 
@@ -108,7 +110,7 @@ class User implements EntityInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     final public static function createFromArray(array $array): self
     {

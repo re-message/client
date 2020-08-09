@@ -18,7 +18,7 @@ namespace RM\Component\Client\Repository\Factory;
 use RM\Component\Client\Repository\RepositoryInterface;
 
 /**
- * Interface RepositoryFactoryInterface
+ * Interface RepositoryFactoryInterface.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */

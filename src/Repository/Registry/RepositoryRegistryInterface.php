@@ -18,7 +18,7 @@ namespace RM\Component\Client\Repository\Registry;
 use RM\Component\Client\Repository\RepositoryInterface;
 
 /**
- * Interface RepositoryRegistryInterface
+ * Interface RepositoryRegistryInterface.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */

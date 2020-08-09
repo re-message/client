@@ -17,11 +17,11 @@ namespace RM\Component\Client\Repository\Factory;
 
 use Doctrine\Common\Annotations\Reader;
 use RM\Component\Client\Hydrator\HydratorInterface;
-use RM\Component\Client\Transport\TransportInterface;
 use RM\Component\Client\Repository\RepositoryInterface;
+use RM\Component\Client\Transport\TransportInterface;
 
 /**
- * Class RepositoryFactory
+ * Class RepositoryFactory.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -38,11 +38,12 @@ class RepositoryFactory extends AbstractFactory
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function build(string $entity): RepositoryInterface
     {
         $repositoryClass = $this->getRepositoryClass($entity);
+
         return new $repositoryClass($this->transport, $this->hydrator);
     }
 }

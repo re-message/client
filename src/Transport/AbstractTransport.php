@@ -19,7 +19,7 @@ use RM\Component\Client\Security\Resolver\AuthorizationResolverInterface;
 use RM\Standard\Message\Serializer\MessageSerializerInterface;
 
 /**
- * Class AbstractTransport
+ * Class AbstractTransport.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -34,7 +34,7 @@ abstract class AbstractTransport implements TransportInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function setResolver(AuthorizationResolverInterface $resolver): self
     {

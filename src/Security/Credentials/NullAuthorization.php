@@ -18,14 +18,14 @@ namespace RM\Component\Client\Security\Credentials;
 use BadMethodCallException;
 
 /**
- * Class NullAuthorization
+ * Class NullAuthorization.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 final class NullAuthorization implements AuthorizationInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function isCompleted(): bool
     {
@@ -33,7 +33,7 @@ final class NullAuthorization implements AuthorizationInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function __serialize(): array
     {
@@ -41,7 +41,7 @@ final class NullAuthorization implements AuthorizationInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function __unserialize(array $serialized): void
     {
@@ -49,7 +49,7 @@ final class NullAuthorization implements AuthorizationInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getCredentials(): string
     {

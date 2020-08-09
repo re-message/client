@@ -19,7 +19,7 @@ use RM\Component\Client\Security\Resolver\AuthorizationResolverInterface;
 use RM\Standard\Message\MessageInterface;
 
 /**
- * Interface TransportInterface
+ * Interface TransportInterface.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */

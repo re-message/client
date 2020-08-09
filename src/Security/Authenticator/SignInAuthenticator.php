@@ -28,7 +28,8 @@ use RM\Standard\Message\MessageInterface;
  * Class SignInAuthenticator provides ability to complete the authentication started by {@see CodeAuthenticator}.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
- * @link    https://dev.relmsg.ru/security/user
+ *
+ * @see    https://dev.relmsg.ru/security/user
  *
  * @method User authenticate()
  */
@@ -90,13 +91,13 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
             [
                 'phone' => $this->phone,
                 'request' => $this->request,
-                'code' => $this->code
+                'code' => $this->code,
             ]
         );
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function createAuthorization(string $credentials, object $entity): AuthorizationInterface
     {
@@ -108,7 +109,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function getObjectKey(): string
     {
@@ -116,7 +117,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public static function getTokenType(): string
     {
@@ -124,7 +125,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getEntity(): string
     {
@@ -132,11 +133,11 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function store(): self
     {
-        if ($this->request !== null && $this->phone !== null) {
+        if (null !== $this->request && null !== $this->phone) {
             $authorization = new Request($this->request, $this->phone);
             $this->storage->set(static::getTokenType(), $authorization);
         }
@@ -145,7 +146,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function restore(): self
     {
@@ -161,7 +162,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function clear(): self
     {

@@ -19,7 +19,7 @@ use Exception;
 use RM\Standard\Message\Error;
 
 /**
- * Class ErrorException
+ * Class ErrorException.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */

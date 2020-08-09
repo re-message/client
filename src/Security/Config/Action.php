@@ -18,7 +18,7 @@ namespace RM\Component\Client\Security\Config;
 use BadMethodCallException;
 
 /**
- * Class Action
+ * Class Action.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -33,14 +33,15 @@ class Action
 
     public function isAuthorizationRequired(): bool
     {
-        return $this->authorizations !== null;
+        return null !== $this->authorizations;
     }
 
     public function getAuthorizations(): array
     {
-        if ($this->authorizations === null) {
+        if (null === $this->authorizations) {
             $method = 'isAuthorizationRequired';
             $message = sprintf('Please check the %s::%s() method before use this.', __CLASS__, $method);
+
             throw new BadMethodCallException($message);
         }
 

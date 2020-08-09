@@ -21,7 +21,7 @@ use RM\Component\Client\Annotation\LazyLoad;
 use RM\Component\Client\Repository\ApplicationRepository;
 
 /**
- * Class Application
+ * Class Application.
  *
  * @Entity(repositoryClass=ApplicationRepository::class)
  *
@@ -45,7 +45,7 @@ class Application implements EntityInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     final public function getId(): string
     {
@@ -60,6 +60,7 @@ class Application implements EntityInterface
     final public function setName(string $name): Application
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -68,6 +69,7 @@ class Application implements EntityInterface
         $words = explode(' ', $this->getName());
         $letters = array_map(fn (string $word) => mb_substr($word, 0, 1), $words);
         $two = array_slice($letters, 0, 2);
+
         return implode($two);
     }
 
@@ -79,6 +81,7 @@ class Application implements EntityInterface
     final public function setOwnerId(string $ownerId): Application
     {
         $this->ownerId = $ownerId;
+
         return $this;
     }
 
@@ -100,7 +103,7 @@ class Application implements EntityInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     final public static function createFromArray(array $array): self
     {

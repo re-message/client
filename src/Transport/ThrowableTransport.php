@@ -29,7 +29,8 @@ use RM\Standard\Message\Response;
 class ThrowableTransport extends DecoratedTransport
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
+     *
      * @throws ErrorException
      */
     public function send(MessageInterface $message): MessageInterface

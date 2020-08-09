@@ -16,12 +16,13 @@
 namespace RM\Component\Client\Annotation;
 
 /**
- * Class LazyLoad
+ * Class LazyLoad.
  *
  * @Annotation
  * @Target("METHOD")
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
+ *
  * @internal
  */
 class LazyLoad

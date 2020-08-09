@@ -19,17 +19,17 @@ use RM\Component\Client\Entity\User;
 use RM\Standard\Message\Action;
 
 /**
- * Class UserRepository
+ * Class UserRepository.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  *
- * @method User get(string $id)
+ * @method User   get(string $id)
  * @method User[] getAll(string[] $ids)
  */
 class UserRepository extends AbstractRepository
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     final protected function generateGetAction(array $ids): Action
     {
@@ -37,7 +37,7 @@ class UserRepository extends AbstractRepository
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getEntity(): string
     {
