@@ -18,7 +18,7 @@ namespace RM\Component\Client\Exception;
 use RuntimeException;
 
 /**
- * Class FactoryException
+ * Class FactoryException.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */

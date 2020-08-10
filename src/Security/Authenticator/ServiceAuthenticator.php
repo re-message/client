@@ -27,7 +27,8 @@ use RM\Standard\Message\MessageInterface;
  * Class ServiceAuthenticator provides ability to authenticate the application.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
- * @link    https://dev.relmsg.ru/security/service
+ *
+ * @see    https://dev.relmsg.ru/security/service
  */
 class ServiceAuthenticator extends DirectAuthenticator
 {
@@ -49,7 +50,7 @@ class ServiceAuthenticator extends DirectAuthenticator
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function createMessage(): MessageInterface
     {
@@ -57,13 +58,13 @@ class ServiceAuthenticator extends DirectAuthenticator
             'auth.authorize',
             [
                 'application' => $this->id,
-                'secret' => $this->secret
+                'secret' => $this->secret,
             ]
         );
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function createAuthorization(string $credentials, object $entity): AuthorizationInterface
     {
@@ -75,7 +76,7 @@ class ServiceAuthenticator extends DirectAuthenticator
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getEntity(): string
     {
@@ -83,7 +84,7 @@ class ServiceAuthenticator extends DirectAuthenticator
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public static function getTokenType(): string
     {
@@ -91,7 +92,7 @@ class ServiceAuthenticator extends DirectAuthenticator
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function getObjectKey(): string
     {

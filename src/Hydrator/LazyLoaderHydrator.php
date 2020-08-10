@@ -25,7 +25,7 @@ use RM\Component\Client\Entity\EntityInterface;
 use RM\Component\Client\Repository\Registry\RepositoryRegistryInterface;
 
 /**
- * Class LazyLoaderHydrator
+ * Class LazyLoaderHydrator.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -44,6 +44,7 @@ class LazyLoaderHydrator extends DecoratedHydrator
     public function setRepositoryRegistry(RepositoryRegistryInterface $registry): self
     {
         $this->registry = $registry;
+
         return $this;
     }
 
@@ -51,7 +52,7 @@ class LazyLoaderHydrator extends DecoratedHydrator
     {
         $entity = parent::hydrate($data, $class);
 
-        if ($this->registry === null) {
+        if (null === $this->registry) {
             return $entity;
         }
 
@@ -67,7 +68,7 @@ class LazyLoaderHydrator extends DecoratedHydrator
             }
 
             $repo = $this->registry->getRepository($annotation->entity);
-            $method->invoke($entity, fn($id) => $repo->get($id));
+            $method->invoke($entity, fn ($id) => $repo->get($id));
         }
 
         return $entity;

@@ -23,7 +23,7 @@ use RM\Standard\Message\Response;
 use RuntimeException;
 
 /**
- * Trait RepositoryTrait
+ * Trait RepositoryTrait.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -49,7 +49,7 @@ trait RepositoryTrait
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     abstract public function getEntity(): string;
 }

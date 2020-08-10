@@ -15,14 +15,13 @@
 
 namespace RM\Component\Client\Repository;
 
-
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Transport\TransportInterface;
 use RM\Standard\Message\Action;
 use RuntimeException;
 
 /**
- * Class AbstractRepository
+ * Class AbstractRepository.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -45,29 +44,31 @@ abstract class AbstractRepository implements RepositoryInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function get(string $id): object
     {
         $entities = $this->getAll([$id]);
+
         return $entities[0];
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getAll(array $ids): array
     {
         $action = $this->generateGetAction($ids);
         $response = $this->send($action);
 
+        $entities = [];
         foreach ($response->getContent() as $data) {
-            $application = $this->hydrate($data);
-            $this->validateEntity($application);
-            $applications[] = $application;
+            $entity = $this->hydrate($data);
+            $this->validateEntity($entity);
+            $entities[] = $entity;
         }
 
-        return $applications ?? [];
+        return $entities ?? [];
     }
 
     /**
@@ -76,6 +77,7 @@ abstract class AbstractRepository implements RepositoryInterface
      * @example {@see ApplicationRepository::generateGetAction()}
      *
      * @param string[] $ids
+     *
      * @return Action
      */
     abstract protected function generateGetAction(array $ids): Action;

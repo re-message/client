@@ -24,7 +24,7 @@ use RM\Standard\Message\MessageInterface;
 use RuntimeException;
 
 /**
- * Class DirectAuthenticator
+ * Class DirectAuthenticator.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -48,7 +48,7 @@ abstract class DirectAuthenticator implements StorableAuthenticatorInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function authenticate(): object
     {

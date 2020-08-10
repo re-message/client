@@ -46,10 +46,14 @@
         "nyholm/psr7": "^1.2",
 
         "phpunit/phpunit": "^9.1",
-
-        "vimeo/psalm": "^3.11"
+        "friendsofphp/php-cs-fixer": "^2.16"
     },
     "config": {
         "sort-packages": false
+    },
+    "scripts": {
+        "test": "phpunit",
+        "lint": "php-cs-fixer fix --show-progress=dots",
+        "lint:ci": "php-cs-fixer fix --dry-run -v --show-progress=dots --diff-format=udiff"
     }
 }

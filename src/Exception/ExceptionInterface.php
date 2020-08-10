@@ -18,11 +18,10 @@ namespace RM\Component\Client\Exception;
 use Throwable;
 
 /**
- * Interface ExceptionInterface
+ * Interface ExceptionInterface.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 interface ExceptionInterface extends Throwable
 {
-
 }

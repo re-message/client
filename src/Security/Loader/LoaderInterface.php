@@ -29,9 +29,9 @@ interface LoaderInterface extends SymfonyLoaderInterface
     /**
      * Loads an actions configuration from the resource.
      *
-     * @return Collection|Action[]
+     * @return Action[]|Collection
      *
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function load($resource, string $type = null): Collection;
 }

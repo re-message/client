@@ -25,7 +25,7 @@ use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
 
 /**
- * Class FileResolver
+ * Class FileResolver.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -51,7 +51,8 @@ class FileResolver implements AuthorizationResolverInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
+     *
      * @throws Exception
      */
     public function resolve(MessageInterface $message): ?AuthorizationInterface
@@ -60,9 +61,9 @@ class FileResolver implements AuthorizationResolverInterface
             return null;
         }
 
-        /** @var ActionConfig|null $config */
+        /** @var null|ActionConfig $config */
         $config = $this->getConfig()->get($message->getName());
-        if ($config === null) {
+        if (null === $config) {
             return null;
         }
 
@@ -91,13 +92,14 @@ class FileResolver implements AuthorizationResolverInterface
     }
 
     /**
-     * @return Collection
      * @throws Exception
+     *
+     * @return Collection
      */
     protected function getConfig(): Collection
     {
         static $config = null;
-        if ($config === null) {
+        if (null === $config) {
             $config = $this->loader->load($this->path);
         }
 

@@ -19,7 +19,7 @@ use RM\Component\Client\Transport\ThrowableTransport;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
- * Class ClientConfigurator
+ * Class ClientConfigurator.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -41,6 +41,7 @@ class ClientConfigurator
     public function setThrowable(bool $throwable): ClientConfigurator
     {
         $this->throwable = $throwable;
+
         return $this;
     }
 

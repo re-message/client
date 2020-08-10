@@ -16,7 +16,7 @@
 namespace RM\Component\Client\Entity;
 
 /**
- * Interface EntityInterface
+ * Interface EntityInterface.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */

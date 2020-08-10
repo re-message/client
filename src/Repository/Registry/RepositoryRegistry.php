@@ -21,7 +21,7 @@ use RM\Component\Client\Repository\Factory\RepositoryFactoryInterface;
 use RM\Component\Client\Repository\RepositoryInterface;
 
 /**
- * Class RepositoryRegistry
+ * Class RepositoryRegistry.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -40,7 +40,7 @@ class RepositoryRegistry implements RepositoryRegistryInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getRepository(string $entity): RepositoryInterface
     {
@@ -50,6 +50,7 @@ class RepositoryRegistry implements RepositoryRegistryInterface
 
         $repository = $this->factory->build($entity);
         $this->repositories->set($entity, $repository);
+
         return $repository;
     }
 }

@@ -21,7 +21,7 @@ use RM\Component\Client\Security\Credentials\AuthorizationInterface;
 use RM\Component\Client\Security\Credentials\NullAuthorization;
 
 /**
- * Class RuntimeAuthorizationStorage
+ * Class RuntimeAuthorizationStorage.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -35,7 +35,7 @@ class RuntimeAuthorizationStorage implements AuthorizationStorageInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function set(string $type, AuthorizationInterface $auth): void
     {
@@ -43,7 +43,7 @@ class RuntimeAuthorizationStorage implements AuthorizationStorageInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function get(string $type): AuthorizationInterface
     {
@@ -55,7 +55,7 @@ class RuntimeAuthorizationStorage implements AuthorizationStorageInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function has(string $type): bool
     {

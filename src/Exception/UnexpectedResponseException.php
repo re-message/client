@@ -20,7 +20,7 @@ use RuntimeException;
 use Throwable;
 
 /**
- * Class UnexpectedResponseException
+ * Class UnexpectedResponseException.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */

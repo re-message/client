@@ -16,7 +16,7 @@
 namespace RM\Component\Client\Security\Credentials;
 
 /**
- * Class Token
+ * Class Token.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -32,7 +32,7 @@ class Token implements AuthorizationInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function isCompleted(): bool
     {
@@ -50,7 +50,7 @@ class Token implements AuthorizationInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getCredentials(): string
     {
@@ -58,7 +58,7 @@ class Token implements AuthorizationInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     final public function __serialize(): array
     {
@@ -66,7 +66,7 @@ class Token implements AuthorizationInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     final public function __unserialize(array $data): void
     {

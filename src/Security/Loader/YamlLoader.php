@@ -26,7 +26,7 @@ use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Class YamlLoader
+ * Class YamlLoader.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -43,7 +43,7 @@ class YamlLoader extends FileLoader implements LoaderInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function load($file, string $type = null): Collection
     {
@@ -61,16 +61,19 @@ class YamlLoader extends FileLoader implements LoaderInterface
             $parsedConfig = $this->parser->parseFile($path, Yaml::PARSE_CONSTANT);
         } catch (ParseException $e) {
             $message = sprintf('The file "%s" does not contain valid YAML.', $path);
+
             throw new InvalidArgumentException($message, 0, $e);
         }
 
         if (null === $parsedConfig) {
             $message = sprintf('The file "%s" is empty.', $path);
+
             throw new InvalidArgumentException($message);
         }
 
         if (!is_array($parsedConfig)) {
             $message = sprintf('The file "%s" must contain a YAML array.', $path);
+
             throw new InvalidArgumentException($message);
         }
 
@@ -83,7 +86,7 @@ class YamlLoader extends FileLoader implements LoaderInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function supports($resource, string $type = null): bool
     {

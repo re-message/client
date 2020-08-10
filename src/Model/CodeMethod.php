@@ -19,7 +19,7 @@ use Elao\Enum\AutoDiscoveredValuesTrait;
 use Elao\Enum\Enum;
 
 /**
- * Class CodeMethod
+ * Class CodeMethod.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */

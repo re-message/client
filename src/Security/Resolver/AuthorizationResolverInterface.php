@@ -30,7 +30,7 @@ interface AuthorizationResolverInterface
      *
      * @param MessageInterface $message
      *
-     * @return AuthorizationInterface|null
+     * @return null|AuthorizationInterface
      */
     public function resolve(MessageInterface $message): ?AuthorizationInterface;
 }
