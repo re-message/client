@@ -12,6 +12,7 @@ Client uses the specific version when sends messages to Core.
 
 1. PHP 7.4+
 2. Any `psr/http-client` compatible package to send HTTP requests
+3. Any `psr/event-dispatcher` compatible package (_optional_: `symfony/event-dispatcher` used by default)
 
 ## Installation
 
@@ -45,7 +46,7 @@ Also, you can configure these properties via factory:
 Example of creation client with HTTP transport:
 
 ```php
-use RM\Component\Client\ClientConfigurator;
+use RM\Component\Client\ClientFactory;
 use RM\Component\Client\Transport\HttpTransport;
 use RM\Standard\Message\Serializer\ActionSerializer;
 use RM\Standard\Message\Serializer\ChainMessageSerializer;
@@ -61,5 +62,5 @@ $serializer->pushSerializer(new ErrorSerializer());
 $serializer->pushSerializer(new ResponseSerializer());
 
 $transport = new HttpTransport($http, $http, $http, $serializer);
-$client = ClientConfigurator::create($transport)->build();
+$client = ClientFactory::create($transport)->build();
 ```
