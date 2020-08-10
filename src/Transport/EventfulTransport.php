@@ -16,9 +16,7 @@
 namespace RM\Component\Client\Transport;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
-use RM\Component\Client\Event\ErrorEvent;
-use RM\Component\Client\Event\ResponseEvent;
-use RM\Component\Client\Exception\ErrorException;
+use RM\Component\Client\Event\SentEvent;
 use RM\Standard\Message\MessageInterface;
 
 /**
@@ -39,27 +37,14 @@ class EventfulTransport extends DecoratedTransport
 
     /**
      * {@inheritdoc}
-     *
-     * @throws ErrorException
      */
     public function send(MessageInterface $sent): MessageInterface
     {
-        try {
-            $received = parent::send($sent);
+        $received = parent::send($sent);
 
-            $event = new ResponseEvent($sent, $received);
-            $this->eventDispatcher->dispatch($event);
+        $event = new SentEvent($sent, $received);
+        $this->eventDispatcher->dispatch($event);
 
-            return $event->getReceived();
-        } catch (ErrorException $exception) {
-            $event = new ErrorEvent($sent, $exception->getError());
-            $this->eventDispatcher->dispatch($event);
-
-            if ($event->isHandled()) {
-                return $event->getReceived();
-            }
-
-            throw $exception;
-        }
+        return $event->getReceived();
     }
 }
