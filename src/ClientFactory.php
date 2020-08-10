@@ -15,6 +15,7 @@
 
 namespace RM\Component\Client;
 
+use Psr\EventDispatcher\EventDispatcherInterface;
 use RM\Component\Client\Hydrator\EntityHydrator;
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Hydrator\LazyLoaderHydrator;
@@ -33,6 +34,7 @@ use RM\Component\Client\Security\Storage\AuthorizationStorageInterface;
 use RM\Component\Client\Security\Storage\RuntimeAuthorizationStorage;
 use RM\Component\Client\Transport\TransportInterface;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
  * Class ClientFactory.
@@ -42,6 +44,8 @@ use Symfony\Component\Config\FileLocator;
 class ClientFactory
 {
     public const CONFIG_PATH = 'config/actions.yaml';
+
+    private EventDispatcherInterface $eventDispatcher;
 
     private TransportInterface $transport;
 
@@ -59,6 +63,7 @@ class ClientFactory
     public function __construct(TransportInterface $transport)
     {
         $this->transport = $transport;
+        $this->eventDispatcher = new EventDispatcher();
     }
 
     public static function create(TransportInterface $transport): self
@@ -74,6 +79,18 @@ class ClientFactory
     public function setTransport(TransportInterface $transport): self
     {
         $this->transport = $transport;
+
+        return $this;
+    }
+
+    public function getEventDispatcher(): EventDispatcherInterface
+    {
+        return $this->eventDispatcher;
+    }
+
+    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): self
+    {
+        $this->eventDispatcher = $eventDispatcher;
 
         return $this;
     }
