@@ -13,52 +13,35 @@
  * file that was distributed with this source code.
  */
 
-namespace RM\Component\Client\Hydrator;
+namespace RM\Component\Client\EventListener;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\Reader;
-use InvalidArgumentException;
 use ReflectionMethod;
 use ReflectionObject;
 use RM\Component\Client\Annotation\LazyLoad;
-use RM\Component\Client\Entity\EntityInterface;
+use RM\Component\Client\Event\HydratedEvent;
 use RM\Component\Client\Repository\Registry\RepositoryRegistryInterface;
 
 /**
- * Class LazyLoaderHydrator.
+ * Class LazyLoadListener.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
-class LazyLoaderHydrator extends DecoratedHydrator
+class LazyLoadListener
 {
+    private RepositoryRegistryInterface $registry;
     private Reader $reader;
-    private ?RepositoryRegistryInterface $registry = null;
 
-    public function __construct(HydratorInterface $hydrator, ?Reader $reader = null)
+    public function __construct(RepositoryRegistryInterface $registry, ?Reader $reader = null)
     {
-        parent::__construct($hydrator);
-
+        $this->registry = $registry;
         $this->reader = $reader ?? new AnnotationReader();
     }
 
-    public function setRepositoryRegistry(RepositoryRegistryInterface $registry): self
+    public function __invoke(HydratedEvent $event): void
     {
-        $this->registry = $registry;
-
-        return $this;
-    }
-
-    public function hydrate(array $data, string $class): EntityInterface
-    {
-        $entity = parent::hydrate($data, $class);
-
-        if (null === $this->registry) {
-            return $entity;
-        }
-
-        if (!is_object($entity)) {
-            throw new InvalidArgumentException('Expects an object.');
-        }
+        $entity = $event->getEntity();
 
         $reflect = new ReflectionObject($entity);
         foreach ($reflect->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
@@ -70,7 +53,5 @@ class LazyLoaderHydrator extends DecoratedHydrator
             $repo = $this->registry->getRepository($annotation->entity);
             $method->invoke($entity, fn ($id) => $repo->get($id));
         }
-
-        return $entity;
     }
 }
