@@ -12,6 +12,7 @@ Client uses the specific version when sends messages to Core.
 
 1. PHP 7.4+
 2. Any `psr/http-client` compatible package to send HTTP requests
+3. Any `psr/event-dispatcher` compatible package (_optional_: `symfony/event-dispatcher` used by default)
 
 ## Installation
 
@@ -25,7 +26,7 @@ To create an instance of client, you need to choose transport. Now available onl
 
 Any transport requires message serializer from `relmsg/message` package. You can use `RM\Standard\Message\Serializer\ChainMessageSerializer` class to pass serializers for each message type.
 
-After creation of transport instance, you can use `RM\Component\Client\ClientFactory` or `RM\Component\Client\ClientConfigurator` to create an instance of client. We recommend using the configurator because he has simple settings. Factory has several setters that provide client customization.
+After creation of transport instance, you can use `RM\Component\Client\ClientFactory` to create an instance of client.
 
 In any case, you need to configure the following properties: 
 
@@ -41,11 +42,10 @@ Also, you can configure these properties via factory:
 * The authorization resolver, finds credentials to pass together with request to core
 * The config loader, loads the action config from resource with settings for authorization resolver
 
-
 Example of creation client with HTTP transport:
 
 ```php
-use RM\Component\Client\ClientConfigurator;
+use RM\Component\Client\ClientFactory;
 use RM\Component\Client\Transport\HttpTransport;
 use RM\Standard\Message\Serializer\ActionSerializer;
 use RM\Standard\Message\Serializer\ChainMessageSerializer;
@@ -61,5 +61,60 @@ $serializer->pushSerializer(new ErrorSerializer());
 $serializer->pushSerializer(new ResponseSerializer());
 
 $transport = new HttpTransport($http, $http, $http, $serializer);
-$client = ClientConfigurator::create($transport)->build();
+$client = ClientFactory::create($transport)->build();
 ```
+
+### Events
+
+The package have some events to allow you to interact and to handle some cases. As example, we provided some event listeners.
+
+Events:
+- RM\Component\Client\Event\ErrorEvent
+- RM\Component\Client\Event\SentEvent
+- RM\Component\Client\Event\HydratedEvent
+
+Event listeners:
+- RM\Component\Client\EventListener\ThrowableSendListener - throws exception on error message and creates error event
+- RM\Component\Client\EventListener\LazyLoadListener - provides lazy load for entity relations
+
+How to add event listener (for Symfony EventDispatcher):
+```php
+use RM\Component\Client\ClientFactory;
+use RM\Component\Client\Event\SentEvent;
+use RM\Component\Client\EventListener\ThrowableSendListener;
+use RM\Component\Client\Transport\TransportInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
+// transport initialization
+
+/** @var TransportInterface $transport **/
+$factory = ClientFactory::create($transport);
+$client = $factory->build();
+
+/** @var EventDispatcher $eventDispatcher */
+$eventDispatcher = $factory->getEventDispatcher();
+$eventDispatcher->addListener(SentEvent::class, new ThrowableSendListener($eventDispatcher));
+```
+We recommend registering **ALL** event listeners provided from the package.
+
+Also, you can overwrite event dispatcher before building:
+```php
+use RM\Component\Client\ClientFactory;
+use RM\Component\Client\Event\SentEvent;
+use RM\Component\Client\EventListener\ThrowableSendListener;
+use RM\Component\Client\Transport\TransportInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
+// transport initialization
+
+$eventDispatcher = new EventDispatcher();
+
+/** @var TransportInterface $transport **/
+$client = ClientFactory::create($transport)
+    ->setEventDispatcher($eventDispatcher)
+    ->build()
+;
+
+$eventDispatcher->addListener(SentEvent::class, new ThrowableSendListener($eventDispatcher));
+```
+

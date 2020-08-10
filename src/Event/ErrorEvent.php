@@ -13,17 +13,26 @@
  * file that was distributed with this source code.
  */
 
-namespace RM\Component\Client\Annotation;
+namespace RM\Component\Client\Event;
 
 /**
- * Class LazyLoad.
- *
- * @Annotation
- * @Target("METHOD")
+ * Class ErrorEvent.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
-class LazyLoad
+class ErrorEvent extends SentEvent
 {
-    public string $entity;
+    private bool $handled = false;
+
+    public function isHandled(): bool
+    {
+        return $this->handled;
+    }
+
+    public function setHandled(bool $handled = true): ErrorEvent
+    {
+        $this->handled = $handled;
+
+        return $this;
+    }
 }

@@ -13,17 +13,34 @@
  * file that was distributed with this source code.
  */
 
-namespace RM\Component\Client\Annotation;
+namespace RM\Component\Client\Event;
+
+use RM\Component\Client\Entity\EntityInterface;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
- * Class LazyLoad.
- *
- * @Annotation
- * @Target("METHOD")
+ * Class HydratedEvent.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
-class LazyLoad
+class HydratedEvent extends Event
 {
-    public string $entity;
+    private EntityInterface $entity;
+
+    public function __construct(EntityInterface $entity)
+    {
+        $this->entity = $entity;
+    }
+
+    public function getEntity(): EntityInterface
+    {
+        return $this->entity;
+    }
+
+    public function setEntity(EntityInterface $entity): self
+    {
+        $this->entity = $entity;
+
+        return $this;
+    }
 }

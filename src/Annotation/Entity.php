@@ -24,8 +24,6 @@ use Doctrine\Common\Annotations\Annotation\Target;
  * @Target("CLASS")
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
- *
- * @internal
  */
 class Entity
 {
