@@ -19,7 +19,6 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use RM\Component\Client\Hydrator\EntityHydrator;
 use RM\Component\Client\Hydrator\EventfulHydrator;
 use RM\Component\Client\Hydrator\HydratorInterface;
-use RM\Component\Client\Hydrator\LazyLoaderHydrator;
 use RM\Component\Client\Repository\Factory\RepositoryFactory;
 use RM\Component\Client\Repository\Factory\RepositoryFactoryInterface;
 use RM\Component\Client\Repository\Registry\RepositoryRegistry;
@@ -228,10 +227,6 @@ class ClientFactory
         $hydrator = $this->createHydrator($this->getEventDispatcher());
         $repositoryFactory = $this->createRepositoryFactory($transport, $hydrator);
         $repositoryRegistry = $this->createRepositoryRegistry($repositoryFactory);
-
-        if ($hydrator instanceof LazyLoaderHydrator) {
-            $hydrator->setRepositoryRegistry($repositoryRegistry);
-        }
 
         $authenticatorFactory = $this->createAuthenticatorFactory($transport, $hydrator, $authorizationStorage);
 
