@@ -71,7 +71,7 @@ class ClientFactory
         return new self($transport);
     }
 
-    protected function getTransport(): TransportInterface
+    protected function createTransport(): TransportInterface
     {
         return $this->transport;
     }
@@ -95,7 +95,7 @@ class ClientFactory
         return $this;
     }
 
-    protected function getHydrator(): HydratorInterface
+    protected function createHydrator(): HydratorInterface
     {
         if (null === $this->hydrator) {
             $hydrator = new EntityHydrator();
@@ -113,7 +113,7 @@ class ClientFactory
         return $this;
     }
 
-    protected function getRepositoryFactory(
+    protected function createRepositoryFactory(
         TransportInterface $transport,
         HydratorInterface $hydrator
     ): RepositoryFactoryInterface {
@@ -131,7 +131,7 @@ class ClientFactory
         return $this;
     }
 
-    protected function getRepositoryRegistry(RepositoryFactoryInterface $repositoryFactory): RepositoryRegistryInterface
+    protected function createRepositoryRegistry(RepositoryFactoryInterface $repositoryFactory): RepositoryRegistryInterface
     {
         if (null === $this->repositoryRegistry) {
             return new RepositoryRegistry($repositoryFactory);
@@ -147,7 +147,7 @@ class ClientFactory
         return $this;
     }
 
-    protected function getAuthenticatorFactory(
+    protected function createAuthenticatorFactory(
         TransportInterface $transport,
         HydratorInterface $hydrator,
         AuthorizationStorageInterface $authorizationStorage
@@ -168,7 +168,7 @@ class ClientFactory
         return $this;
     }
 
-    protected function getAuthorizationStorage(): AuthorizationStorageInterface
+    protected function createAuthorizationStorage(): AuthorizationStorageInterface
     {
         return $this->authorizationStorage ?? new RuntimeAuthorizationStorage();
     }
@@ -180,7 +180,7 @@ class ClientFactory
         return $this;
     }
 
-    protected function getConfigLoader(): LoaderInterface
+    protected function createConfigLoader(): LoaderInterface
     {
         if (null === $this->configLoader) {
             $packageDir = dirname(__DIR__);
@@ -199,7 +199,7 @@ class ClientFactory
         return $this;
     }
 
-    protected function getAuthorizationResolver(
+    protected function createAuthorizationResolver(
         AuthorizationStorageInterface $authorizationStorage,
         LoaderInterface $configLoader
     ): AuthorizationResolverInterface {
@@ -219,20 +219,20 @@ class ClientFactory
 
     public function build(): ClientInterface
     {
-        $transport = $this->getTransport();
-        $authorizationStorage = $this->getAuthorizationStorage();
-        $configLoader = $this->getConfigLoader();
-        $authorizationResolver = $this->getAuthorizationResolver($authorizationStorage, $configLoader);
+        $transport = $this->createTransport();
+        $authorizationStorage = $this->createAuthorizationStorage();
+        $configLoader = $this->createConfigLoader();
+        $authorizationResolver = $this->createAuthorizationResolver($authorizationStorage, $configLoader);
         $transport->setResolver($authorizationResolver);
-        $hydrator = $this->getHydrator();
-        $repositoryFactory = $this->getRepositoryFactory($transport, $hydrator);
-        $repositoryRegistry = $this->getRepositoryRegistry($repositoryFactory);
+        $hydrator = $this->createHydrator();
+        $repositoryFactory = $this->createRepositoryFactory($transport, $hydrator);
+        $repositoryRegistry = $this->createRepositoryRegistry($repositoryFactory);
 
         if ($hydrator instanceof LazyLoaderHydrator) {
             $hydrator->setRepositoryRegistry($repositoryRegistry);
         }
 
-        $authenticatorFactory = $this->getAuthenticatorFactory($transport, $hydrator, $authorizationStorage);
+        $authenticatorFactory = $this->createAuthenticatorFactory($transport, $hydrator, $authorizationStorage);
 
         return new Client($transport, $repositoryRegistry, $authenticatorFactory, $authorizationStorage);
     }
