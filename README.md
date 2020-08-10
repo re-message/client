@@ -63,3 +63,58 @@ $serializer->pushSerializer(new ResponseSerializer());
 $transport = new HttpTransport($http, $http, $http, $serializer);
 $client = ClientFactory::create($transport)->build();
 ```
+
+### Events
+
+The package have some events to allow you to interact and to handle some cases. As example, we provided some event listeners.
+
+Events:
+- RM\Component\Client\Event\ErrorEvent
+- RM\Component\Client\Event\SentEvent
+- RM\Component\Client\Event\HydratedEvent
+
+Event listeners:
+- RM\Component\Client\EventListener\ThrowableSendListener - throws exception on error message and creates error event
+- RM\Component\Client\EventListener\LazyLoadListener - provides lazy load for entity relations
+
+How to add event listener (for Symfony EventDispatcher):
+```php
+use RM\Component\Client\ClientFactory;
+use RM\Component\Client\Event\SentEvent;
+use RM\Component\Client\EventListener\ThrowableSendListener;
+use RM\Component\Client\Transport\TransportInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
+// transport initialization
+
+/** @var TransportInterface $transport **/
+$factory = ClientFactory::create($transport);
+$client = $factory->build();
+
+/** @var EventDispatcher $eventDispatcher */
+$eventDispatcher = $factory->getEventDispatcher();
+$eventDispatcher->addListener(SentEvent::class, new ThrowableSendListener($eventDispatcher));
+```
+We recommend registering **ALL** event listeners provided from the package.
+
+Also, you can overwrite event dispatcher before building:
+```php
+use RM\Component\Client\ClientFactory;
+use RM\Component\Client\Event\SentEvent;
+use RM\Component\Client\EventListener\ThrowableSendListener;
+use RM\Component\Client\Transport\TransportInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
+// transport initialization
+
+$eventDispatcher = new EventDispatcher();
+
+/** @var TransportInterface $transport **/
+$client = ClientFactory::create($transport)
+    ->setEventDispatcher($eventDispatcher)
+    ->build()
+;
+
+$eventDispatcher->addListener(SentEvent::class, new ThrowableSendListener($eventDispatcher));
+```
+
