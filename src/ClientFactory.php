@@ -17,6 +17,7 @@ namespace RM\Component\Client;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
 use RM\Component\Client\Hydrator\EntityHydrator;
+use RM\Component\Client\Hydrator\EventfulHydrator;
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Hydrator\LazyLoaderHydrator;
 use RM\Component\Client\Repository\Factory\RepositoryFactory;
@@ -32,6 +33,7 @@ use RM\Component\Client\Security\Resolver\AuthorizationResolverInterface;
 use RM\Component\Client\Security\Resolver\FileResolver;
 use RM\Component\Client\Security\Storage\AuthorizationStorageInterface;
 use RM\Component\Client\Security\Storage\RuntimeAuthorizationStorage;
+use RM\Component\Client\Transport\EventfulTransport;
 use RM\Component\Client\Transport\TransportInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -71,9 +73,9 @@ class ClientFactory
         return new self($transport);
     }
 
-    protected function createTransport(): TransportInterface
+    protected function createTransport(EventDispatcherInterface $eventDispatcher): TransportInterface
     {
-        return $this->transport;
+        return new EventfulTransport($this->transport, $eventDispatcher);
     }
 
     public function setTransport(TransportInterface $transport): self
@@ -95,15 +97,14 @@ class ClientFactory
         return $this;
     }
 
-    protected function createHydrator(): HydratorInterface
+    protected function createHydrator(EventDispatcherInterface $eventDispatcher): HydratorInterface
     {
+        $hydrator = $this->hydrator;
         if (null === $this->hydrator) {
             $hydrator = new EntityHydrator();
-
-            return new LazyLoaderHydrator($hydrator);
         }
 
-        return $this->hydrator;
+        return new EventfulHydrator($hydrator, $eventDispatcher);
     }
 
     public function setHydrator(HydratorInterface $hydrator): ClientFactory
@@ -219,12 +220,12 @@ class ClientFactory
 
     public function build(): ClientInterface
     {
-        $transport = $this->createTransport();
+        $transport = $this->createTransport($this->getEventDispatcher());
         $authorizationStorage = $this->createAuthorizationStorage();
         $configLoader = $this->createConfigLoader();
         $authorizationResolver = $this->createAuthorizationResolver($authorizationStorage, $configLoader);
         $transport->setResolver($authorizationResolver);
-        $hydrator = $this->createHydrator();
+        $hydrator = $this->createHydrator($this->getEventDispatcher());
         $repositoryFactory = $this->createRepositoryFactory($transport, $hydrator);
         $repositoryRegistry = $this->createRepositoryRegistry($repositoryFactory);
 
