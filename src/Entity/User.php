@@ -124,6 +124,6 @@ class User implements EntityInterface
             $birthday = DateTime::createFromFormat('U', $array['birthday']);
         }
 
-        return new self($id, $phone, $firstName, $lastName, $birthday);
+        return new static($id, $phone, $firstName, $lastName, $birthday);
     }
 }
