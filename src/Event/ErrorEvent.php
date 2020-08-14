@@ -15,6 +15,8 @@
 
 namespace RM\Component\Client\Event;
 
+use RM\Standard\Message\MessageInterface;
+
 /**
  * Class ErrorEvent.
  *
@@ -29,10 +31,10 @@ class ErrorEvent extends SentEvent
         return $this->handled;
     }
 
-    public function setHandled(bool $handled = true): ErrorEvent
+    public function setReceived(MessageInterface $received): SentEvent
     {
-        $this->handled = $handled;
+        $this->handled = true;
 
-        return $this;
+        return parent::setReceived($received);
     }
 }
