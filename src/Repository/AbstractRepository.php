@@ -15,6 +15,7 @@
 
 namespace RM\Component\Client\Repository;
 
+use RM\Component\Client\Entity\EntityInterface;
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Transport\TransportInterface;
 use RM\Standard\Message\Action;
@@ -46,7 +47,7 @@ abstract class AbstractRepository implements RepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function get(string $id): object
+    public function get(string $id): EntityInterface
     {
         $entities = $this->getAll([$id]);
 
