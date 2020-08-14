@@ -17,6 +17,7 @@ namespace RM\Component\Client;
 
 use RM\Component\Client\Entity\Application;
 use RM\Component\Client\Entity\User;
+use RM\Component\Client\Exception\ErrorException;
 use RM\Component\Client\Repository\Registry\RepositoryRegistryInterface;
 use RM\Component\Client\Security\Authenticator\AuthenticatorInterface;
 use RM\Component\Client\Transport\TransportInterface;
@@ -41,6 +42,8 @@ interface ClientInterface extends RepositoryRegistryInterface, TransportInterfac
      * Returns current application which authorized in.
      *
      * @return null|Application
+     *
+     * @throws ErrorException
      */
     public function getApplication(): ?Application;
 
@@ -48,6 +51,8 @@ interface ClientInterface extends RepositoryRegistryInterface, TransportInterfac
      * Returns current user which authorized in.
      *
      * @return null|User
+     *
+     * @throws ErrorException
      */
     public function getUser(): ?User;
 }

@@ -15,6 +15,7 @@
 
 namespace RM\Component\Client\Transport;
 
+use RM\Component\Client\Exception\ErrorException;
 use RM\Component\Client\Security\Resolver\AuthorizationResolverInterface;
 use RM\Standard\Message\MessageInterface;
 
@@ -34,6 +35,8 @@ interface TransportInterface
      * @param MessageInterface $message
      *
      * @return MessageInterface
+     *
+     * @throws ErrorException
      */
     public function send(MessageInterface $message): MessageInterface;
 
