@@ -48,7 +48,7 @@ class ThrowableSendListener
 
         if ($message instanceof Error) {
             $errorEvent = new ErrorEvent($event->getSent(), $message);
-            $this->eventDispatcher->dispatch($event);
+            $this->eventDispatcher->dispatch($errorEvent);
 
             if ($errorEvent->isHandled()) {
                 $event->setReceived($errorEvent->getReceived());
