@@ -16,7 +16,9 @@
 namespace RM\Component\Client;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
+use RM\Component\Client\Event\HydratedEvent;
 use RM\Component\Client\Event\SentEvent;
+use RM\Component\Client\EventListener\LazyLoadListener;
 use RM\Component\Client\EventListener\ThrowableSendListener;
 use RM\Component\Client\Transport\TransportInterface;
 
@@ -31,6 +33,7 @@ abstract class AbstractClientConfigurator
     private EventDispatcherInterface $eventDispatcher;
 
     private bool $throwable = true;
+    private bool $lazyLoad = true;
 
     public function __construct(TransportInterface $transport)
     {
@@ -45,6 +48,13 @@ abstract class AbstractClientConfigurator
     public function setThrowable(bool $throwable): AbstractClientConfigurator
     {
         $this->throwable = $throwable;
+
+        return $this;
+    }
+
+    public function setLazyLoad(bool $lazyLoad): AbstractClientConfigurator
+    {
+        $this->lazyLoad = $lazyLoad;
 
         return $this;
     }
@@ -65,15 +75,20 @@ abstract class AbstractClientConfigurator
     {
         $eventDispatcher = $this->getEventDispatcher();
 
-        $factory = ClientFactory::create($this->transport)
+        $client = ClientFactory::create($this->transport)
             ->setEventDispatcher($eventDispatcher)
+            ->build()
         ;
 
         if ($this->throwable) {
             $this->registerListener(SentEvent::class, new ThrowableSendListener($eventDispatcher));
         }
 
-        return $factory->build();
+        if ($this->lazyLoad) {
+            $this->registerListener(HydratedEvent::class, new LazyLoadListener($client));
+        }
+
+        return $client;
     }
 
     abstract protected function registerListener(string $event, callable $listener): void;
