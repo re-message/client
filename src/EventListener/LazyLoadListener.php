@@ -51,7 +51,7 @@ class LazyLoadListener
             }
 
             $repo = $this->registry->getRepository($annotation->entity);
-            $method->invoke($entity, fn ($id) => $repo->get($id));
+            $method->invoke($entity, fn ($id) => $repo->find($id));
         }
     }
 }

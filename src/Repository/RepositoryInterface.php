@@ -35,7 +35,7 @@ interface RepositoryInterface
      *
      * @return EntityInterface
      */
-    public function get(string $id): EntityInterface;
+    public function find(string $id): EntityInterface;
 
     /**
      * Returns entities by identifiers.
@@ -44,7 +44,7 @@ interface RepositoryInterface
      *
      * @return EntityInterface[]
      */
-    public function getAll(array $ids): array;
+    public function findAll(array $ids): array;
 
     /**
      * Returns FQCN of entity.

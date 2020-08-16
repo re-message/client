@@ -47,9 +47,9 @@ abstract class AbstractRepository implements RepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function get(string $id): EntityInterface
+    public function find(string $id): EntityInterface
     {
-        $entities = $this->getAll([$id]);
+        $entities = $this->findAll([$id]);
 
         return $entities[0];
     }
@@ -57,7 +57,7 @@ abstract class AbstractRepository implements RepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function getAll(array $ids): array
+    public function findAll(array $ids): array
     {
         $action = $this->generateGetAction($ids);
         $response = $this->send($action);
