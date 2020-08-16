@@ -15,17 +15,21 @@
 
 namespace RM\Component\Client;
 
-use RM\Component\Client\Transport\ThrowableTransport;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use RM\Component\Client\Event\SentEvent;
+use RM\Component\Client\EventListener\ThrowableSendListener;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
- * Class ClientConfigurator.
+ * Class AbstractClientConfigurator.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
-class ClientConfigurator
+abstract class AbstractClientConfigurator
 {
     private TransportInterface $transport;
+    private EventDispatcherInterface $eventDispatcher;
+
     private bool $throwable = true;
 
     public function __construct(TransportInterface $transport)
@@ -38,20 +42,39 @@ class ClientConfigurator
         return new static($transport);
     }
 
-    public function setThrowable(bool $throwable): ClientConfigurator
+    public function setThrowable(bool $throwable): AbstractClientConfigurator
     {
         $this->throwable = $throwable;
 
         return $this;
     }
 
+    public function getEventDispatcher(): EventDispatcherInterface
+    {
+        return $this->eventDispatcher;
+    }
+
+    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): self
+    {
+        $this->eventDispatcher = $eventDispatcher;
+
+        return $this;
+    }
+
     public function build(): ClientInterface
     {
-        $transport = $this->transport;
-        if ($this->throwable && !$transport instanceof ThrowableTransport) {
-            $transport = new ThrowableTransport($transport);
+        $eventDispatcher = $this->getEventDispatcher();
+
+        $factory = ClientFactory::create($this->transport)
+            ->setEventDispatcher($eventDispatcher)
+        ;
+
+        if ($this->throwable) {
+            $this->registerListener(SentEvent::class, new ThrowableSendListener($eventDispatcher));
         }
 
-        return ClientFactory::create($transport)->build();
+        return $factory->build();
     }
+
+    abstract protected function registerListener(string $event, callable $listener): void;
 }
