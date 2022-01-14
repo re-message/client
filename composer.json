@@ -23,10 +23,10 @@
         }
     },
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.0",
         "ext-mbstring": "*",
 
-        "relmsg/message": "^0.9",
+        "relmsg/message": "^1.0.1",
 
         "psr/http-message": "^1.0",
         "psr/http-client": "^1.0",
