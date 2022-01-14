@@ -15,6 +15,7 @@
 
 namespace RM\Component\Client\Repository;
 
+use RM\Component\Client\Entity\EntityInterface;
 use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
@@ -32,18 +33,18 @@ interface RepositoryInterface
      *
      * @param string $id
      *
-     * @return object
+     * @return EntityInterface
      */
-    public function get(string $id): object;
+    public function find(string $id): EntityInterface;
 
     /**
      * Returns entities by identifiers.
      *
      * @param string[] $ids
      *
-     * @return object[]
+     * @return EntityInterface[]
      */
-    public function getAll(array $ids): array;
+    public function findAll(array $ids): array;
 
     /**
      * Returns FQCN of entity.

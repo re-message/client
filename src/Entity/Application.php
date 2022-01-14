@@ -107,6 +107,6 @@ class Application implements EntityInterface
      */
     final public static function createFromArray(array $array): self
     {
-        return new self($array['id'], $array['name'], $array['owner']);
+        return new static($array['id'], $array['name'], $array['owner']);
     }
 }

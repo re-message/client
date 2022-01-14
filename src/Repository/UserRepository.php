@@ -23,8 +23,8 @@ use RM\Standard\Message\Action;
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  *
- * @method User   get(string $id)
- * @method User[] getAll(string[] $ids)
+ * @method User   find(string $id)
+ * @method User[] findAll(string[] $ids)
  */
 class UserRepository extends AbstractRepository
 {

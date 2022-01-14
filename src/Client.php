@@ -106,7 +106,7 @@ class Client implements ClientInterface
         /** @var ApplicationRepository $repository */
         $repository = $this->getRepository(Application::class);
 
-        return $repository->get($auth->getObjectId());
+        return $repository->find($auth->getObjectId());
     }
 
     /**
@@ -126,6 +126,6 @@ class Client implements ClientInterface
         /** @var UserRepository $repository */
         $repository = $this->getRepository(User::class);
 
-        return $repository->get($auth->getObjectId());
+        return $repository->find($auth->getObjectId());
     }
 }

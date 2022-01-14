@@ -26,7 +26,7 @@ To create an instance of client, you need to choose transport. Now available onl
 
 Any transport requires message serializer from `relmsg/message` package. You can use `RM\Standard\Message\Serializer\ChainMessageSerializer` class to pass serializers for each message type.
 
-After creation of transport instance, you can use `RM\Component\Client\ClientFactory` to create an instance of client.
+After creation of transport instance, you can use `RM\Component\Client\ClientFactory` or `RM\Component\Client\ClientConfigurator` to create an instance of client. We recommend using the configurator because he has simple settings. Factory has several setters that provide client customization.
 
 In any case, you need to configure the following properties: 
 
@@ -41,6 +41,7 @@ Also, you can configure these properties via factory:
 * The authorization storage, stores the authorization data like token.
 * The authorization resolver, finds credentials to pass together with request to core
 * The config loader, loads the action config from resource with settings for authorization resolver
+
 
 Example of creation client with HTTP transport:
 
