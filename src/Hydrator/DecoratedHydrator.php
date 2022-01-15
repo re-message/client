@@ -46,4 +46,15 @@ abstract class DecoratedHydrator implements HydratorInterface
     {
         return $this->hydrator->supports($data, $class);
     }
+
+    public function getHydrator(): HydratorInterface
+    {
+        $hydrator = $this->hydrator;
+
+        while ($hydrator instanceof self) {
+            $hydrator = $hydrator->getHydrator();
+        }
+
+        return $hydrator;
+    }
 }
