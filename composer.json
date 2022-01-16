@@ -38,15 +38,15 @@
         "doctrine/annotations": "^1.10",
         "elao/enum": "^1.8",
 
-        "symfony/config": "^5.0",
-        "symfony/yaml": "^5.0"
+        "symfony/config": "^5.0|^6.0",
+        "symfony/yaml": "^5.0|^6.0"
     },
     "require-dev": {
-        "symfony/http-client": "^5.0",
-        "symfony/event-dispatcher": "^5.0",
+        "symfony/http-client": "^5.0|^6.0",
+        "symfony/event-dispatcher": "^5.0|^6.0",
         "nyholm/psr7": "^1.2",
 
-        "phpunit/phpunit": "^9.1",
+        "phpunit/phpunit": "^9.5",
         "friendsofphp/php-cs-fixer": "^2.16"
     },
     "config": {
