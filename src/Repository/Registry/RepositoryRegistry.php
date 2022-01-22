@@ -28,6 +28,7 @@ use RM\Component\Client\Repository\RepositoryInterface;
 class RepositoryRegistry implements RepositoryRegistryInterface
 {
     private RepositoryFactoryInterface $factory;
+
     /**
      * @var Collection<string, RepositoryInterface>
      */

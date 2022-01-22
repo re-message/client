@@ -26,10 +26,6 @@ interface StorableAuthenticatorInterface extends AuthenticatorInterface
 {
     /**
      * Configures storage to use in authenticator.
-     *
-     * @param AuthorizationStorageInterface $storage
-     *
-     * @return static
      */
-    public function setStorage(AuthorizationStorageInterface $storage): self;
+    public function setStorage(AuthorizationStorageInterface $storage): static;
 }

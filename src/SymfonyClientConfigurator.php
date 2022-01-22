@@ -22,8 +22,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use UnexpectedValueException;
 
 /**
- * Class SymfonyClientConfigurator
- *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
 class SymfonyClientConfigurator extends AbstractClientConfigurator
@@ -33,9 +31,12 @@ class SymfonyClientConfigurator extends AbstractClientConfigurator
         parent::__construct($transport);
 
         if (!class_exists(EventDispatcher::class)) {
-            throw new InvalidArgumentException(
-                sprintf("To use %s you need to install the symfony/event-dispatcher package.", self::class)
+            $message = sprintf(
+                'To use %s you need to install the symfony/event-dispatcher package.',
+                self::class
             );
+
+            throw new InvalidArgumentException($message);
         }
 
         $this->setEventDispatcher(new EventDispatcher());
@@ -48,7 +49,7 @@ class SymfonyClientConfigurator extends AbstractClientConfigurator
         if (!$eventDispatcher instanceof EventDispatcherInterface) {
             throw new UnexpectedValueException(
                 sprintf(
-                    "Expected instance of %s, got %s.",
+                    'Expected instance of %s, got %s.',
                     EventDispatcherInterface::class,
                     get_class($eventDispatcher)
                 )

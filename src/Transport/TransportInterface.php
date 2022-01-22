@@ -34,9 +34,9 @@ interface TransportInterface
      *
      * @param MessageInterface $message
      *
-     * @return MessageInterface
-     *
      * @throws ErrorException
+     *
+     * @return MessageInterface
      */
     public function send(MessageInterface $message): MessageInterface;
 

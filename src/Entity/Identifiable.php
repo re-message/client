@@ -24,8 +24,6 @@ interface Identifiable
 {
     /**
      * Returns unique identifier of entity.
-     *
-     * @return string
      */
     public function getId(): string;
 }

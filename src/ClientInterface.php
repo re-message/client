@@ -41,18 +41,18 @@ interface ClientInterface extends RepositoryRegistryInterface, TransportInterfac
     /**
      * Returns current application which authorized in.
      *
-     * @return null|Application
-     *
      * @throws ErrorException
+     *
+     * @return null|Application
      */
     public function getApplication(): ?Application;
 
     /**
      * Returns current user which authorized in.
      *
-     * @return null|User
-     *
      * @throws ErrorException
+     *
+     * @return null|User
      */
     public function getUser(): ?User;
 }
