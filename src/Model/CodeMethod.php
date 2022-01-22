@@ -15,14 +15,21 @@
 
 namespace RM\Component\Client\Model;
 
+use JsonSerializable;
+
 /**
  * Enum CodeMethod.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
-enum CodeMethod: string
+enum CodeMethod: string implements JsonSerializable
 {
     case AUTO = 'auto';
     case NOTIFICATION = 'notification';
     case SMS = 'sms';
+
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
 }
