@@ -40,19 +40,19 @@ abstract class AbstractClientConfigurator
         $this->transport = $transport;
     }
 
-    public static function create(TransportInterface $transport): self
+    public static function create(TransportInterface $transport): static
     {
         return new static($transport);
     }
 
-    public function setThrowable(bool $throwable): AbstractClientConfigurator
+    public function setThrowable(bool $throwable): static
     {
         $this->throwable = $throwable;
 
         return $this;
     }
 
-    public function setLazyLoad(bool $lazyLoad): AbstractClientConfigurator
+    public function setLazyLoad(bool $lazyLoad): static
     {
         $this->lazyLoad = $lazyLoad;
 
@@ -64,7 +64,7 @@ abstract class AbstractClientConfigurator
         return $this->eventDispatcher;
     }
 
-    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): self
+    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): static
     {
         $this->eventDispatcher = $eventDispatcher;
 

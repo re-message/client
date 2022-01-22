@@ -24,23 +24,17 @@ interface StatefulAuthenticatorInterface extends StorableAuthenticatorInterface
 {
     /**
      * Saves the state of authenticator in storage.
-     *
-     * @return static
      */
-    public function store(): self;
+    public function store(): static;
 
     /**
      * Restore state of authenticator from storage.
-     *
-     * @return static
      */
-    public function restore(): self;
+    public function restore(): static;
 
     /**
      * Clears state of authenticator.
      * This method can clear the state stored in the storage.
-     *
-     * @return static
      */
-    public function clear(): self;
+    public function clear(): static;
 }

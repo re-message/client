@@ -84,7 +84,7 @@ class Client implements ClientInterface
      *
      * @internal
      */
-    public function setResolver(AuthorizationResolverInterface $resolver): self
+    public function setResolver(AuthorizationResolverInterface $resolver): static
     {
         return $this;
     }

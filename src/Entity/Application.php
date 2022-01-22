@@ -105,7 +105,7 @@ class Application implements EntityInterface
     /**
      * {@inheritdoc}
      */
-    final public static function createFromArray(array $array): self
+    final public static function createFromArray(array $array): static
     {
         return new static($array['id'], $array['name'], $array['owner']);
     }

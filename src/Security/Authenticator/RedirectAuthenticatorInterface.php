@@ -27,12 +27,8 @@ interface RedirectAuthenticatorInterface extends AuthenticatorInterface
 {
     /**
      * Sets factory in authenticator to use him inside.
-     *
-     * @param AuthenticatorFactoryInterface $authenticatorFactory
-     *
-     * @return $this
      */
-    public function setFactory(AuthenticatorFactoryInterface $authenticatorFactory): self;
+    public function setFactory(AuthenticatorFactoryInterface $authenticatorFactory): static;
 
     /**
      * Returns a next authenticator.

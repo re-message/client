@@ -51,14 +51,14 @@ class CodeAuthenticator implements RedirectAuthenticatorInterface
     /**
      * {@inheritdoc}
      */
-    public function setFactory(AuthenticatorFactoryInterface $authenticatorFactory): RedirectAuthenticatorInterface
+    public function setFactory(AuthenticatorFactoryInterface $authenticatorFactory): static
     {
         $this->authenticatorFactory = $authenticatorFactory;
 
         return $this;
     }
 
-    public function setPhone(string $phone): self
+    public function setPhone(string $phone): static
     {
         $this->phone = $phone;
 
@@ -70,7 +70,7 @@ class CodeAuthenticator implements RedirectAuthenticatorInterface
         return $this->preferences;
     }
 
-    public function setPreferences(Preferences $preferences): self
+    public function setPreferences(Preferences $preferences): static
     {
         $this->preferences = $preferences;
 

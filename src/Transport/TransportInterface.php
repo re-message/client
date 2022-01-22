@@ -32,20 +32,12 @@ interface TransportInterface
     /**
      * Sends the message into server and receive a response message.
      *
-     * @param MessageInterface $message
-     *
      * @throws ErrorException
-     *
-     * @return MessageInterface
      */
     public function send(MessageInterface $message): MessageInterface;
 
     /**
      * Configures resolver for transport to use authorization in requests.
-     *
-     * @param AuthorizationResolverInterface $resolver
-     *
-     * @return self
      */
-    public function setResolver(AuthorizationResolverInterface $resolver): self;
+    public function setResolver(AuthorizationResolverInterface $resolver): static;
 }
