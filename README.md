@@ -12,7 +12,9 @@ Client uses the specific version when sends messages to Core.
 
 1. PHP 8.1+
 2. Any `psr/http-client` compatible package to send HTTP requests
-3. Any `psr/event-dispatcher` compatible package (_optional_: `symfony/event-dispatcher` used by default)
+3. Any `psr/event-dispatcher` compatible package 
+
+   Configurator for `symfony/event-dispatcher` included in package
 
 ## Installation
 
