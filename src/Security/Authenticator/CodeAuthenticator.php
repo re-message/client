@@ -84,7 +84,7 @@ class CodeAuthenticator implements RedirectAuthenticatorInterface
         $content = $response->getContent();
 
         $request = $content['request'];
-        $method = CodeMethod::get($content['method']);
+        $method = CodeMethod::from($content['method']);
         $this->preferences->setMethod($method);
 
         /** @var SignInAuthenticator $authenticator */

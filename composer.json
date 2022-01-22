@@ -36,7 +36,6 @@
 
         "doctrine/collections": "^1.6",
         "doctrine/annotations": "^1.10",
-        "elao/enum": "^1.8",
 
         "symfony/config": "^6.0",
         "symfony/yaml": "^6.0"

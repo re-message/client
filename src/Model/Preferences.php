@@ -16,7 +16,7 @@
 namespace RM\Component\Client\Model;
 
 /**
- * Class RequestPreferences.
+ * Class Preferences.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
@@ -26,7 +26,7 @@ class Preferences
 
     public function __construct()
     {
-        $this->method = CodeMethod::get(CodeMethod::AUTO);
+        $this->method = CodeMethod::AUTO;
     }
 
     public function getMethod(): CodeMethod
@@ -42,7 +42,7 @@ class Preferences
     public function toArray(): array
     {
         return [
-            'method' => $this->method->getValue(),
+            'method' => $this->method->value,
         ];
     }
 }
