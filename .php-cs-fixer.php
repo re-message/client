@@ -2,6 +2,7 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
+    ->notPath('src/Model/CodeMethod.php')
     ->in(__DIR__)
 ;
 
