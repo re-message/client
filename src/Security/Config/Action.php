@@ -53,8 +53,8 @@ class Action
         return in_array($type, $this->getAuthorizations(), true);
     }
 
-    public static function createFromArray(array $config): self
+    public static function createFromArray(array $config): static
     {
-        return new self($config['authorizations'] ?? null);
+        return new static($config['authorizations'] ?? null);
     }
 }

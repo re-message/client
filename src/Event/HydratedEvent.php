@@ -37,7 +37,7 @@ class HydratedEvent extends Event
         return $this->entity;
     }
 
-    public function setEntity(EntityInterface $entity): self
+    public function setEntity(EntityInterface $entity): static
     {
         $this->entity = $entity;
 

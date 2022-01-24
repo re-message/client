@@ -53,6 +53,8 @@ final class NullAuthorization implements AuthorizationInterface
      */
     public function getCredentials(): string
     {
-        throw new BadMethodCallException(sprintf('Do not use %s method of %s.', __FUNCTION__, self::class));
+        $message = sprintf('Do not use %s method of %s.', __FUNCTION__, self::class);
+
+        throw new BadMethodCallException($message);
     }
 }

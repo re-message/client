@@ -39,7 +39,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     private ?string $request;
     private ?string $code;
 
-    public function setPhone(string $phone): self
+    public function setPhone(string $phone): static
     {
         $this->phone = $phone;
 
@@ -58,12 +58,8 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
 
     /**
      * Sets the identifier of the auth request.
-     *
-     * @param string $request
-     *
-     * @return self
      */
-    public function setRequest(string $request): self
+    public function setRequest(string $request): static
     {
         $this->request = $request;
 
@@ -72,12 +68,8 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
 
     /**
      * Sets the auth code in authenticator.
-     *
-     * @param string $code
-     *
-     * @return self
      */
-    public function setCode(string $code): self
+    public function setCode(string $code): static
     {
         $this->code = $code;
 
@@ -135,7 +127,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     /**
      * {@inheritdoc}
      */
-    public function store(): self
+    public function store(): static
     {
         if (null !== $this->request && null !== $this->phone) {
             $authorization = new Request($this->request, $this->phone);
@@ -148,7 +140,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     /**
      * {@inheritdoc}
      */
-    public function restore(): self
+    public function restore(): static
     {
         $this->clear();
 
@@ -164,7 +156,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     /**
      * {@inheritdoc}
      */
-    public function clear(): self
+    public function clear(): static
     {
         $this->phone = null;
         $this->request = null;

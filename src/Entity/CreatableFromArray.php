@@ -24,10 +24,6 @@ interface CreatableFromArray
 {
     /**
      * Creates a new instance of class by array.
-     *
-     * @param array $array
-     *
-     * @return static
      */
-    public static function createFromArray(array $array): self;
+    public static function createFromArray(array $array): static;
 }

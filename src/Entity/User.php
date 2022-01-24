@@ -112,7 +112,7 @@ class User implements EntityInterface
     /**
      * {@inheritdoc}
      */
-    final public static function createFromArray(array $array): self
+    final public static function createFromArray(array $array): static
     {
         $id = $array['id'];
         $phone = $array['phone'] ?? null;

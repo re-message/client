@@ -40,7 +40,7 @@ abstract class DirectAuthenticator implements StorableAuthenticatorInterface
         $this->hydrator = $hydrator;
     }
 
-    public function setStorage(AuthorizationStorageInterface $storage): self
+    public function setStorage(AuthorizationStorageInterface $storage): static
     {
         $this->storage = $storage;
 

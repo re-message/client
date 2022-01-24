@@ -67,9 +67,9 @@ class ClientFactory
         $this->eventDispatcher = new EventDispatcher();
     }
 
-    public static function create(TransportInterface $transport): self
+    public static function create(TransportInterface $transport): static
     {
-        return new self($transport);
+        return new static($transport);
     }
 
     protected function createTransport(EventDispatcherInterface $eventDispatcher): TransportInterface
@@ -77,7 +77,7 @@ class ClientFactory
         return new EventfulTransport($this->transport, $eventDispatcher);
     }
 
-    public function setTransport(TransportInterface $transport): self
+    public function setTransport(TransportInterface $transport): static
     {
         $this->transport = $transport;
 
@@ -89,7 +89,7 @@ class ClientFactory
         return $this->eventDispatcher;
     }
 
-    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): self
+    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): static
     {
         $this->eventDispatcher = $eventDispatcher;
 
@@ -106,7 +106,7 @@ class ClientFactory
         return new EventfulHydrator($hydrator, $eventDispatcher);
     }
 
-    public function setHydrator(HydratorInterface $hydrator): ClientFactory
+    public function setHydrator(HydratorInterface $hydrator): static
     {
         $this->hydrator = $hydrator;
 
@@ -124,7 +124,7 @@ class ClientFactory
         return $this->repositoryFactory;
     }
 
-    public function setRepositoryFactory(RepositoryFactoryInterface $repositoryFactory): self
+    public function setRepositoryFactory(RepositoryFactoryInterface $repositoryFactory): static
     {
         $this->repositoryFactory = $repositoryFactory;
 
@@ -140,7 +140,7 @@ class ClientFactory
         return $this->repositoryRegistry;
     }
 
-    public function setRepositoryRegistry(RepositoryRegistryInterface $repositoryRegistry): self
+    public function setRepositoryRegistry(RepositoryRegistryInterface $repositoryRegistry): static
     {
         $this->repositoryRegistry = $repositoryRegistry;
 
@@ -161,7 +161,7 @@ class ClientFactory
         return $this->authenticatorFactory;
     }
 
-    public function setAuthenticatorFactory(AuthenticatorFactoryInterface $authenticatorFactory): self
+    public function setAuthenticatorFactory(AuthenticatorFactoryInterface $authenticatorFactory): static
     {
         $this->authenticatorFactory = $authenticatorFactory;
 
@@ -173,7 +173,7 @@ class ClientFactory
         return $this->authorizationStorage ?? new RuntimeAuthorizationStorage();
     }
 
-    public function setAuthorizationStorage(AuthorizationStorageInterface $authorizationStorage): self
+    public function setAuthorizationStorage(AuthorizationStorageInterface $authorizationStorage): static
     {
         $this->authorizationStorage = $authorizationStorage;
 
@@ -192,7 +192,7 @@ class ClientFactory
         return $this->configLoader;
     }
 
-    public function setConfigLoader(LoaderInterface $configLoader): ClientFactory
+    public function setConfigLoader(LoaderInterface $configLoader): static
     {
         $this->configLoader = $configLoader;
 
@@ -210,7 +210,7 @@ class ClientFactory
         return $this->authorizationResolver;
     }
 
-    public function setAuthorizationResolver(AuthorizationResolverInterface $authorizationResolver): self
+    public function setAuthorizationResolver(AuthorizationResolverInterface $authorizationResolver): static
     {
         $this->authorizationResolver = $authorizationResolver;
 

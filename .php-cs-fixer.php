@@ -2,10 +2,12 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
+    ->notPath('src/Model/CodeMethod.php')
     ->in(__DIR__)
 ;
 
-return PhpCsFixer\Config::create()
+$config = new PhpCsFixer\Config();
+return $config
     ->setRules(
         [
             '@Symfony' => true,
@@ -21,4 +23,5 @@ return PhpCsFixer\Config::create()
         ]
     )
     ->setRiskyAllowed(true)
-    ->setFinder($finder);
+    ->setFinder($finder)
+;

@@ -28,21 +28,21 @@ use RM\Standard\Message\MessageInterface;
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  *
- * @see    https://dev.relmsg.ru/security/service
+ * @see https://dev.relmsg.ru/security/service
  */
 class ServiceAuthenticator extends DirectAuthenticator
 {
     private string $id;
     private string $secret;
 
-    public function setId(string $id): self
+    public function setId(string $id): static
     {
         $this->id = $id;
 
         return $this;
     }
 
-    public function setSecret(string $secret): self
+    public function setSecret(string $secret): static
     {
         $this->secret = $secret;
 

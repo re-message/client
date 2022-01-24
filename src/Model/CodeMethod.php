@@ -15,19 +15,21 @@
 
 namespace RM\Component\Client\Model;
 
-use Elao\Enum\AutoDiscoveredValuesTrait;
-use Elao\Enum\Enum;
+use JsonSerializable;
 
 /**
- * Class CodeMethod.
+ * Enum CodeMethod.
  *
  * @author Oleg Kozlov <h1karo@relmsg.ru>
  */
-class CodeMethod extends Enum
+enum CodeMethod: string implements JsonSerializable
 {
-    use AutoDiscoveredValuesTrait;
+    case AUTO = 'auto';
+    case NOTIFICATION = 'notification';
+    case SMS = 'sms';
 
-    public const AUTO = 'auto';
-    public const NOTIFICATION = 'notification';
-    public const SMS = 'sms';
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
 }
