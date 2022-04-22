@@ -20,7 +20,6 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\Reader;
 use InvalidArgumentException;
 use ReflectionClass;
-use ReflectionException;
 use RM\Component\Client\Annotation\Entity;
 use RM\Component\Client\Repository\RepositoryInterface;
 
@@ -44,11 +43,7 @@ abstract class AbstractFactory implements RepositoryFactoryInterface
             throw new InvalidArgumentException('Passed entity class does not exist.');
         }
 
-        try {
-            $reflect = new ReflectionClass($entity);
-        } catch (ReflectionException $e) {
-            throw new InvalidArgumentException($e->getMessage());
-        }
+        $reflect = new ReflectionClass($entity);
 
         do {
             $class = $this->findRepositoryClass($reflect);
