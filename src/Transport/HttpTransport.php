@@ -22,6 +22,8 @@ use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use RM\Component\Client\Config\ConfigurationInterface;
+use RM\Component\Client\Config\HttpConfiguration;
 use RM\Component\Client\Exception\TransportException;
 use RM\Component\Client\Exception\UnexpectedResponseException;
 use RM\Component\Client\Exception\UnserializableMessageException;
@@ -37,21 +39,21 @@ use RM\Standard\Message\Serializer\MessageSerializerInterface;
  */
 class HttpTransport extends AbstractTransport
 {
-    protected const SCHEME = 'https://';
-    protected const ENTRYPOINT = 'entrypoint';
-
     protected ClientInterface $httpClient;
     protected RequestFactoryInterface $requestFactory;
     protected StreamFactoryInterface $streamFactory;
+    protected ConfigurationInterface $configuration;
 
     public function __construct(
         ClientInterface $httpClient,
         RequestFactoryInterface $requestFactory,
         StreamFactoryInterface $streamFactory,
-        MessageSerializerInterface $serializer
+        MessageSerializerInterface $serializer,
+        ConfigurationInterface $configuration = new HttpConfiguration(),
     ) {
-        parent::__construct($serializer);
+        parent::__construct($serializer, $configuration);
 
+        $this->configuration = $configuration;
         $this->httpClient = $httpClient;
         $this->requestFactory = $requestFactory;
         $this->streamFactory = $streamFactory;
@@ -98,7 +100,7 @@ class HttpTransport extends AbstractTransport
         $body = $this->serializer->serialize($message);
         $stream = $this->streamFactory->createStream($body);
 
-        $url = $this->generateUrl();
+        $url = $this->configuration->createAddress();
         $request = $this->requestFactory
             ->createRequest('POST', $url)
             ->withHeader('Content-Type', 'application/json')
@@ -107,13 +109,6 @@ class HttpTransport extends AbstractTransport
         ;
 
         return $this->authorize($request, $message);
-    }
-
-    protected function generateUrl(): string
-    {
-        $base = self::SCHEME . self::DOMAIN;
-
-        return implode('/', [$base, 'v' . self::VERSION, self::ENTRYPOINT]);
     }
 
     protected function authorize(RequestInterface $request, MessageInterface $message): RequestInterface

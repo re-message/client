@@ -16,6 +16,7 @@
 
 namespace RM\Component\Client\Transport;
 
+use RM\Component\Client\Config\ConfigurationInterface;
 use RM\Component\Client\Security\Resolver\AuthorizationResolverInterface;
 use RM\Standard\Message\Serializer\MessageSerializerInterface;
 
@@ -27,11 +28,15 @@ use RM\Standard\Message\Serializer\MessageSerializerInterface;
 abstract class AbstractTransport implements TransportInterface
 {
     protected MessageSerializerInterface $serializer;
+    protected ConfigurationInterface $configuration;
     protected ?AuthorizationResolverInterface $resolver = null;
 
-    public function __construct(MessageSerializerInterface $serializer)
-    {
+    public function __construct(
+        MessageSerializerInterface $serializer,
+        ConfigurationInterface $configuration,
+    ) {
         $this->serializer = $serializer;
+        $this->configuration = $configuration;
     }
 
     /**

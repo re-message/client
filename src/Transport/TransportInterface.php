@@ -27,9 +27,6 @@ use RM\Standard\Message\MessageInterface;
  */
 interface TransportInterface
 {
-    public const DOMAIN = 'apis.remessage.ru';
-    public const VERSION = '1.0';
-
     /**
      * Sends the message into server and receive a response message.
      *
