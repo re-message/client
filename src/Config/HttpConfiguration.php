@@ -17,7 +17,7 @@
 namespace RM\Component\Client\Config;
 
 /**
- * @author Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class HttpConfiguration implements ConfigurationInterface
 {
