@@ -1,10 +1,10 @@
-# Relations Messenger Client
+# Re Message Client
 
-This package provides an object-oriented client level to interact with Relations Messenger Core. The package architecture inspired by DBAL and Doctrine packages.
+This package provides an object-oriented client level to interact with Re Message Core. The package architecture inspired by DBAL and Doctrine packages.
 
 Client uses the specific version when sends messages to Core.
 
-![Package version](https://img.shields.io/packagist/v/relmsg/client?style=for-the-badge)
+![Package version](https://img.shields.io/packagist/v/remessage/client?style=for-the-badge)
 ![Core version](https://img.shields.io/static/v1?label=Core%20version&message=1.0&color=blue&style=for-the-badge)
 ![PHP Version](https://img.shields.io/static/v1?label=PHP&message=^8.1&color=blue&style=for-the-badge)
 
@@ -20,13 +20,13 @@ Client uses the specific version when sends messages to Core.
 
 You will need Composer to install:
 
-`composer require relmsg/client`
+`composer require remessage/client`
 
 ## Usage
 
 To create an instance of client, you need to choose transport. Now available only HTTP protocol transport. This transport can work with PSR 7, PSR 17, PSR 18 implementation. For example, `symfony/http-client`. We will use this package as http client in next examples.
 
-Any transport requires message serializer from `relmsg/message` package. You can use `RM\Standard\Message\Serializer\ChainMessageSerializer` class to pass serializers for each message type.
+Any transport requires message serializer from `remessage/message` package. You can use `RM\Standard\Message\Serializer\ChainMessageSerializer` class to pass serializers for each message type.
 
 After creation of transport instance, you can use `RM\Component\Client\ClientFactory` or `RM\Component\Client\ClientConfigurator` to create an instance of client. We recommend using the configurator because he has simple settings. Factory has several setters that provide client customization.
 

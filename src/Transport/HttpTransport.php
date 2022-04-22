@@ -1,13 +1,14 @@
 <?php
 /*
- * This file is a part of Relations Messenger Client.
- * This package is a part of Relations Messenger.
+ * This file is a part of Re Message Client.
+ * This package is a part of Re Message.
  *
- * @link      https://github.com/relmsg/client
- * @link      https://dev.relmsg.ru/packages/client
- * @copyright Copyright (c) 2018-2022 Relations Messenger
- * @author    Oleg Kozlov <h1karo@relmsg.ru>
- * @license   https://legal.relmsg.ru/licenses/client
+ * @link      https://github.com/re-message/client
+ * @link      https://dev.remessage.ru/packages/client
+ * @copyright Copyright (c) 2018-2022 Re Message
+ * @author    Oleg Kozlov <h1karo@remessage.ru>
+ * @license   Apache License 2.0
+ * @license   https://legal.remessage.ru/licenses/client
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -32,7 +33,7 @@ use RM\Standard\Message\Serializer\MessageSerializerInterface;
 /**
  * Class HttpTransport.
  *
- * @author Oleg Kozlov <h1karo@relmsg.ru>
+ * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class HttpTransport extends AbstractTransport
 {
@@ -101,7 +102,7 @@ class HttpTransport extends AbstractTransport
         $request = $this->requestFactory
             ->createRequest('POST', $url)
             ->withHeader('Content-Type', 'application/json')
-            ->withHeader('User-Agent', 'relmsg/client; v1.0')
+            ->withHeader('User-Agent', 'remessage/client; v1.0')
             ->withBody($stream)
         ;
 
