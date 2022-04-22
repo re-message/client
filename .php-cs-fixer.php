@@ -1,9 +1,10 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
+    ->in(__DIR__)
+    ->append([__FILE__])
     ->exclude('vendor')
     ->notPath('src/Model/CodeMethod.php')
-    ->in(__DIR__)
 ;
 
 $config = new PhpCsFixer\Config();
