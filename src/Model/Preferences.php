@@ -17,8 +17,6 @@
 namespace RM\Component\Client\Model;
 
 /**
- * Class Preferences.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class Preferences

@@ -20,8 +20,6 @@ use RM\Component\Client\Entity\EntityInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 
 /**
- * Class HydratedEvent.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class HydratedEvent extends Event

@@ -22,8 +22,6 @@ use RM\Component\Client\Annotation\Entity;
 use RM\Component\Client\Repository\UserRepository;
 
 /**
- * Class User.
- *
  * @Entity(repositoryClass=UserRepository::class)
  *
  * @author Oleg Kozlov <h1karo@remessage.ru>

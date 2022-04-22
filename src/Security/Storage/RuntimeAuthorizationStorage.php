@@ -22,8 +22,6 @@ use RM\Component\Client\Security\Credentials\AuthorizationInterface;
 use RM\Component\Client\Security\Credentials\NullAuthorization;
 
 /**
- * Class RuntimeAuthorizationStorage.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class RuntimeAuthorizationStorage implements AuthorizationStorageInterface

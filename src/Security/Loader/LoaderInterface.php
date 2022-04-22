@@ -28,11 +28,11 @@ use Symfony\Component\Config\Loader\LoaderInterface as SymfonyLoaderInterface;
 interface LoaderInterface extends SymfonyLoaderInterface
 {
     /**
-     * Loads an actions configuration from the resource.
+     * Loads a configuration for actions from the resource.
      *
-     * @return Action[]|Collection
+     * @inheritDoc
      *
-     * {@inheritDoc}
+     * @return Collection<string, Action>
      */
     public function load($resource, string $type = null): Collection;
 }

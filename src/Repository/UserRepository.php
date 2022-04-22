@@ -20,8 +20,6 @@ use RM\Component\Client\Entity\User;
 use RM\Standard\Message\Action;
 
 /**
- * Class UserRepository.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  *
  * @method User   find(string $id)

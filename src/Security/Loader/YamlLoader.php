@@ -27,8 +27,6 @@ use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Class YamlLoader.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class YamlLoader extends FileLoader implements LoaderInterface

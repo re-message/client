@@ -19,8 +19,6 @@ namespace RM\Component\Client\Exception;
 use RuntimeException;
 
 /**
- * Class TokenNotFoundException.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class TokenNotFoundException extends RuntimeException implements ExceptionInterface

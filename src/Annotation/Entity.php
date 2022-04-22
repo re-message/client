@@ -19,8 +19,6 @@ namespace RM\Component\Client\Annotation;
 use Doctrine\Common\Annotations\Annotation\Target;
 
 /**
- * Class Entity.
- *
  * @Annotation
  * @Target("CLASS")
  *

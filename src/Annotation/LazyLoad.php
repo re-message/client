@@ -17,8 +17,6 @@
 namespace RM\Component\Client\Annotation;
 
 /**
- * Class LazyLoad.
- *
  * @Annotation
  * @Target("METHOD")
  *

@@ -17,8 +17,6 @@
 namespace RM\Component\Client\Entity;
 
 /**
- * Interface Identifiable.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 interface Identifiable

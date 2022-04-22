@@ -24,8 +24,6 @@ use RM\Component\Client\EventListener\ThrowableSendListener;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
- * Class AbstractClientConfigurator.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 abstract class AbstractClientConfigurator

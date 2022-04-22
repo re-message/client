@@ -21,8 +21,6 @@ use RM\Component\Client\Event\SentEvent;
 use RM\Standard\Message\MessageInterface;
 
 /**
- * Class EventfulTransport.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class EventfulTransport extends DecoratedTransport

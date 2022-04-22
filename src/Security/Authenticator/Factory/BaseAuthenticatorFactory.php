@@ -25,8 +25,6 @@ use RM\Component\Client\Security\Storage\AuthorizationStorageInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
- * Class BaseAuthenticatorFactory.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class BaseAuthenticatorFactory implements AuthenticatorFactoryInterface

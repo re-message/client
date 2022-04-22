@@ -22,8 +22,6 @@ use RM\Component\Client\Annotation\LazyLoad;
 use RM\Component\Client\Repository\ApplicationRepository;
 
 /**
- * Class Application.
- *
  * @Entity(repositoryClass=ApplicationRepository::class)
  *
  * @author Oleg Kozlov <h1karo@remessage.ru>

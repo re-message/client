@@ -20,8 +20,6 @@ use RM\Standard\Message\MessageInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 
 /**
- * Class SentEvent.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class SentEvent extends Event

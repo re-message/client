@@ -19,18 +19,12 @@ namespace RM\Component\Client\Repository\Registry;
 use RM\Component\Client\Repository\RepositoryInterface;
 
 /**
- * Interface RepositoryRegistryInterface.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 interface RepositoryRegistryInterface
 {
     /**
      * Returns entity repository.
-     *
-     * @param string $entity
-     *
-     * @return RepositoryInterface
      */
     public function getRepository(string $entity): RepositoryInterface;
 }

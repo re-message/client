@@ -21,8 +21,6 @@ use RuntimeException;
 use Throwable;
 
 /**
- * Class UnexpectedResponseException.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class UnexpectedResponseException extends RuntimeException implements ExceptionInterface

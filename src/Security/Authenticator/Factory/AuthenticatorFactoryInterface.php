@@ -27,10 +27,6 @@ interface AuthenticatorFactoryInterface
 {
     /**
      * Builds the authenticator by type.
-     *
-     * @param string $type
-     *
-     * @return AuthenticatorInterface
      */
     public function build(string $type): AuthenticatorInterface;
 }

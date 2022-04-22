@@ -25,8 +25,6 @@ use RM\Component\Client\Security\Authenticator\CodeAuthenticator;
 use RM\Component\Client\Security\Authenticator\ServiceAuthenticator;
 
 /**
- * Class AliasedAuthenticatorFactory.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class AliasedAuthenticatorFactory implements AuthenticatorFactoryInterface

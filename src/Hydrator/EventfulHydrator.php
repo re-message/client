@@ -21,8 +21,6 @@ use RM\Component\Client\Entity\EntityInterface;
 use RM\Component\Client\Event\HydratedEvent;
 
 /**
- * Class EventfulHydrator.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class EventfulHydrator extends DecoratedHydrator

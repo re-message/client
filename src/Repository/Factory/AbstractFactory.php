@@ -24,8 +24,6 @@ use RM\Component\Client\Annotation\Entity;
 use RM\Component\Client\Repository\RepositoryInterface;
 
 /**
- * Class AbstractFactory.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 abstract class AbstractFactory implements RepositoryFactoryInterface

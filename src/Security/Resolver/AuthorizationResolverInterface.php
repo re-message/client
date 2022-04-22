@@ -28,10 +28,6 @@ interface AuthorizationResolverInterface
 {
     /**
      * Returns the authorization object which resolved for this message.
-     *
-     * @param MessageInterface $message
-     *
-     * @return null|AuthorizationInterface
      */
     public function resolve(MessageInterface $message): ?AuthorizationInterface;
 }

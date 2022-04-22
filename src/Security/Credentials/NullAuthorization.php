@@ -19,8 +19,6 @@ namespace RM\Component\Client\Security\Credentials;
 use BadMethodCallException;
 
 /**
- * Class NullAuthorization.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 final class NullAuthorization implements AuthorizationInterface

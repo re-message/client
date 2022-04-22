@@ -24,8 +24,6 @@ use RM\Component\Client\Security\Authenticator\AuthenticatorInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
- * Interface ClientInterface.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 interface ClientInterface extends RepositoryRegistryInterface, TransportInterface
@@ -34,8 +32,6 @@ interface ClientInterface extends RepositoryRegistryInterface, TransportInterfac
      * Creates authenticator by the token type.
      *
      * @param string $type The token type (e.g. `user` for user token).
-     *
-     * @return AuthenticatorInterface
      */
     public function createAuthenticator(string $type): AuthenticatorInterface;
 
@@ -43,8 +39,6 @@ interface ClientInterface extends RepositoryRegistryInterface, TransportInterfac
      * Returns current application which authorized in.
      *
      * @throws ErrorException
-     *
-     * @return null|Application
      */
     public function getApplication(): ?Application;
 
@@ -52,8 +46,6 @@ interface ClientInterface extends RepositoryRegistryInterface, TransportInterfac
      * Returns current user which authorized in.
      *
      * @throws ErrorException
-     *
-     * @return null|User
      */
     public function getUser(): ?User;
 }

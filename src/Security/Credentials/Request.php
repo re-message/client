@@ -17,8 +17,6 @@
 namespace RM\Component\Client\Security\Credentials;
 
 /**
- * Class Request.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class Request implements AuthorizationInterface

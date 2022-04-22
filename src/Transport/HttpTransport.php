@@ -33,8 +33,6 @@ use RM\Standard\Message\MessageInterface;
 use RM\Standard\Message\Serializer\MessageSerializerInterface;
 
 /**
- * Class HttpTransport.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class HttpTransport extends AbstractTransport

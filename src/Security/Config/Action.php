@@ -19,8 +19,6 @@ namespace RM\Component\Client\Security\Config;
 use BadMethodCallException;
 
 /**
- * Class Action.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class Action

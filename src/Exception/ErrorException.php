@@ -20,8 +20,6 @@ use Exception;
 use RM\Standard\Message\Error;
 
 /**
- * Class ErrorException.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class ErrorException extends Exception implements ExceptionInterface

@@ -20,8 +20,6 @@ use RM\Component\Client\Entity\Application;
 use RM\Standard\Message\Action;
 
 /**
- * Class ApplicationRepository.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  *
  * @method Application   find(string $id)

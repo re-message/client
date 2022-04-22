@@ -25,8 +25,6 @@ use RM\Standard\Message\MessageInterface;
 use RuntimeException;
 
 /**
- * Class DirectAuthenticator.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 abstract class DirectAuthenticator implements StorableAuthenticatorInterface

@@ -30,15 +30,11 @@ interface AuthenticatorInterface
 
     /**
      * Puts the received access token into the token storage and returns the object.
-     *
-     * @return object
      */
     public function authenticate(): object;
 
     /**
      * Returns type of the token that will be received in {@see authenticate}.
-     *
-     * @return string
      */
     public static function getTokenType(): string;
 }

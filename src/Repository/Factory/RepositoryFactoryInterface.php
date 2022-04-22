@@ -19,18 +19,12 @@ namespace RM\Component\Client\Repository\Factory;
 use RM\Component\Client\Repository\RepositoryInterface;
 
 /**
- * Interface RepositoryFactoryInterface.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 interface RepositoryFactoryInterface
 {
     /**
      * Builds the repository by entity class.
-     *
-     * @param string $entity
-     *
-     * @return RepositoryInterface
      */
     public function build(string $entity): RepositoryInterface;
 }

@@ -19,8 +19,6 @@ namespace RM\Component\Client\Exception;
 use RuntimeException;
 
 /**
- * Class FactoryException.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class FactoryException extends RuntimeException implements ExceptionInterface

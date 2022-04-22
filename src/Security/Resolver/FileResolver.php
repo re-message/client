@@ -26,8 +26,6 @@ use RM\Standard\Message\Action;
 use RM\Standard\Message\MessageInterface;
 
 /**
- * Class FileResolver.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class FileResolver implements AuthorizationResolverInterface
@@ -94,8 +92,6 @@ class FileResolver implements AuthorizationResolverInterface
 
     /**
      * @throws Exception
-     *
-     * @return Collection
      */
     protected function getConfig(): Collection
     {

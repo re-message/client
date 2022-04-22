@@ -19,8 +19,6 @@ namespace RM\Component\Client\Model;
 use JsonSerializable;
 
 /**
- * Enum CodeMethod.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 enum CodeMethod: string implements JsonSerializable

@@ -23,8 +23,6 @@ use RM\Standard\Message\Action;
 use RuntimeException;
 
 /**
- * Class AbstractRepository.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 abstract class AbstractRepository implements RepositoryInterface

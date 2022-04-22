@@ -17,8 +17,6 @@
 namespace RM\Component\Client\Entity;
 
 /**
- * Interface EntityInterface.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 interface EntityInterface extends Identifiable, CreatableFromArray

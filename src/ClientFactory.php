@@ -39,8 +39,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
- * Class ClientFactory.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class ClientFactory

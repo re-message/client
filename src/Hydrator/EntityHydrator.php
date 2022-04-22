@@ -19,8 +19,6 @@ namespace RM\Component\Client\Hydrator;
 use RM\Component\Client\Entity\EntityInterface;
 
 /**
- * Class EntityHydrator.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class EntityHydrator implements HydratorInterface

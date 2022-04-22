@@ -27,27 +27,16 @@ interface AuthorizationStorageInterface
 {
     /**
      * Sets the authorization into storage by type.
-     *
-     * @param string                 $type
-     * @param AuthorizationInterface $auth
      */
     public function set(string $type, AuthorizationInterface $auth): void;
 
     /**
      * Get the authorization by type.
-     *
-     * @param string $type
-     *
-     * @return AuthorizationInterface
      */
     public function get(string $type): AuthorizationInterface;
 
     /**
-     * Checks that authorization is exist.
-     *
-     * @param string $type
-     *
-     * @return bool
+     * Checks that authorization is exists.
      */
     public function has(string $type): bool;
 }

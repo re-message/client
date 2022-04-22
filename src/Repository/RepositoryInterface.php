@@ -21,8 +21,6 @@ use RM\Component\Client\Hydrator\HydratorInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
- * Interface RepositoryInterface.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 interface RepositoryInterface

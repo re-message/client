@@ -21,8 +21,6 @@ use RuntimeException;
 use Throwable;
 
 /**
- * Class UnexpectedMessageException.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class UnexpectedMessageException extends RuntimeException implements ExceptionInterface

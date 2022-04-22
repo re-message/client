@@ -24,8 +24,6 @@ use RM\Standard\Message\Response;
 use RuntimeException;
 
 /**
- * Trait RepositoryTrait.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 trait RepositoryTrait

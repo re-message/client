@@ -20,8 +20,6 @@ use RM\Component\Client\Security\Resolver\AuthorizationResolverInterface;
 use RM\Standard\Message\MessageInterface;
 
 /**
- * Class DecoratedTransport.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 abstract class DecoratedTransport implements TransportInterface

@@ -25,8 +25,6 @@ use RM\Component\Client\Event\HydratedEvent;
 use RM\Component\Client\Repository\Registry\RepositoryRegistryInterface;
 
 /**
- * Class LazyLoadListener.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class LazyLoadListener

@@ -25,8 +25,6 @@ use RM\Standard\Message\Error;
 use RM\Standard\Message\Response;
 
 /**
- * Class ThrowableSendListener.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class ThrowableSendListener
@@ -39,8 +37,6 @@ class ThrowableSendListener
     }
 
     /**
-     * @param SentEvent $event
-     *
      * @throws ErrorException
      */
     public function __invoke(SentEvent $event): void

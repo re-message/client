@@ -21,8 +21,6 @@ use RM\Component\Client\Security\Resolver\AuthorizationResolverInterface;
 use RM\Standard\Message\Serializer\MessageSerializerInterface;
 
 /**
- * Class AbstractTransport.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 abstract class AbstractTransport implements TransportInterface

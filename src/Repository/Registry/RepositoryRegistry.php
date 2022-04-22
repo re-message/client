@@ -22,8 +22,6 @@ use RM\Component\Client\Repository\Factory\RepositoryFactoryInterface;
 use RM\Component\Client\Repository\RepositoryInterface;
 
 /**
- * Class RepositoryRegistry.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class RepositoryRegistry implements RepositoryRegistryInterface

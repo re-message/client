@@ -19,8 +19,6 @@ namespace RM\Component\Client\Event;
 use RM\Standard\Message\MessageInterface;
 
 /**
- * Class ErrorEvent.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class ErrorEvent extends SentEvent

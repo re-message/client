@@ -22,8 +22,6 @@ use RM\Component\Client\Repository\RepositoryInterface;
 use RM\Component\Client\Transport\TransportInterface;
 
 /**
- * Class RepositoryFactory.
- *
  * @author Oleg Kozlov <h1karo@remessage.ru>
  */
 class RepositoryFactory extends AbstractFactory
