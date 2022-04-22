@@ -25,7 +25,7 @@ use RM\Component\Client\Entity\EntityInterface;
 class EntityHydrator implements HydratorInterface
 {
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function hydrate(array $data, string $class): EntityInterface
     {
@@ -37,7 +37,7 @@ class EntityHydrator implements HydratorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function supports(array $data, string $class): bool
     {

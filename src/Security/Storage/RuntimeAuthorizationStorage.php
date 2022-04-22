@@ -35,7 +35,7 @@ class RuntimeAuthorizationStorage implements AuthorizationStorageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function set(string $type, AuthorizationInterface $auth): void
     {
@@ -43,7 +43,7 @@ class RuntimeAuthorizationStorage implements AuthorizationStorageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function get(string $type): AuthorizationInterface
     {
@@ -55,7 +55,7 @@ class RuntimeAuthorizationStorage implements AuthorizationStorageInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function has(string $type): bool
     {

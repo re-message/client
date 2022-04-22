@@ -42,7 +42,7 @@ class Request implements AuthorizationInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function isCompleted(): bool
     {
@@ -50,7 +50,7 @@ class Request implements AuthorizationInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getCredentials(): string
     {
@@ -58,7 +58,7 @@ class Request implements AuthorizationInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function __serialize(): array
     {
@@ -66,7 +66,7 @@ class Request implements AuthorizationInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function __unserialize(array $data): void
     {

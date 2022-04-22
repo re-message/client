@@ -45,7 +45,7 @@ abstract class AbstractRepository implements RepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function find(string $id): EntityInterface
     {
@@ -55,7 +55,7 @@ abstract class AbstractRepository implements RepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function findAll(array $ids): array
     {

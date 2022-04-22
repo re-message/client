@@ -51,7 +51,7 @@ class FileResolver implements AuthorizationResolverInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      *
      * @throws Exception
      */

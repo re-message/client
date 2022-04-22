@@ -36,7 +36,7 @@ class EventfulTransport extends DecoratedTransport
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function send(MessageInterface $sent): MessageInterface
     {

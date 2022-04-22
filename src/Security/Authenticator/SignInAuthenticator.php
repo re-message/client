@@ -89,7 +89,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     protected function createAuthorization(string $credentials, object $entity): AuthorizationInterface
     {
@@ -101,7 +101,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     protected function getObjectKey(): string
     {
@@ -109,7 +109,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public static function getTokenType(): string
     {
@@ -117,7 +117,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getEntity(): string
     {
@@ -125,7 +125,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function store(): static
     {
@@ -138,7 +138,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function restore(): static
     {
@@ -154,7 +154,7 @@ class SignInAuthenticator extends DirectAuthenticator implements StatefulAuthent
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function clear(): static
     {

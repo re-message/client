@@ -31,7 +31,7 @@ interface LoaderInterface extends SymfonyLoaderInterface
      *
      * @return Action[]|Collection
      *
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function load($resource, string $type = null): Collection;
 }

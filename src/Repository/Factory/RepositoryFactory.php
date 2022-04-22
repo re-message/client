@@ -38,7 +38,7 @@ class RepositoryFactory extends AbstractFactory
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function build(string $entity): RepositoryInterface
     {

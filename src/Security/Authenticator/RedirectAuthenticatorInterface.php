@@ -33,7 +33,7 @@ interface RedirectAuthenticatorInterface extends AuthenticatorInterface
     /**
      * Returns a next authenticator.
      *
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function authenticate(): AuthenticatorInterface;
 }

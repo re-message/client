@@ -48,7 +48,7 @@ abstract class DirectAuthenticator implements StorableAuthenticatorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function authenticate(): object
     {

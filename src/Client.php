@@ -56,7 +56,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function createAuthenticator(string $type): AuthenticatorInterface
     {
@@ -64,7 +64,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getRepository(string $entity): RepositoryInterface
     {
@@ -72,7 +72,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function send(MessageInterface $message): MessageInterface
     {
@@ -80,7 +80,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      *
      * @internal
      */
@@ -90,7 +90,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getApplication(): ?Application
     {
@@ -110,7 +110,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getUser(): ?User
     {

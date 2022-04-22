@@ -45,7 +45,7 @@ class BaseAuthenticatorFactory implements AuthenticatorFactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function build(string $class): AuthenticatorInterface
     {

@@ -29,7 +29,7 @@ use RM\Standard\Message\Action;
 class UserRepository extends AbstractRepository
 {
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     final protected function generateGetAction(array $ids): Action
     {
@@ -37,7 +37,7 @@ class UserRepository extends AbstractRepository
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getEntity(): string
     {

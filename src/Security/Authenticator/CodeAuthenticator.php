@@ -49,7 +49,7 @@ class CodeAuthenticator implements RedirectAuthenticatorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function setFactory(AuthenticatorFactoryInterface $authenticatorFactory): static
     {
@@ -109,7 +109,7 @@ class CodeAuthenticator implements RedirectAuthenticatorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public static function getTokenType(): string
     {
@@ -117,7 +117,7 @@ class CodeAuthenticator implements RedirectAuthenticatorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getEntity(): string
     {

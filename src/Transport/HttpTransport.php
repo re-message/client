@@ -57,7 +57,7 @@ class HttpTransport extends AbstractTransport
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function send(MessageInterface $message): MessageInterface
     {

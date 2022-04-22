@@ -50,7 +50,7 @@ class ServiceAuthenticator extends DirectAuthenticator
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     protected function createMessage(): MessageInterface
     {
@@ -64,7 +64,7 @@ class ServiceAuthenticator extends DirectAuthenticator
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     protected function createAuthorization(string $credentials, object $entity): AuthorizationInterface
     {
@@ -76,7 +76,7 @@ class ServiceAuthenticator extends DirectAuthenticator
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getEntity(): string
     {
@@ -84,7 +84,7 @@ class ServiceAuthenticator extends DirectAuthenticator
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public static function getTokenType(): string
     {
@@ -92,7 +92,7 @@ class ServiceAuthenticator extends DirectAuthenticator
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     protected function getObjectKey(): string
     {

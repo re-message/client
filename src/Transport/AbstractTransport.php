@@ -34,7 +34,7 @@ abstract class AbstractTransport implements TransportInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function setResolver(AuthorizationResolverInterface $resolver): static
     {

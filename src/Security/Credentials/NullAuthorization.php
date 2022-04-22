@@ -25,7 +25,7 @@ use BadMethodCallException;
 final class NullAuthorization implements AuthorizationInterface
 {
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function isCompleted(): bool
     {
@@ -33,7 +33,7 @@ final class NullAuthorization implements AuthorizationInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function __serialize(): array
     {
@@ -41,7 +41,7 @@ final class NullAuthorization implements AuthorizationInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function __unserialize(array $serialized): void
     {
@@ -49,7 +49,7 @@ final class NullAuthorization implements AuthorizationInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getCredentials(): string
     {

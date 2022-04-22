@@ -32,7 +32,7 @@ class Token implements AuthorizationInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function isCompleted(): bool
     {
@@ -50,7 +50,7 @@ class Token implements AuthorizationInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getCredentials(): string
     {
@@ -58,7 +58,7 @@ class Token implements AuthorizationInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     final public function __serialize(): array
     {
@@ -66,7 +66,7 @@ class Token implements AuthorizationInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     final public function __unserialize(array $data): void
     {

@@ -41,7 +41,7 @@ class RepositoryRegistry implements RepositoryRegistryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getRepository(string $entity): RepositoryInterface
     {

@@ -32,7 +32,7 @@ abstract class DecoratedHydrator implements HydratorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function hydrate(array $data, string $class): EntityInterface
     {
@@ -40,7 +40,7 @@ abstract class DecoratedHydrator implements HydratorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function supports(array $data, string $class): bool
     {

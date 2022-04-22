@@ -43,7 +43,7 @@ class YamlLoader extends FileLoader implements LoaderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function load($file, string $type = null): Collection
     {
@@ -86,7 +86,7 @@ class YamlLoader extends FileLoader implements LoaderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function supports($resource, string $type = null): bool
     {

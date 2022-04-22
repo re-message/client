@@ -49,7 +49,7 @@ trait RepositoryTrait
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     abstract public function getEntity(): string;
 }

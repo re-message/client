@@ -33,7 +33,7 @@ abstract class DecoratedTransport implements TransportInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function send(MessageInterface $message): MessageInterface
     {
@@ -41,7 +41,7 @@ abstract class DecoratedTransport implements TransportInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function setResolver(AuthorizationResolverInterface $resolver): static
     {

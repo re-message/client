@@ -45,7 +45,7 @@ class Application implements EntityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     final public function getId(): string
     {
@@ -103,7 +103,7 @@ class Application implements EntityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     final public static function createFromArray(array $array): static
     {
