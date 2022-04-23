@@ -27,9 +27,6 @@ jobs:
           ini-values: opcache.jit_buffer_size=256M, opcache.jit=1235, pcre.jit=1
           coverage: pcov
 
-      - name: Validate composer.json and composer.lock
-        run: composer validate
-
       - name: Get Composer Cache Directory
         id: composer-cache
         run: |
@@ -43,6 +40,9 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
 
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
