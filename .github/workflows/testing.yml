@@ -33,7 +33,6 @@ jobs:
           echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - name: Cache Composer packages
-        id: composer-cache
         uses: actions/cache@v2
         with:
           path: ${{ steps.composer-cache-dir.outputs.dir }}
@@ -45,7 +44,6 @@ jobs:
         run: composer validate
 
       - name: Install dependencies
-        if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Run test suite
