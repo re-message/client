@@ -21,7 +21,7 @@ namespace RM\Component\Client\Config;
  */
 interface ConfigurationInterface
 {
-    public const DOMAIN = 'apis.remessage.ru';
+    public const DOMAIN = 'core.remessage.ru';
 
     public const VERSION = '1.0';
 
