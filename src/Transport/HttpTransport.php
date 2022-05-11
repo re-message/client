@@ -40,7 +40,6 @@ class HttpTransport extends AbstractTransport
     protected ClientInterface $httpClient;
     protected RequestFactoryInterface $requestFactory;
     protected StreamFactoryInterface $streamFactory;
-    protected ConfigurationInterface $configuration;
 
     public function __construct(
         ClientInterface $httpClient,
@@ -51,7 +50,6 @@ class HttpTransport extends AbstractTransport
     ) {
         parent::__construct($serializer, $configuration);
 
-        $this->configuration = $configuration;
         $this->httpClient = $httpClient;
         $this->requestFactory = $requestFactory;
         $this->streamFactory = $streamFactory;
